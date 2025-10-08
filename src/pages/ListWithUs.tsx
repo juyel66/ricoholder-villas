@@ -1,6 +1,6 @@
 
 
-const listWithUs = () => {
+const ListWithUs = () => {
     return (
         <div>
             This is listWithUs page 
@@ -9,4 +9,4 @@ const listWithUs = () => {
     );
 };
 
-export default listWithUs;
+export default ListWithUs;
