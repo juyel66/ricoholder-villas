@@ -166,7 +166,7 @@ const Navbar = () => {
 
         {/* Right Side */}
 
-        <div className="btn text-white w-[150px] bg-[#009689] h-13 rounded-xl">Contact Us</div>
+        <Link to="/contact" className="btn text-white w-[150px] bg-[#009689] h-13 rounded-xl">Contact Us</Link>
       
       </div>
     </div>
