@@ -8,6 +8,8 @@ import Management from "./pages/Management/Management";
 import Concierge from "./pages/Concierge/Concierge";
 import Root from "./Component/Root";
 import ListWithUs from "./pages/ListWithUs/ListWithUs";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,8 @@ export const router = createBrowserRouter([
       { path: "/list-with-us", element: <ListWithUs /> },
       { path: "/management", element: <Management /> },
       { path: "/concierge", element: <Concierge /> },
+      { path: "/about", element: <About /> },
+      { path: "/contact", element: <Contact /> },
     ],
   },
 ]);
