@@ -1,8 +1,10 @@
+import { Button } from "@/components/ui/button";
 
 const Home = () => {
     return (
         <div>
-            This is home pages
+           Shadcn Ui button bellow  <br />
+           <Button>Click me</Button>
             
         </div>
     );
