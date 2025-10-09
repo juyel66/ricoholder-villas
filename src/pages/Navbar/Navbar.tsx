@@ -26,6 +26,7 @@ const Navbar = () => {
             }`
           }
           to="/"
+
         >
           Home
         </NavLink>
