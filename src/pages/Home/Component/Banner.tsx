@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 
 
 const FeaturedBadge = () => (
@@ -71,13 +72,14 @@ const Banner = () => {
         <h1 className="mt-8 text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
           Find Your Dream Space
           <br />
-          with <span className="text-teal-400 drop-shadow-lg">Eastmond Villas</span>
+          with <span className="text-teal-400 drop-shadow-lg italic">Eastmond Villas</span>
         </h1>
 
         {/* Sub-text */}
         <p className="mt-4 text-lg md:text-xl text-white/90 font-light max-w-md">
           Smart Homes, Sustainable Living, and AI-Powered Property Matching
         </p>
+
 
         {/* CTA Buttons */}
         <CallToActionButtons />
