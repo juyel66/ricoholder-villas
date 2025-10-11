@@ -1,9 +1,21 @@
+import BeforePage from "./BeforePage";
+import Benefits from "./Benefits";
+import ListWithUsBannerPage from "./ListWIthUsBannerPage";
+import PartnerSections from "./PartnerSections";
+import SubmitPropertyForm from "./SubmitPropertyForm";
+
+import WorksPage from "./WorksPage";
 
 
 const ListWithUs = () => {
     return (
         <div>
-            This is listWithUs page 
+            <ListWithUsBannerPage />
+            <PartnerSections />
+            <Benefits />
+            <WorksPage />
+            <BeforePage />
+            <SubmitPropertyForm />
             
         </div>
     );
