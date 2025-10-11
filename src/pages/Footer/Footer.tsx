@@ -14,7 +14,7 @@ const Footer = () => {
                 style={{ backgroundImage: `url(${bgImageSrc})` }}
             >
                 {/* Dark overlay to ensure text readability */}
-                <div className="absolute inset-0 bg-gray-900 opacity-80"></div>
+                <div className="absolute inset-00 opacity-80"></div>
             </div>
 
             {/* Main Footer Content */}
