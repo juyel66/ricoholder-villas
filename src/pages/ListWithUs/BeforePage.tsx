@@ -13,9 +13,9 @@ const BeforePage = () => {
   ];
 
   return (
-    <section className="w-full  mt-20 bg-white">
-      <div className="">
-        <div className="flex flex-col lg:flex-row items-center justify-between ">
+    <section className="w-full py-16 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           
           {/* Left Column: Text Content */}
           <div className="lg:w-1/2 text-center lg:text-left">

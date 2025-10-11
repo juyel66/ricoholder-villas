@@ -1,5 +1,6 @@
 import BeforePage from "./BeforePage";
 import Benefits from "./Benefits";
+import ListMyVilla from "./ListMyVilla";
 import ListWithUsBannerPage from "./ListWIthUsBannerPage";
 import PartnerSections from "./PartnerSections";
 import SubmitPropertyForm from "./SubmitPropertyForm";
@@ -16,6 +17,7 @@ const ListWithUs = () => {
             <WorksPage />
             <BeforePage />
             <SubmitPropertyForm />
+            <ListMyVilla />
             
         </div>
     );
