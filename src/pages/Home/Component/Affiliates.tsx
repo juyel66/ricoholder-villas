@@ -33,7 +33,7 @@ const Affiliates = () => {
                 }}
             >
                 {/* Dark Overlay for contrast (opacity 50-60 is usually good) */}
-                <div className="absolute inset-0 bg-black opacity-60"></div>
+                <div className="absolute inset-0 \ opacity-60"></div>
             </div>
 
             {/* CONTENT LAYER */}
