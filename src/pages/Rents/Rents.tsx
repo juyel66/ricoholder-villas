@@ -94,6 +94,7 @@ const Pagination = ({ totalResults, resultsPerPage, currentPage, totalPages }) =
                 
                 <NavButton direction="Next" isDisabled={currentPage === totalPages} />
             </div>
+      
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import { CiShare2 } from "react-icons/ci";
 import React from "react";
+import { Link } from "react-router";
 
 const propertyData = {
   id: 2,
@@ -113,9 +114,9 @@ const PropertyCard = ({ property }) => {
             </div>
           </div>
 
-          <button className="w-full py-3 bg-gray-100 text-emerald-700 font-semibold text-lg border-2 border-emerald-500/50 rounded-xl hover:bg-gray-200 transition duration-150  mt-4 md:mt-0">
+          <Link to="/RentsDetails" className="py-3 p-15  bg-gray-100 text-emerald-700 font-semibold text-lg border-2 border-emerald-500/50 rounded-xl hover:bg-gray-200 transition duration-150  mt-4 md:mt-0">
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>
