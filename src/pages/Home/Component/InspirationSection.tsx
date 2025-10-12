@@ -1,5 +1,5 @@
 const InspirationSection = () => {
-  const videoSource = "public/video/inspirationsVideo.mp4";
+  const videoSource = "https://res.cloudinary.com/dqkczdjjs/video/upload/v1760200912/inspirationsVideo_lp99ti.mp4";
 
   return (
     <div>

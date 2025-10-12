@@ -1,10 +1,10 @@
+import Rents from "../Rents/Rents";
 
 
 const Sales = () => {
     return (
         <div>
-            This is sales page 
-            
+          <Rents />
         </div>
     );
 };

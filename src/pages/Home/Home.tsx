@@ -22,7 +22,7 @@ const Home = () => {
            <ExperiencesPage />
            <GuestSections />
            <EstateExperience />
-           <Contact />
+           <Contact /> 
            <Affiliates />
            
          

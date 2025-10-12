@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 // --- Icon Components (for consistency with the design) ---
 const LocationIcon = () => (
@@ -54,11 +55,7 @@ const SignatureCard = ({ villa }) => {
     // Use the provided 'villa' prop, or fallback to default data
     const data = villa || defaultVilla;
 
-    // Static click handler for the button
-    const handleViewDetails = () => {
-        console.log(`Viewing details for: ${data.title}`);
-        alert(`You clicked View Details for ${data.title}! (This is a static alert)`);
-    };
+
 
     return (
         <div className="bg-white rounded-xl overflow-hidden shadow-xl border border-gray-200 transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl w-full">
@@ -124,12 +121,12 @@ const SignatureCard = ({ villa }) => {
                 </div>
 
                 {/* View Details Button */}
-                <button
-                    onClick={handleViewDetails}
-                    className="w-full py-3 border-2 border-teal-500 text-teal-500 font-semibold rounded-lg hover:bg-teal-50 transition duration-200"
+                <Link to="/RentsDetails"
+               
+                    className="flex items-center justify-center w-full py-3 border-2 bg-teal-50 border-teal-500 font-extrabold text-teal-500 rounded-lg hover:bg-teal-50 transition duration-200"
                 >
                     View Details
-                </button>
+                </Link>
             </div>
         </div>
     );
