@@ -3,7 +3,7 @@ import FeatureSection from "./FeatureSection";
 const PropertyManagementSection = () => {
   return (
     <div>
-      <section>
+      <section className="container mx-auto ">
         <h1 className="text-4xl font-bold  my-8">
           Why Choose Eastmond Villas for Your Luxury <br /> Property Management?
         </h1>
@@ -12,7 +12,7 @@ const PropertyManagementSection = () => {
           professional management <br /> and a performance-based partnership.
         </p>
       </section>
-      <section>
+      <section className="container mx-auto px-4">
         <FeatureSection
           title="Tailored, White-Glove Service"
           description="Every villa is distinct, tailored to your needs. Our management plans align with your vision—be it a private getaway, luxury rental, or both."
