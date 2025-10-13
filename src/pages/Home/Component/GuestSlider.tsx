@@ -14,30 +14,30 @@ import { FreeMode, Pagination } from "swiper/modules";
 const testimonialData = [
     {
         id: 1,
-        name: "Jessica Smith",
+        name: "Sarah Johnson",
         location: "UK",
         title: "CEO, TechNova",
-        text: "The stay exceeded every expectation. The personalized concierge service was seamless, and the villa itself felt like a private paradise. A truly unmatched luxury experience.",
+        text: "Great service and amazing properties. I always feel like I'm getting the best deals and the team is always there to help",
         rating: 5.0,
-        image: "https://randomuser.me/api/portraits/women/44.jpg"
+        image: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389339/Ellipse_1_ttjbzh.png"
     },
     {
         id: 2,
-        name: "David Chen",
+        name: "Joanna Lynch",
         location: "Singapore",
         title: "Venture Capitalist",
-        text: "Impeccable attention to detail. Every aspect, from the booking process to the tailored local tours, was handled with the utmost professionalism. Highly recommended for elite travellers.",
+        text: "EV is always super responsive, extremely professional and experienced enough to ensure I always have a blast in Barbados. Definitely my family's go-to agents when in Barbados.",
         rating: 4.8,
-        image: "https://randomuser.me/api/portraits/men/50.jpg"
+        image: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389418/Ellipse_1_3_jw2vgn.png"
     },
     {
         id: 3,
         name: "Maria Rodriguez",
         location: "Spain",
         title: "Architect",
-        text: "The architecture and setting of the villa were breathtaking. It was the perfect blend of modern luxury and local charm. We appreciated the privacy and serenity.",
+        text: "TI have been using EV for years now and they never disappoint, Their attention to detail and customer service is second to none Highly Recommend",
         rating: 4.9,
-        image: "https://randomuser.me/api/portraits/women/68.jpg"
+        image: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389450/Ellipse_1_4_wjn80w.png"
     },
     {
         id: 4,
