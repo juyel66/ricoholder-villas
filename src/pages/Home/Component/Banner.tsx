@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 
 
 const FeaturedBadge = () => (
@@ -10,10 +11,10 @@ const FeaturedBadge = () => (
 const CallToActionButtons = () => (
   <div className="flex space-x-4 mt-8">
     {/* Explore Button */}
-    <button className="flex items-center space-x-2 px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg shadow-xl hover:bg-teal-600 transition duration-300">
+    <Link to="/list-with-us" className="flex items-center space-x-2 px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg shadow-xl hover:bg-teal-600 transition duration-300">
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6l4 2"></path></svg>
       <span>Explore Listings</span>
-    </button>
+    </Link>
     {/* Consultation Button (Ghost/Outline) */}
     <button className="flex items-center space-x-2 px-6 py-3 border-2 border-white/50 text-white font-semibold rounded-lg bg-black/10 backdrop-blur-sm hover:bg-white/10 transition duration-300">
       <span className="text-xl">📅</span>
