@@ -127,11 +127,12 @@ const Navbar = () => {
   );
 
   return (
-    <div className="">
-      <div className="navbar flex items-center justify-between py-2 px-4">
+    <div className="container mx-auto">
+      <div className="navbar px-0 flex items-center justify-between ">
         {/* Logo + Mobile Menu */}
         <div className="flex items-center gap-4">
-          <a className="text-xl font-bold lg:text-2xl">Microworkers</a>
+    
+          <img className="h-20 " src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760303130/hd_svg_logo_1_rfsh4e.png" alt="" />
 
           {/* Mobile menu */}
           <div className="dropdown lg:hidden flex items-center">
@@ -164,17 +165,9 @@ const Navbar = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <LiaCoinsSolid className="text-3xl text-yellow-400" />
-            <span className="hidden lg:inline text-lg">Coin: 0</span>
-          </div>
 
-          <CgProfile className="w-10 h-10" />
-          <Link to="/login" className="btn btn-sm">
-            Login
-          </Link>
-        </div>
+        <Link to="/contact" className="btn text-white w-[150px] bg-[#009689] h-13 rounded-xl">Contact Us</Link>
+      
       </div>
     </div>
   );
