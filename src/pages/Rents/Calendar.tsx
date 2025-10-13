@@ -119,7 +119,7 @@ const CalendarMonth = ({ monthDate }) => {
             : "bg-green-100 text-green-700 hover:bg-green-200 border border-green-300";
 
           return (
-            <div key={key} className="flex items-center justify-center py-1">
+            <div id="calendar" key={key} className="flex items-center justify-center py-1">
               <button
                 className={`${baseClasses} ${statusClasses}`}
                 title={
