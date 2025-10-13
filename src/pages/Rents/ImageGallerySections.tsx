@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import VideoExperience from './VideoExperience';
 import Description from './Descriptions';
 import Locations from './Locations';
+import Calendar from './Calendar';
+import AddReviewForm from './AddReviewForm';
+import BedRoomsSliders from './BedRoomsSliders';
 
 // Define the shape of an amenity item for clarity
 interface SimpleListItemProps {
@@ -109,6 +112,7 @@ const mockData: PropertyData = {
     checkInOutTime: {
       checkIn: '15:00',
       checkOut: '12:00',
+      description: 'Late checkout may be available upon request and is subject to an additional fee. Please contact your concierge for confirmation prior to departure.'
     },
     staff: [
       { name: 'Housekeeper', details: '6 days per week from 9am until 3pm - Summer, Winter & Festive' },
@@ -301,12 +305,19 @@ const ImageGallerySection: React.FC = () => {
                         <div className="flex flex-col space-y-2 text-gray-700 text-sm">
                             <div className="flex items-center">
                                 <span className="text-teal-600 mr-2 text-xl leading-none font-extrabold flex-shrink-0 mt-[-2px]">·</span>
-                                <span>Check-in Time - <span className="font-semibold text-gray-800">{checkInOutTime.checkIn}</span></span>
+                                <span>Check-In/Out Information <span className="font-semibold text-gray-800">{checkInOutTime.checkIn}</span></span>
                             </div>
                             <div className="flex items-center">
                                 <span className="text-teal-600 mr-2 text-xl leading-none font-extrabold flex-shrink-0 mt-[-2px]">·</span>
                                 <span>Check-out Time - <span className="font-semibold text-gray-800">{checkInOutTime.checkOut}</span></span>
                             </div>
+
+                            <div>
+                            {checkInOutTime.description}
+                            </div>
+
+
+
                         </div>
                     </div>
 
@@ -330,29 +341,25 @@ const ImageGallerySection: React.FC = () => {
                     </div>
 
                     {/* Bedrooms - Simplified carousel/list structure */}
-                    <div className="mb-10 pt-4 border-t border-gray-200">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4 flex justify-between items-center">
-                            Bedrooms
-                            <div className="flex space-x-2 text-gray-400">
-                                {/* Simple arrow placeholders for a carousel */}
-                                <span>&lt;</span> 
-                                <span>&gt;</span>
-                            </div>
-                        </h3>
-                        {bedrooms.map((bed, index) => (
-                            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                                <img 
-                                    src={bed.imageUrl} 
-                                    alt={bed.title} 
-                                    className="w-full h-auto object-cover"
-                                />
-                                <div className="p-4">
-                                    <p className="font-semibold text-base text-gray-800">{bed.title}</p>
-                                    <p className="text-sm text-gray-600">{bed.subtitle}</p>
-                                </div>
-                            </div>
-                        ))}
+
+
+
+
+
+
+
+  
+
+
+                    <div>
+                        <BedRoomsSliders  />
                     </div>
+
+
+
+
+
+
 
                     {/* Concierge Service */}
                     <div className="mb-10 pt-4 border-t border-gray-200">
@@ -397,9 +404,13 @@ const ImageGallerySection: React.FC = () => {
             {/* Google locations  */}
 
 
+            <Calendar />
+
+
             <Locations lat={location.lat} lng={location.lng} text={location.address} />
 
 
+            <AddReviewForm />
 
 
 
@@ -407,11 +418,6 @@ const ImageGallerySection: React.FC = () => {
 
 
 
-
-
-            <div className='h-400 w-full border-2 border-red-400] mt-10'>
-
-            </div>
 
 
 
