@@ -36,7 +36,7 @@ const EstateExperience = () => {
 
               {/* Stat 3 */}
               <div className="flex flex-col items-center text-center">
-                <img  src="/public/images/Frame 48095990.png" alt="" />
+                <img  src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389542/Frame_48095990_nt2hfo.png" alt="" />
               </div>
             </div>
           </div>
