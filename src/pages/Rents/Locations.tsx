@@ -197,7 +197,7 @@ export default function Locations() {
   };
 
   return (
-    <div className="py-20">
+    <div className="lg:py-20">
       <div className="text-center mb-10">
         <p className="text-5xl font-semibold text-gray-800">Locations</p>
         <p className="text-lg text-gray-600">
@@ -207,7 +207,7 @@ export default function Locations() {
 
       <div
         className="relative mx-auto"
-        style={{ height: "75vh", width: "90%", borderRadius: "12px" }}
+        style={{ height: "75vh", width: "100%", borderRadius: "12px" }}
       >
         <GoogleMapReact
           bootstrapURLKeys={{ key: googleMapAPIKey }}
