@@ -67,7 +67,7 @@ const Pagination = ({ totalResults, resultsPerPage, currentPage, totalPages }) =
     );
 
     return (
-        <div className="flex flex-col sm:flex-row justify-between items-center py-6 px-4 sm:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
             {/* Left side: Results Count */}
             <div className="text-sm font-medium text-gray-600 mb-4 sm:mb-0">
                 Showing {start} to {end} of {totalResults} results
@@ -125,7 +125,7 @@ const Rents = () => {
             />
            
 
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div className=" w-full">
                 
                 {/* Card Grid */}
                 <div className="  ">

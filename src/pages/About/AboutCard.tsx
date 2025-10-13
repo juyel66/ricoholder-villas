@@ -6,7 +6,7 @@ const StorySection = () => {
 
 
         <section className="bg-white mt-10 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="  ">
         {/* GRID CLASS MODIFIED: Changed lg:grid-cols-2 to lg:grid-cols-3 */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
           
@@ -42,7 +42,7 @@ const StorySection = () => {
 
 
 <section className="bg-white lg:mt-0 md:mt-3 mt-5  border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2 lg:pt-0 pt-5 ">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* Grid Layout: Image on left (1/3 width), Text on right (2/3 width) */}
         {/* This div structures the two columns for larger screens */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
@@ -85,7 +85,7 @@ const StorySection = () => {
 
 
            <section className="bg-white lg:mt-0 md:mt-3 border-2 rounded-2xl pb-5 lg:mt-0 mt-4 border-gray-200 lg:border-0 broder-2 ">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* GRID CLASS MODIFIED: Changed lg:grid-cols-2 to lg:grid-cols-3 */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
           
@@ -121,7 +121,7 @@ const StorySection = () => {
 
 
 <section className="bg-white lg:mt-0 md:mt-3 mt-5  border-2 rounded-2xl pb-5 lg:mt-0 mt-5 lg:pt-5 pt:p-0 pt-4 border-gray-200 lg:border-0 broder-2">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* Grid Layout: Image on left (1/3 width), Text on right (2/3 width) */}
         {/* This div structures the two columns for larger screens */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
@@ -161,7 +161,7 @@ const StorySection = () => {
 
 
            <section className="bg-white  lg:mt-0 md:mt-3 mt-5 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* GRID CLASS MODIFIED: Changed lg:grid-cols-2 to lg:grid-cols-3 */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
           
@@ -197,7 +197,7 @@ const StorySection = () => {
 
 
 <section className="bg-white mt-5 pt-4  lg:mt-0 md:mt-3 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2 ">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* Grid Layout: Image on left (1/3 width), Text on right (2/3 width) */}
         {/* This div structures the two columns for larger screens */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
@@ -249,7 +249,7 @@ const StorySection = () => {
 // Example Usage:
 const About = () => (
   <div className="min-h-screen ">
-    <StorySection />
+    <div className='container mx-auto'><StorySection /></div>
     {/* Other sections can go here */}
   </div>
 );

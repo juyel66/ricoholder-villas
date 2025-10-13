@@ -15,15 +15,17 @@ const Home = () => {
     return (
         <div>
            <Banner />
-           <FilterSystem />
-           <SignatureCardContainer />
-           <InspirationSection />
-           <Luxury />
-           <ExperiencesPage />
-           <GuestSections />
-           <EstateExperience />
-           <Contact /> 
+          <div className="">
+           <div className="container mx-auto"> <FilterSystem /></div>
+          <div className="container mx-auto"> <SignatureCardContainer /></div>
+           <div className="container mx-auto"><InspirationSection /></div>
+          <div className="container mx-auto"> <Luxury /></div>
+           <div className="container mx-auto"><ExperiencesPage /></div>
+          <div className="container mx-auto"> <GuestSections /></div>
+          <div className=""> <EstateExperience /></div>
+           <div className="container mx-auto"><Contact /> </div>
            <Affiliates />
+          </div>
            
          
            

@@ -9,7 +9,7 @@ const ExploreIcon = () => (
 
 const ExperiencesPage = () => {
     return (
-        <div style={{ backgroundImage: 'url(/public/images/experiancee.png)' }} className="relative w-full overflow-hidden rounded-3xl shadow-xl aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/6] bg-gray-900">
+        <div style={{ backgroundImage: 'url(/public/images/experiancee.png)' }} className="relative  mt-10 w-full overflow-hidden rounded-3xl shadow-xl aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/6] bg-gray-900">
             
             {/* Background Image - This 'img' tag is already functioning as a background image */}
            

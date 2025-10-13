@@ -1,7 +1,7 @@
 const EstateExperience = () => {
   return (
-    <div className="bg-teal-800 text-white py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <div className="bg-teal-800  text-white py-16 md:py-24">
+      <div className="container mx-auto  ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* LEFT COLUMN: Text Content & Stats */}
           <div className="lg:pr-12">
@@ -46,7 +46,7 @@ const EstateExperience = () => {
             <img
               src="/images/estateImage.png"
               alt="Estate"
-              className="w-full max-w-md rounded-lg  object-cover"
+              className="h-full w-[650px] rounded-lg  object-cover"
             />
           </div>
         </div>

@@ -35,10 +35,10 @@ const PropertyCard = ({ property }) => {
   ];
 
   return (
-    <div className="max-w-7xl  mx-auto my-10 bg-white p-2.5 rounded-[2rem]  border-4 border-green-200/50 overflow-hidden font-sans">
+    <div className=" container mx-auto my-10 bg-white p-2.5 rounded-[2rem]  border-4  overflow-hidden font-sans">
       <div className="flex flex-col md:flex-row bg-white rounded-3xl">
         <div
-          className="md:w-[60%] relative h-80 md:h-[450px] bg-gray-200 bg-cover bg-center rounded-3xl"
+          className="md:w-[60%] relative h-80 md:h-[450px]  bg-cover bg-center rounded-3xl"
           style={{ backgroundImage: `url(${property.imageUrl})` }}
         >
           <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-xl font-semibold text-sm flex items-center space-x-1">
@@ -107,14 +107,14 @@ const PropertyCard = ({ property }) => {
                   </div>
 
                   {index < amenities.length - 1 && (
-                    <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
+                    <div className="w-1 h-1 rounded-full"></div>
                   )}
                 </React.Fragment>
               ))}
             </div>
           </div>
 
-          <Link to="/RentsDetails" className="py-3 p-15  bg-gray-100 text-emerald-700 font-semibold text-lg border-2 border-emerald-500/50 rounded-xl hover:bg-gray-200 transition duration-150  mt-4 md:mt-0">
+          <Link to="/RentsDetails" className="py-3 p-15   text-emerald-700 font-semibold text-lg border-2 border-emerald-500/50 rounded-xl hover:bg-gray-200 transition duration-150  mt-4 md:mt-0">
             View Details
           </Link>
         </div>
@@ -124,7 +124,7 @@ const PropertyCard = ({ property }) => {
 };
 
 const RentsCard = () => (
-  <div className=" bg-gray-50  ">
+  <div className="   ">
     <PropertyCard property={propertyData} />
   </div>
 );

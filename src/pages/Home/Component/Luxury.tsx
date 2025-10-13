@@ -44,13 +44,13 @@ const LuxuryFeaturesGrid = () => {
 
                         
             <div className=" mt-5 bg-white">
-            <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+            <div className=" mx-auto ">
                 
                 {/* 🚨 Outer Grid for Image and Feature Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 ">
                     
                     {/* 1. LEFT COLUMN: Image Section */}
-                    <div className="w-full h-full p-4 lg:sticky lg:top-8"> 
+                    <div className="w-full h-full  lg:sticky lg:top-8"> 
                         <img 
                             src="public/images/exclusive img.png" 
                             alt="Luxury Villa" 

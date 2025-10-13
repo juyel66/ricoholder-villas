@@ -41,7 +41,7 @@ const Banner = () => {
   const videoSource = "https://res.cloudinary.com/dqkczdjjs/video/upload/v1760120464/d_v_jsxaky.mp4"; 
 
   return (
-    <div className="relative h-screen max-h-[800px] w-full overflow-hidden">
+    <div className="relative rounded-xl h-screen max-h-[800px] w-full overflow-hidden">
       
       {/* 1. Background Video Element */}
       <video
@@ -58,7 +58,7 @@ const Banner = () => {
       
 
       {/* 2. Content Container (Positioned on the left) */}
-      <div className="relative h-full flex flex-col justify-center p-8 md:p-16 lg:p-24 max-w-7xl mx-auto z-10"> 
+      <div className="relative h-full flex flex-col justify-center  container mx-auto z-10"> 
         {/* Added z-10 to ensure content is above the video/overlay */}
 
         {/* Top-Left Badge */}

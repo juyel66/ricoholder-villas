@@ -111,7 +111,7 @@ const TestimonialCard = ({ testimonial }) => {
 export default function GuestSlider() {
     return (
        
-        <div className="w-full h-[450px] p-8  flex flex-col">
+        <div className="w-full h-[450px]  mt-10 flex flex-col">
             
         
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-shrink-0">
@@ -129,7 +129,7 @@ export default function GuestSlider() {
                         clickable: true,
                     }}
                     modules={[FreeMode, Pagination]}
-                    className="mySwiper pt-6 pb-12 h-full" 
+                    className="mySwiper pt-6 pb-12 h-full !px-0" 
                     style={{ paddingLeft: '1rem', paddingRight: '1rem' }} 
                     breakpoints={{
                         320: { slidesPerView: 1.1, spaceBetween: 10, paddingLeft: '1rem', paddingRight: '1rem' },

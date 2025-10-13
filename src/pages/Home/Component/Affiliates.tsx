@@ -37,7 +37,7 @@ const Affiliates = () => {
             </div>
 
             {/* CONTENT LAYER */}
-            <div className="relative z-10 py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="container  relative z-10 py-16 md:py-24  mx-auto text-center">
                 {/* Section Title */}
                 <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-16 md:mb-20">
                     Our Partners & Affiliates

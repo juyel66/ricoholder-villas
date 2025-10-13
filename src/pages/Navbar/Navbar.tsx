@@ -127,12 +127,12 @@ const Navbar = () => {
   );
 
   return (
-    <div className="">
-      <div className="navbar flex items-center justify-between py-2 px-4">
+    <div className="container mx-auto">
+      <div className="navbar px-0 flex items-center justify-between ">
         {/* Logo + Mobile Menu */}
         <div className="flex items-center gap-4">
     
-          <img className="h-20" src="public/images/logo.png" alt="" />
+          <img className="h-20 " src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760303130/hd_svg_logo_1_rfsh4e.png" alt="" />
 
           {/* Mobile menu */}
           <div className="dropdown lg:hidden flex items-center">

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import VideoExperience from './VideoExperience';
+import Description from './Descriptions';
+import Locations from './Locations';
 
-// Define the shape of an amenity item for clarity (সাধারণ তালিকার আইটেমের জন্য)
+// Define the shape of an amenity item for clarity
 interface SimpleListItemProps {
-  name: string;
+  name: string;
 }
 
-// Define the shape of the data we expect to fetch (ফেচ করা ডেটার কাঠামো)
+// Define the shape of the data we expect to fetch
 interface PropertyData {
   gallery: { id: number; url: string }[];
   amenities: {
@@ -13,7 +16,12 @@ interface PropertyData {
     interiorAmenities: string[];
     outdoorAmenities: string[];
   };
-  // NEW SECTIONS DATA (নতুন সেকশনের ডেটা)
+  // New sections data structure
+  location: {
+    lat: number;
+    lng: number;
+    address: string;
+  };
   rulesAndEtiquette: string[];
   checkInOutTime: { checkIn: string; checkOut: string };
   staff: { name: string; details: string }[];
@@ -22,18 +30,18 @@ interface PropertyData {
   securityDeposit: string;
 }
 
-// Reusable component for a single amenity/list item (পুনরায় ব্যবহারযোগ্য কম্পোনেন্ট)
+// Reusable component for a single amenity/list item
 const AmenityItem: React.FC<SimpleListItemProps> = ({ name }) => {
-  return (
-    <li className="flex items-start text-gray-700 text-sm mb-2">
-      {/* Using a large dot '·' stylized with Tailwind classes for color and spacing */}
-      <span className="text-teal-600 mr-2 text-xl leading-none font-extrabold flex-shrink-0 mt-[-2px]">·</span>
-      {name}
-    </li>
-  );
+  return (
+    <li className="flex items-start text-gray-700 text-sm mb-2">
+      {/* Stylized large dot for list item marker */}
+      <span className="text-teal-600 mr-2 text-xl leading-none font-extrabold flex-shrink-0 mt-[-2px]">·</span>
+      {name}
+    </li>
+  );
 };
 
-// Component for displaying staff details (স্টাফ বিবরণ দেখানোর জন্য কম্পোনেন্ট)
+// Component for displaying staff details
 const StaffItem: React.FC<{ name: string; details: string }> = ({ name, details }) => {
     return (
         <li className="flex items-start mb-4">
@@ -47,9 +55,9 @@ const StaffItem: React.FC<{ name: string; details: string }> = ({ name, details 
 };
 
 
-// Mock JSON payload (এটি API থেকে ডেটা ফেচ করার প্রক্রিয়া অনুকরণ করে)
+// Mock JSON payload (Simulates fetching data from an API endpoint)
 const mockData: PropertyData = {
-    gallery: [ // চিত্র গ্যালারি ডেটা
+    gallery: [ // Image Gallery Data
       { id: 1, url: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png' },
       { id: 2, url: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760229337/Property_Interior_1_z9x6gq.jpg' },
       { id: 3, url: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760229337/Property_Interior_1_z9x6gq.jpg' },
@@ -57,7 +65,7 @@ const mockData: PropertyData = {
       { id: 5, url: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760229337/Property_Interior_1_z9x6gq.jpg' },
       { id: 6, url: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760229337/Property_Interior_1_z9x6gq.jpg' },
     ],
-    amenities: { // সুযোগ-সুবিধা ডেটা
+    amenities: { // Amenities Data
       signatureDistinctions: [
         'Fairmont Pavilion Beach Club Membership (10 people)',
         'Media Room',
@@ -88,6 +96,11 @@ const mockData: PropertyData = {
       ],
     },
     // NEW SECTIONS DATA:
+    location: {
+      lat: 13.1826, // Latitude for Sandy Lane, Barbados
+      lng: -59.6393, // Longitude for Sandy Lane, Barbados
+      address: 'Casablanca At Sandy Lane'
+    },
     rulesAndEtiquette: [
       'Children - All Welcome',
       'No Pets',
@@ -103,7 +116,7 @@ const mockData: PropertyData = {
       { name: 'Security Guard', details: '6 days per week from 5pm until 5am - Summer, Winter & Festive' },
     ],
     bedrooms: [
-      { // Simplifying the complex Bedroom carousel to a single data structure for now
+      { // Simplified Bedroom data structure for the list
         title: 'Master Bedroom 1',
         subtitle: 'with en suite King Bed (UK)',
         imageUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760229337/Property_Interior_1_z9x6gq.jpg'
@@ -118,7 +131,7 @@ const mockData: PropertyData = {
 };
 
 
-const PropertyGalleryAndAmenities: React.FC = () => {
+const ImageGallerySection: React.FC = () => {
     // State to hold the fetched data and loading status
     const [data, setData] = useState<PropertyData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -137,7 +150,7 @@ const PropertyGalleryAndAmenities: React.FC = () => {
         return (
             <section className="container mx-auto px-4 py-16 text-center">
                 <div className="text-xl font-semibold text-teal-600">
-                    Loading property details... (প্রপার্টির বিবরণ লোড হচ্ছে...)
+                    Loading property details...
                 </div>
                 {/* Simple pulsing effect for loading indicator */}
                 <div className="mt-4 flex justify-center space-x-2">
@@ -149,18 +162,19 @@ const PropertyGalleryAndAmenities: React.FC = () => {
         );
     }
     
+    // Display error if data is null after loading
     if (!data) {
         return (
             <section className="container mx-auto px-4 py-16 text-center">
                 <div className="text-xl font-semibold text-red-500">
-                    Error loading data. Please try again. (ডেটা লোডিং ত্রুটি। অনুগ্রহ করে আবার চেষ্টা করুন।)
+                    Error loading data. Please try again.
                 </div>
             </section>
         );
     }
 
-    // Destructure data for cleaner rendering using the map method
-    const { gallery, amenities, rulesAndEtiquette, checkInOutTime, staff, bedrooms, conciergeService, securityDeposit } = data;
+    // Destructure data for cleaner rendering
+    const { gallery, amenities, location, rulesAndEtiquette, checkInOutTime, staff, bedrooms, conciergeService, securityDeposit } = data;
     const { signatureDistinctions, interiorAmenities, outdoorAmenities } = amenities;
 
 
@@ -168,16 +182,15 @@ const PropertyGalleryAndAmenities: React.FC = () => {
         <section className="container mx-auto px-4 py-16">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
-                {/* === LEFT COLUMN: Image Gallery (বাম কলাম: চিত্র গ্যালারি) === */}
+                {/* === LEFT COLUMN: Image Gallery === */}
                 <div className="lg:col-span-7">
                     <h2 className="text-3xl font-bold text-gray-900 mb-8">
                         Image Gallery - {gallery.length} photos
                     </h2>
                     
-                    {/* Image Grid (চিত্র গ্রিড) - Using gallery data via map */}
+                    {/* Image Grid - Renders gallery images using map */}
                     <div className="grid grid-cols-3 gap-4">
-                        {/* The map method iterates over the fetched gallery array */}
-                        {gallery.map((img, index) => (
+                        {gallery.map((img) => (
                             <div 
                                 key={img.id} 
                                 className="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden shadow-sm"
@@ -191,26 +204,43 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                         ))}
                     </div>
 
-                    {/* View All Photos Button (সব ছবি দেখুন বাটন) */}
+
+
+                    {/* View All Photos Button */}
                     <div className="mt-8 text-center">
                         <button
                             className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-200 shadow-lg"
                         >
                             View All Photos
                         </button>
+
+
+
+                        {/* youtube video  */}
+
+                         <VideoExperience />
+
+                         <Description />
+                    
+
+
+
+
+
+
                     </div>
                 </div>
 
-                {/* === RIGHT COLUMN: Details & Amenities (ডান কলাম: বিবরণ এবং সুযোগ-সুবিধা) === */}
+                {/* === RIGHT COLUMN: Details & Amenities === */}
                 <div className="lg:col-span-5 border-l lg:pl-12 pl-0">
                     
-                    {/* Signature Distinctions (স্বাক্ষর বিশিষ্টতা) - Using signatureDistinctions data via map */}
+                    {/* Signature Distinctions */}
                     <div className="mb-10">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">
                             Signature Distinctions
                         </h3>
                         <ul className="list-none p-0">
-                             {/* The map method iterates over the fetched signatureDistinctions array */}
+                             {/* Renders signature distinctions using map */}
                             {signatureDistinctions.map((item, index) => (
                                 <li key={index} className="text-gray-700 text-sm mb-2 flex items-start">
                                     <span className="text-teal-600 mr-2 text-xl leading-none font-extrabold flex-shrink-0 mt-[-2px]">·</span>
@@ -220,29 +250,29 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                         </ul>
                     </div>
 
-                    {/* Finer Details (ফাইন বিবরণ) */}
+                    {/* Finer Details Section */}
                     <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">
                             Finer Details
                         </h3>
                         
-                        {/* Interior Amenities (অভ্যন্তরীণ সুযোগ-সুবিধা - দুই কলামে) */}
+                        {/* Interior Amenities - Rendered in two columns */}
                         <h4 className="font-semibold text-lg text-gray-800 mb-2">
                             Interior Amenities
                         </h4>
                         <ul className="grid grid-cols-2 gap-x-6">
-                            {/* The map method iterates over the fetched interiorAmenities array */}
+                            {/* Uses the reusable AmenityItem component */}
                             {interiorAmenities.map((item, index) => (
                                 <AmenityItem key={index} name={item} />
                             ))}
                         </ul>
 
-                        {/* Outdoor Amenities (বহিঃস্থ সুযোগ-সুবিধা - এক কলামে) */}
+                        {/* Outdoor Amenities - Rendered in one column */}
                         <h4 className="font-semibold text-lg text-gray-800 mt-6 mb-2">
                             Outdoor Amenities
                         </h4>
                         <ul className="list-none p-0 mb-10"> 
-                            {/* The map method iterates over the fetched outdoorAmenities array */}
+                            {/* Uses the reusable AmenityItem component */}
                             {outdoorAmenities.map((item, index) => (
                                 <AmenityItem key={index} name={item} />
                             ))}
@@ -251,7 +281,7 @@ const PropertyGalleryAndAmenities: React.FC = () => {
 
                     {/* ----------------- NEW SECTIONS START HERE ----------------- */}
 
-                    {/* Rules & Etiquette (নিয়ম ও শিষ্টাচার) */}
+                    {/* Rules & Etiquette */}
                     <div className="mb-10 pt-4 border-t border-gray-200">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">
                             Rules & Etiquette
@@ -263,7 +293,7 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                         </ul>
                     </div>
 
-                    {/* Check in/out time (চেক ইন/আউট সময়) */}
+                    {/* Check in/out time */}
                     <div className="mb-10 pt-4 border-t border-gray-200">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">
                             Check in/out time
@@ -280,7 +310,7 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Staff (কর্মী) */}
+                    {/* Staff Details */}
                     <div className="mb-10 pt-4 border-t border-gray-200">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4 flex justify-between items-end">
                             Staff
@@ -299,12 +329,12 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                         </ul>
                     </div>
 
-                    {/* Bedrooms (বেডরুম) - Simplified structure */}
+                    {/* Bedrooms - Simplified carousel/list structure */}
                     <div className="mb-10 pt-4 border-t border-gray-200">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4 flex justify-between items-center">
                             Bedrooms
                             <div className="flex space-x-2 text-gray-400">
-                                {/* Simple arrow placeholders */}
+                                {/* Simple arrow placeholders for a carousel */}
                                 <span>&lt;</span> 
                                 <span>&gt;</span>
                             </div>
@@ -324,7 +354,7 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                         ))}
                     </div>
 
-                    {/* Concierge Service (কনসিয়ার্জ পরিষেবা) */}
+                    {/* Concierge Service */}
                     <div className="mb-10 pt-4 border-t border-gray-200">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">
                             Concierge Service
@@ -336,7 +366,7 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                         </ul>
                     </div>
 
-                    {/* Security Deposit (সিকিউরিটি ডিপোজিট) */}
+                    {/* Security Deposit */}
                     <div className="mb-10 pt-4 border-t border-gray-200">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">
                             Security Deposit
@@ -346,7 +376,7 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                         </p>
                     </div>
 
-                    {/* Download EV Brochure Button (ব্রোশিওর ডাউনলোড বাটন) */}
+                    {/* Download Brochure Button */}
                     <div className="mt-8">
                         <button
                             className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-4 px-8 rounded-lg transition duration-200 shadow-lg text-lg"
@@ -354,12 +384,40 @@ const PropertyGalleryAndAmenities: React.FC = () => {
                             Download EV Brochure
                         </button>
                     </div>
+                    
 
                 </div>
+                
 
             </div>
+            
+
+
+
+            {/* Google locations  */}
+
+
+            <Locations lat={location.lat} lng={location.lng} text={location.address} />
+
+
+
+
+
+
+
+
+
+
+
+            <div className='h-400 w-full border-2 border-red-400] mt-10'>
+
+            </div>
+
+
+
+           
         </section>
     );
 };
 
-export default PropertyGalleryAndAmenities;
+export default ImageGallerySection;

@@ -1,8 +1,8 @@
-import React from 'react';
+
 
 const FilterSystem = () => {
   return (
-    <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200 max-w-5xl mx-auto mt-10">
+    <div className="bg-white container  p-8 rounded-xl shadow-lg border border-gray-200  mx-auto mt-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-6">
 
         {/* Check-In */}

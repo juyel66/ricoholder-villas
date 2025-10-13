@@ -7,8 +7,8 @@ const Concierge = () => {
     return (
         <div>
             <ConciergeBanner />
-            <Eastmond />
-            <ConciergeCard />
+           <div className="container mx-auto"> <Eastmond />
+            <ConciergeCard /></div>
             
         </div>
     );

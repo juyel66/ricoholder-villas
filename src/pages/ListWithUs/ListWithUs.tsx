@@ -12,9 +12,9 @@ const ListWithUs = () => {
     return (
         <div>
             <ListWithUsBannerPage />
-            <PartnerSections />
-            <Benefits />
-            <WorksPage />
+           <div className="container mx-auto"> <PartnerSections /></div>
+           <div className="container mx-auto"> <Benefits /></div>
+            <div className="container mx-auto"><WorksPage /></div>
             <BeforePage />
             <SubmitPropertyForm />
             <ListMyVilla />

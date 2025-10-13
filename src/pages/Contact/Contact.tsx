@@ -35,7 +35,7 @@ const Contact = () => {
 
     return (
         <section className="bg-white py-16 md:py-24">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="  ">
                 {/* Main Heading */}
                 <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-16 md:mb-20">
                     Let's Connect
