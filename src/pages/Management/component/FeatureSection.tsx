@@ -54,7 +54,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           `
         flex flex-col
       ${imageSide === "right" ? "md:flex-row-reverse" : "md:flex-row"}
-          justify-center gap-60 items-center
+          justify-between gap-60 items-center
         `,
         ].join(" ")}
       >
