@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router';
+
+import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 // Adjusted Logo component (no changes needed here)
 const EastmondVillasLogo = () => (
@@ -21,7 +22,7 @@ const Login = () => {
   const primaryColor = 'bg-[#00A597] hover:bg-[#008f82]';
 
   // **UPDATED:** handleSubmit now creates and logs a JSON object
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     // Create the data object (JSON-like structure)
@@ -77,7 +78,7 @@ const Login = () => {
                 id="email"
                 placeholder="user@example.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 placeholder-gray-400 text-gray-700 text-sm"
               />
             </div>
@@ -94,7 +95,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-gray-700 text-sm"
               />
             </div>
