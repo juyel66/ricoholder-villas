@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // ⚠️ IMPORTANT: Ensure SubmitHandler is imported for correct TypeScript usage
 import type { DragEvent, ChangeEvent } from "react";
-import { useForm } from "react-hook-form"; 
+import { useForm, SubmitHandler } from "react-hook-form"; 
 
 interface ReviewInputs {
   reviewText: string;
