@@ -1,5 +1,13 @@
+import React from 'react';
 
-const LuxuryFeatureCard = ({ imageUrl, brandName, tagline, description }) => {
+interface LuxuryFeatureCardProps {
+  imageUrl: string;
+  brandName: string;
+  tagline: string;
+  description: string;
+}
+
+const LuxuryFeatureCard: React.FC<LuxuryFeatureCardProps> = ({ imageUrl, brandName, tagline, description }) => {
   return (
     <div className=" bg-white shadow-xl rounded-xl overflow-hidden my-10">
       {/* 1. Image Section - Full Width */}
@@ -57,7 +65,7 @@ const LuxuryFeatureCard = ({ imageUrl, brandName, tagline, description }) => {
 };
 
 // Example Usage (in your main App.js or page component)
-const App = () => {
+const Eastmond: React.FC = () => {
   const exampleData = {
     imageUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760215120/bannnnner_jrc9uz.png', // **Replace with your image path**
     brandName: 'Eastmond as a Standard',
@@ -78,4 +86,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Eastmond;
