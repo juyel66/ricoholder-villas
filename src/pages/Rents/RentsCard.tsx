@@ -1,6 +1,6 @@
 import { CiShare2 } from "react-icons/ci";
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const propertyData = {
   id: 2,
@@ -17,13 +17,30 @@ const propertyData = {
   imageUrl: "https://i.ibb.co.com/ZpG7JcPk/img-5.png",
 };
 
-const ActionButton = ({ icon }) => (
+interface ActionButtonProps {
+  icon: React.ReactNode;
+}
+
+const ActionButton: React.FC<ActionButtonProps> = ({ icon }) => (
   <button className="w-9 h-9 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition duration-150 ">
     <span className="text-lg">{icon}</span>
   </button>
 );
 
-const PropertyCard = ({ property }) => {
+interface Property {
+  price: string;
+  beds: number;
+  baths: number;
+  pool: number;
+  imageUrl: string;
+  rating: number;
+  reviewCount: number;
+  title: string;
+  location: string;
+  rateType: string;
+}
+
+const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
   const formattedPrice = new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 0,
   }).format(property.price);
