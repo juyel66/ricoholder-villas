@@ -1,6 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { LiaCoinsSolid } from "react-icons/lia";
-import { CgProfile } from "react-icons/cg";
+
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useEffect, useState } from "react";
 
