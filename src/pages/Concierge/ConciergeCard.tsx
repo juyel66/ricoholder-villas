@@ -35,7 +35,14 @@ const LUXURY_CARD_DATA = [
 ];
 
 // --- Reusable Card Component (Unchanged) ---
-const LuxuryFeatureCard = ({ imageUrl, brandName, tagline, description }) => {
+interface LuxuryFeatureCardProps {
+  imageUrl: string;
+  brandName: string;
+  tagline: string;
+  description: string;
+}
+
+const LuxuryFeatureCard: React.FC<LuxuryFeatureCardProps> = ({ imageUrl, brandName, tagline, description }) => {
   return (
     <div className=" bg-white shadow-xl rounded-xl overflow-hidden my-0 flex flex-col h-full"> {/* Removed margin-y and added flex-col h-full */}
       {/* 1. Image Section */}
@@ -148,10 +155,10 @@ const LuxuryCardGrid = () => {
 };
 
 // Example Usage Component
-const App = () => (
+const ConciergeCard: React.FC = () => (
   <div className="">
     <LuxuryCardGrid />
   </div>
 );
 
-export default App;
+export default ConciergeCard;
