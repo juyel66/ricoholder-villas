@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StorySection = () => {
+const StorySection: React.FC = () => {
   return (
 <div>
 
@@ -246,12 +246,12 @@ const StorySection = () => {
   );
 };
 
-// Example Usage:
-const About = () => (
+// Renamed from 'About' to 'AboutCard' to match the filename and avoid confusion.
+const AboutCard: React.FC = () => (
   <div className="min-h-screen ">
     <div className='container mx-auto'><StorySection /></div>
     {/* Other sections can go here */}
   </div>
 );
 
-export default About;
+export default AboutCard;
