@@ -78,7 +78,11 @@ const getDayStatus = (date) => {
 
 // --- Calendar Sub-Component ---
 
-const CalendarMonth = ({ monthDate }) => {
+interface CalendarMonthProps {
+  monthDate: Date;
+}
+
+const CalendarMonth: React.FC<CalendarMonthProps> = ({ monthDate }) => {
   const days = getCalendarDays(monthDate);
   const monthName = monthDate.toLocaleString("en-US", {
     month: "long",
@@ -181,7 +185,12 @@ const Calendar = () => {
     "flex items-center space-x-2 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-150 p-2 rounded-lg";
 
   // Legend item component
-  const LegendItem = ({ color, text }) => (
+  interface LegendItemProps {
+    color: string;
+    text: string;
+  }
+  
+  const LegendItem: React.FC<LegendItemProps> = ({ color, text }) => (
     <div className="flex items-center space-x-2 text-sm text-gray-700">
       <span className={`w-3 h-3 rounded-full ${color}`}></span>
       <span>{text}</span>
