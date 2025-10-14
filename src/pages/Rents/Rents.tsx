@@ -3,7 +3,14 @@ import RentsCard from "./RentsCard";
 import FilterSystem from "@/shared/FilterSystem";
 
 // --- New Pagination Component ---
-const Pagination = ({ totalResults, resultsPerPage, currentPage, totalPages }) => {
+interface PaginationProps {
+    totalResults: number;
+    resultsPerPage: number;
+    currentPage: number;
+    totalPages: number;
+}
+
+const Pagination: React.FC<PaginationProps> = ({ totalResults, resultsPerPage, currentPage, totalPages }) => {
     // Determine the range of results being shown
     const start = (currentPage - 1) * resultsPerPage + 1;
     const end = Math.min(currentPage * resultsPerPage, totalResults);
@@ -28,7 +35,13 @@ const Pagination = ({ totalResults, resultsPerPage, currentPage, totalPages }) =
     }
 
 
-    const PageNumberButton = ({ number, isActive, isEllipsis }) => (
+    interface PageNumberButtonProps {
+        number?: number;
+        isActive: boolean;
+        isEllipsis?: boolean;
+    }
+
+    const PageNumberButton: React.FC<PageNumberButtonProps> = ({ number, isActive, isEllipsis }) => (
         <button 
             className={`w-10 h-10 mx-1 flex items-center justify-center rounded-lg text-sm font-semibold transition duration-150 
                 ${isActive 
@@ -44,7 +57,12 @@ const Pagination = ({ totalResults, resultsPerPage, currentPage, totalPages }) =
         </button>
     );
 
-    const NavButton = ({ direction, isDisabled }) => (
+    interface NavButtonProps {
+        direction: 'Previous' | 'Next';
+        isDisabled: boolean;
+    }
+
+    const NavButton: React.FC<NavButtonProps> = ({ direction, isDisabled }) => (
         <button 
             className={`px-4 py-2 mx-1 flex items-center justify-center rounded-lg text-sm font-semibold transition duration-150 ${
                 isDisabled 
