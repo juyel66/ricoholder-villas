@@ -42,7 +42,7 @@ const Banner = () => {
   const videoSource = "https://res.cloudinary.com/dqkczdjjs/video/upload/v1760120464/d_v_jsxaky.mp4"; 
 
   return (
-    <div className="relative rounded-xl h-screen max-h-[800px] w-full overflow-hidden">
+    <div className="relative p-5 mt-10 rounded-xl h-screen max-h-[800px] w-full overflow-hidden">
       
       {/* 1. Background Video Element */}
       <video

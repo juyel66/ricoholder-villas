@@ -1,6 +1,6 @@
-import React, { useState, FormEvent, DragEvent } from 'react';
+import React, { useState, DragEvent } from 'react';
 
-import { useForm, SubmitHandler } from 'react-hook-form'; 
+import { useForm } from 'react-hook-form'; 
 
 
 // 2. Define the shape of your form data for React Hook Form
