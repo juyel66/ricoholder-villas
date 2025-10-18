@@ -1,173 +1,205 @@
-import { villaData } from "@/FakeJson"; 
+// File: Rents.tsx
+import React, { useState } from "react";
+
 import RentsCard from "./RentsCard";
 import FilterSystem from "@/shared/FilterSystem";
 
-// --- New Pagination Component ---
+
+
+// File: FakeJson.ts
+ const villaData = [
+  {
+    id: 1,
+    title: "Luxury Waterfront Villa",
+    location: "Malibu, CA",
+    price: "1,200,000",
+    rateType: "/night",
+    rating: 4.8,
+    reviewCount: 152,
+    beds: 5,
+    baths: 4,
+    pool: 1,
+    imageUrl: "https://i.ibb.co/XYZ123/villa1.png"
+  },
+  {
+    id: 2,
+    title: "Skyline Residences",
+    location: "Downtown, NY",
+    price: "850,000",
+    rateType: "/night",
+    rating: 4.9,
+    reviewCount: 127,
+    beds: 4,
+    baths: 3,
+    pool: 2,
+    imageUrl: "https://i.ibb.co/ZpG7JcPk/img-5.png"
+  },
+  {
+    id: 3,
+    title: "Beachside Bungalow",
+    location: "Miami, FL",
+    price: "950,000",
+    rateType: "/night",
+    rating: 4.7,
+    reviewCount: 98,
+    beds: 3,
+    baths: 2,
+    pool: 1,
+    imageUrl: "https://i.ibb.co/ABC456/villa3.png"
+  },
+  {
+    id: 4,
+    title: "Mountain Retreat",
+    location: "Aspen, CO",
+    price: "1,500,000",
+    rateType: "/night",
+    rating: 4.9,
+    reviewCount: 205,
+    beds: 6,
+    baths: 5,
+    pool: 1,
+    imageUrl: "https://i.ibb.co/DEF789/villa4.png"
+  },
+  {
+    id: 5,
+    title: "Urban Penthouse",
+    location: "Chicago, IL",
+    price: "780,000",
+    rateType: "/night",
+    rating: 4.6,
+    reviewCount: 88,
+    beds: 3,
+    baths: 3,
+    pool: 0,
+    imageUrl: "https://i.ibb.co/GHI012/villa5.png"
+  },
+  {
+    id: 6,
+    title: "Countryside Villa",
+    location: "Napa Valley, CA",
+    price: "1,050,000",
+    rateType: "/night",
+    rating: 4.8,
+    reviewCount: 134,
+    beds: 4,
+    baths: 3,
+    pool: 1,
+    imageUrl: "https://i.ibb.co/JKL345/villa6.png"
+  }
+];
+
+
+
+
 interface PaginationProps {
-    totalResults: number;
-    resultsPerPage: number;
-    currentPage: number;
-    totalPages: number;
+  totalResults: number;
+  resultsPerPage: number;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ totalResults, resultsPerPage, currentPage, totalPages }) => {
-    // Determine the range of results being shown
-    const start = (currentPage - 1) * resultsPerPage + 1;
-    const end = Math.min(currentPage * resultsPerPage, totalResults);
+const Pagination: React.FC<PaginationProps> = ({
+  totalResults,
+  resultsPerPage,
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
+  const start = (currentPage - 1) * resultsPerPage + 1;
+  const end = Math.min(currentPage * resultsPerPage, totalResults);
 
-    // Array of page numbers to display (e.g., [1, 2, 3, ..., 6])
-    const pagesToShow = [];
-    // Start with the current page
-    let startPage = Math.max(1, currentPage - 2);
-    let endPage = Math.min(totalPages, currentPage + 3);
+  const pagesToShow = [];
+  let startPage = Math.max(1, currentPage - 2);
+  let endPage = Math.min(totalPages, currentPage + 3);
 
-    // If we're near the end, show more previous pages
-    if (currentPage > totalPages - 3) {
-        startPage = Math.max(1, totalPages - 5);
-    }
-    // If we're near the start, show more next pages
-    if (currentPage < 3) {
-        endPage = Math.min(totalPages, 6);
-    }
+  if (currentPage > totalPages - 3) startPage = Math.max(1, totalPages - 5);
+  if (currentPage < 3) endPage = Math.min(totalPages, 6);
 
-    for (let i = startPage; i <= endPage; i++) {
-        pagesToShow.push(i);
-    }
+  for (let i = startPage; i <= endPage; i++) pagesToShow.push(i);
 
-
-    interface PageNumberButtonProps {
-        number?: number;
-        isActive: boolean;
-        isEllipsis?: boolean;
-    }
-
-    const PageNumberButton: React.FC<PageNumberButtonProps> = ({ number, isActive, isEllipsis }) => (
-        <button 
-            className={`w-10 h-10 mx-1 flex items-center justify-center rounded-lg text-sm font-semibold transition duration-150 
-                ${isActive 
-                    ? 'bg-white text-gray-900 border border-gray-200 shadow-md' 
-                    : isEllipsis 
-                        ? 'text-gray-500' // Styling for the '...'
-                        : 'text-gray-600 hover:bg-gray-100'
-                }`
-            }
-            disabled={isActive || isEllipsis}
+  return (
+    <div className="flex flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
+      <div className="text-sm font-medium text-gray-600 mb-4 sm:mb-0">
+        Showing {start} to {end} of {totalResults} results
+      </div>
+      <div className="flex items-center">
+        <button
+          className="px-4 py-2 mx-1 rounded-lg border hover:bg-gray-100 disabled:text-gray-400"
+          disabled={currentPage === 1}
+          onClick={() => onPageChange(currentPage - 1)}
         >
-            {isEllipsis ? '...' : String(number).padStart(2, '0')}
+          ← Previous
         </button>
-    );
 
-    interface NavButtonProps {
-        direction: 'Previous' | 'Next';
-        isDisabled: boolean;
-    }
-
-    const NavButton: React.FC<NavButtonProps> = ({ direction, isDisabled }) => (
-        <button 
-            className={`px-4 py-2 mx-1 flex items-center justify-center rounded-lg text-sm font-semibold transition duration-150 ${
-                isDisabled 
-                    ? 'text-gray-400 cursor-not-allowed'
-                    : 'bg-white text-gray-700 border border-gray-200 shadow-sm hover:bg-gray-100'
+        {pagesToShow.map((page) => (
+          <button
+            key={page}
+            className={`w-10 h-10 mx-1 flex items-center justify-center rounded-lg text-sm font-semibold ${
+              page === currentPage
+                ? "bg-white text-gray-900 border shadow-md"
+                : "text-gray-600 hover:bg-gray-100"
             }`}
-            disabled={isDisabled}
+            onClick={() => onPageChange(page)}
+          >
+            {String(page).padStart(2, "0")}
+          </button>
+        ))}
+
+        <button
+          className="px-4 py-2 mx-1 rounded-lg border hover:bg-gray-100 disabled:text-gray-400"
+          disabled={currentPage === totalPages}
+          onClick={() => onPageChange(currentPage + 1)}
         >
-            {direction === 'Previous' && (
-                <>
-                    <span className="mr-1">←</span> Previous
-                </>
-            )}
-            {direction === 'Next' && (
-                <>
-                    Next <span className="ml-1">→</span>
-                </>
-            )}
+          Next →
         </button>
-    );
-
-    return (
-        <div className="flex flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
-            {/* Left side: Results Count */}
-            <div className="text-sm font-medium text-gray-600 mb-4 sm:mb-0">
-                Showing {start} to {end} of {totalResults} results
-            </div>
-
-            {/* Right side: Pagination Controls */}
-            <div className="flex items-center">
-                <NavButton direction="Previous" isDisabled={currentPage === 1} />
-
-                {/* Render page numbers */}
-                {pagesToShow[0] > 1 && <PageNumberButton number={1} isActive={false} />}
-                {pagesToShow[0] > 2 && <PageNumberButton isEllipsis={true} />}
-
-                {pagesToShow.map((page) => (
-                    <PageNumberButton 
-                        key={page} 
-                        number={page} 
-                        isActive={page === currentPage} 
-                    />
-                ))}
-
-                {pagesToShow[pagesToShow.length - 1] < totalPages - 1 && <PageNumberButton isEllipsis={true} />}
-                {pagesToShow[pagesToShow.length - 1] < totalPages && <PageNumberButton number={totalPages} isActive={false} />}
-                
-                <NavButton direction="Next" isDisabled={currentPage === totalPages} />
-            </div>
-      
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
-// --- End of New Pagination Component ---
-
 
 const Rents = () => {
-    const signatureCardData = villaData;
+  const resultsPerPage = 2; // Display 2 villas per page
+  const totalResults = villaData.length;
+  const totalPages = Math.ceil(totalResults / resultsPerPage);
 
-    // Hardcoded Pagination Values to match your image and scenario (54 results total)
-    const totalResults = 54;
-    const resultsPerPage = 8;
-    const currentPage = 1; // Assuming we are on the first page
-    const totalPages = Math.ceil(totalResults / resultsPerPage); // totalPages = 7
+  const [currentPage, setCurrentPage] = useState(1);
 
-    return (
-        <div className=" ">
-           <div className="mb-20">
-             <FilterSystem />
-           </div>
-            
-            {/* PAGINATION ADDED AT THE TOP */}
-            <Pagination 
-                totalResults={totalResults}
-                resultsPerPage={resultsPerPage}
-                currentPage={currentPage}
-                totalPages={totalPages}
-            />
-           
+  // Slice villaData based on current page
+  const currentVillas = villaData.slice(
+    (currentPage - 1) * resultsPerPage,
+    currentPage * resultsPerPage
+  );
 
-            <div className=" w-full">
-                
-                {/* Card Grid */}
-                <div className="  ">
-                    {/* NOTE: You would typically map over a *slice* of villaData based on 'currentPage' and 'resultsPerPage' */}
-                    {signatureCardData.map((villa) => (
-                        <RentsCard 
-                            key={villa.id}
-                            villa={villa} 
-                        />
-                    ))}
-                </div>
-            </div>
-            
-            {/* PAGINATION ADDED AT THE BOTTOM */}
-            <Pagination 
-                totalResults={totalResults}
-                resultsPerPage={resultsPerPage}
-                currentPage={currentPage}
-                totalPages={totalPages}
-            />
-        
+  return (
+    <div className="my-26">
+      <div className="mb-10">
+        <FilterSystem />
+      </div>
 
-        </div>
-    );
+      <Pagination
+        totalResults={totalResults}
+        resultsPerPage={resultsPerPage}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
+
+      <div className="space-y-8">
+        {currentVillas.map((villa) => (
+          <RentsCard key={villa.id} villa={villa} />
+        ))}
+      </div>
+
+      <Pagination
+        totalResults={totalResults}
+        resultsPerPage={resultsPerPage}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
+    </div>
+  );
 };
 
 export default Rents;

@@ -1,6 +1,7 @@
 import React, { useState, DragEvent } from 'react';
 
 import { useForm } from 'react-hook-form'; 
+import Swal from 'sweetalert2';
 
 
 // 2. Define the shape of your form data for React Hook Form
@@ -59,6 +60,11 @@ const SubmitPropertyForm: React.FC = () => {
 
     console.log("--- Form Submission Data (React Hook Form) ---");
     console.log(submissionData);
+       Swal.fire({
+    title: "Submit your Property",
+    icon: "success",
+    draggable: true
+  });
 
   };
 
@@ -118,6 +124,9 @@ const SubmitPropertyForm: React.FC = () => {
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m-4-4l4 4m4-4l-4-4" />
     </svg>
   );
+
+
+
 
 
   return (
@@ -279,6 +288,9 @@ const SubmitPropertyForm: React.FC = () => {
           {errors.confirmAccuracy && <span className="text-red-500 text-xs mt-1">{errors.confirmAccuracy.message}</span>}
 
           <button
+
+
+  onClick={handleSubmit}
             type="submit"
             className="flex items-center justify-center w-full md:w-auto px-6 py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 transition duration-150 ease-in-out focus:outline-none focus:ring-4 focus:ring-teal-500 focus:ring-opacity-50"
           >

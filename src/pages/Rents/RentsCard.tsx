@@ -51,6 +51,9 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
     { icon: "🏊", value: `${property.pool} Pool` },
   ];
 
+
+  
+
   return (
     <div className=" container mx-auto my-10 bg-white p-2.5 rounded-[2rem]  border-4  overflow-hidden font-sans">
       <div className="flex flex-col md:flex-row bg-white rounded-3xl">
