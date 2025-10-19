@@ -52,7 +52,7 @@ const Navbar = () => {
                 location.pathname === "/rents" ? "text-teal-600" : "text-gray-800"
               } hover:bg-gray-100 rounded-md`}
             >
-              Rents
+              Rental
             </Link>
             <Link
               to="/sales"
@@ -109,6 +109,17 @@ const Navbar = () => {
       >
         About
       </NavLink>
+
+        <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 text-[15px] font-semibold ${
+            isActive ? "text-teal-600 border-b-2 border-teal-600" : "text-gray-800"
+          } hover:text-teal-600 transition-all`
+        }
+        to="https://ricoholder-dashboard.netlify.app/admin-dashboard"
+      >
+        Dashboard
+      </NavLink>
     </>
   );
 
@@ -129,12 +140,20 @@ const Navbar = () => {
 
         {/* Contact Button */}
         <div className="hidden lg:block">
-          <Link
+      <div>
+            <Link
             to="/contact"
-            className="bg-[#009689] text-white px-6 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
+            className=" mr-2 outline-[#009689] border-2 border-[#009689] text-black px-6 py-2.5 rounded-lg font-semibold shadow-md hover:text-white hover:bg-[#007c74] transition-all"
           >
             Contact Us
           </Link>
+               <Link
+            to="/login"
+            className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
+          >
+            Login
+          </Link>
+      </div>
         </div>
 
         {/* Mobile Menu Icon */}
@@ -154,6 +173,12 @@ const Navbar = () => {
             className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
           >
             Contact Us
+          </Link>
+              <Link
+            to="/login"
+            className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
+          >
+            login
           </Link>
         </div>
       )}

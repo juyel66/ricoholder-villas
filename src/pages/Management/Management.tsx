@@ -4,7 +4,7 @@ import PropertyManagementSection from "./component/PropertyManagementSection";
 const Management = () => {
   return (
     <div>
-      <HeroSection
+      <HeroSection className="mb-26"
         title="Property Management, Perfected"
         subtitle="Emphasize luxury villas as assets, sanctuaries, reflections of taste."
         ctaLabel="Contact Our Team"

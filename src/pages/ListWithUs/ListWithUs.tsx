@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+ import React, { useRef } from "react";
 import BeforePage from "./BeforePage";
 import Benefits from "./Benefits";
 import ListMyVilla from "./ListMyVilla";
@@ -16,10 +16,18 @@ const ListWithUs = () => {
 
   return (
     <div>
-      {/* Pass scroll function as prop */}
-      <ListWithUsBannerPage onSubmitClick={handleScrollToForm} />
+   
+   <div
+         className="  pb-10  rounded-xl shadow-lg border border-gray-200 mx-auto  bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage:
+          "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
+      }}
+   >
+       <div><ListWithUsBannerPage onSubmitClick={handleScrollToForm} /></div>
 
       <div className="container mx-auto"><PartnerSections /></div>
+   </div>
       <div className="container mx-auto"><Benefits /></div>
       <div className="container mx-auto"><WorksPage /></div>
       <BeforePage />

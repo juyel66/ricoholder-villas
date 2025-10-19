@@ -147,18 +147,8 @@ const Contact = () => {
                     </div>
 
                     {/* RIGHT COLUMN: Image with Decorative Accents */}
-                    <div className="relative w-full h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-3xl shadow-xl flex items-center justify-center">
-                        <img 
-                            src="/public/images/contactImage.png" // Placeholder image
-                            alt="Professional woman in a luxury office setting"
-                            className="absolute inset-0 w-full h-full object-cover"
-                        />
-                        
-                        {/* Blue/Teal Decorative Accents (Adjust position/size as needed) */}
-                        <div className="absolute -top-4 -right-4 w-16 h-16 bg-blue-300 opacity-60 rounded-full blur-md lg:w-24 lg:h-24"></div>
-                        <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-teal-300 opacity-60 rounded-full blur-md lg:w-28 lg:h-28"></div>
-                         <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-teal-500 rounded-tr-lg"></div>
-                         <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-teal-500 rounded-bl-lg"></div>
+                    <div>
+                        <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760835086/Frame_1000004224_1_zrb6bg.png" alt="" />
                     </div>
                 </div>
             </div>

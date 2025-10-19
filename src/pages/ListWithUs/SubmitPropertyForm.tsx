@@ -208,7 +208,7 @@ const SubmitPropertyForm: React.FC = () => {
 
         {/* --- File Uploads (File state management is not changed) --- */}
         <div className="mb-6">
-          <label className="text-sm font-medium text-gray-700 block mb-1">Upload **Single** Photo</label>
+          <label className="text-sm font-medium text-gray-700 block mb-1">Upload Single Photo</label>
           <label
             htmlFor="uploadPhotos"
             className={`flex flex-col items-center justify-center h-32 border-2 border-dashed rounded-lg bg-gray-50 transition duration-150 cursor-pointer
@@ -217,10 +217,10 @@ const SubmitPropertyForm: React.FC = () => {
             onDragLeave={(e) => handleDragLeave(e, setIsPhotoDragActive)}
             onDrop={(e) => handleDrop(e, 'uploadPhotos', setIsPhotoDragActive)}
           >
-            <UploadIcon />
-            <p className="text-sm text-gray-500 mt-2">Drop one image file here or click to upload</p>
+            <img className='' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760832355/Component_17_ejh4v8.png" alt="" />
+            <p className="text-sm text-gray-500 mt-2">Drop files here or click to upload</p>
             {files.photos &&
-              <p className="text-xs text-teal-600 mt-1">**Selected:** {files.photos.name}</p>
+              <p className="text-xs text-teal-600 mt-1">Selected: {files.photos.name}</p>
             }
             <input
               type="file"
@@ -243,8 +243,8 @@ const SubmitPropertyForm: React.FC = () => {
             onDragLeave={(e) => handleDragLeave(e, setIsDocumentDragActive)}
             onDrop={(e) => handleDrop(e, 'uploadDocument', setIsDocumentDragActive)}
           >
-            <UploadIcon />
-            <p className="text-sm text-gray-500 mt-2">Drop a PDF/DOCX file here or click to upload (One file)</p>
+            <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760832355/Component_17_ejh4v8.png" alt="" />
+            <p className="text-sm text-gray-500 mt-2">Drop files here or click to upload</p>
             {files.document &&
               <p className="text-xs text-teal-600 mt-1">{files.document.name}</p>
             }

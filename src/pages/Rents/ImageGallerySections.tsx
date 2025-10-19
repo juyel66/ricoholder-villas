@@ -33,9 +33,11 @@ interface PropertyData {
 
 const AmenityItem: React.FC<SimpleListItemProps> = ({ name }) => (
   <li className="flex items-start text-gray-700 text-sm mb-2">
-    <span className="text-teal-600 mr-2 text-xl leading-none font-extrabold flex-shrink-0 mt-[-2px]">
-      ·
-    </span>
+    <img
+      src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png"
+      alt="icon"
+      className="w-4 h-4 mr-2 mt-[2px]"
+    />
     {name}
   </li>
 );
@@ -45,9 +47,11 @@ const StaffItem: React.FC<{ name: string; details: string }> = ({
   details,
 }) => (
   <li className="flex items-start mb-4">
-    <span className="text-teal-600 mr-2 text-xl leading-none font-extrabold flex-shrink-0 mt-[-2px]">
-      ·
-    </span>
+    <img
+      src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png"
+      alt="icon"
+      className="w-4 h-4 mr-2 mt-[2px]"
+    />
     <div className="flex flex-col text-gray-700 text-sm">
       <span className="font-semibold text-gray-800">{name}</span>
       <span className="text-xs text-gray-600">{details}</span>
@@ -204,84 +208,70 @@ const ImageGallerySection: React.FC = () => {
   const { signatureDistinctions, interiorAmenities, outdoorAmenities } =
     amenities;
 
+  const handleDownloadPDF = async () => {
+    try {
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgWidth = 90;
+      const imgHeight = 65;
+      const marginX = 10;
+      const marginY = 25;
+      let x = marginX;
+      let y = marginY;
 
+      pdf.setFontSize(22);
+      pdf.setTextColor(30, 30, 60);
+      pdf.text("Gallery Images", 105, 15, { align: "center" });
+      pdf.setLineWidth(0.5);
+      pdf.setDrawColor(100, 100, 255);
+      pdf.line(10, 18, 200, 18);
 
+      const imagesToUse = gallery.slice(0, 6);
 
-const handleDownloadPDF = async () => {
-  try {
-    const pdf = new jsPDF("p", "mm", "a4");
-    const imgWidth = 90;
-    const imgHeight = 65;
-    const marginX = 10;
-    const marginY = 25; // top space for title
-    let x = marginX;
-    let y = marginY;
+      for (let i = 0; i < imagesToUse.length; i++) {
+        const img = imagesToUse[i];
+        const image = new Image();
+        image.crossOrigin = "anonymous";
+        image.src = img.url;
+        await new Promise<void>((resolve, reject) => {
+          image.onload = () => resolve();
+          image.onerror = () => reject();
+        });
 
-    // PDF title
-    pdf.setFontSize(22);
-    pdf.setTextColor(30, 30, 60);
-    pdf.text("Gallery Images", 105, 15, { align: "center" });
-    pdf.setLineWidth(0.5);
-    pdf.setDrawColor(100, 100, 255);
-    pdf.line(10, 18, 200, 18); // underline
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx?.drawImage(image, 0, 0);
 
-    // only first 6 images
-    const imagesToUse = gallery.slice(0, 6);
+        const imgData = canvas.toDataURL("image/jpeg", 1.0);
 
-    for (let i = 0; i < imagesToUse.length; i++) {
-      const img = imagesToUse[i];
-      const image = new Image();
-      image.crossOrigin = "anonymous";
-      image.src = img.url;
-      await new Promise<void>((resolve, reject) => {
-        image.onload = () => resolve();
-        image.onerror = () => reject();
-      });
+        pdf.setDrawColor(50, 50, 150);
+        pdf.setLineWidth(1.2);
+        pdf.roundedRect(x - 2, y - 2, imgWidth + 4, imgHeight + 4, 5, 5, "S");
+        pdf.setFillColor(245, 245, 255);
+        pdf.rect(x - 1.5, y - 1.5, imgWidth + 3, imgHeight + 3, "F");
 
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      canvas.width = image.width;
-      canvas.height = image.height;
-      ctx?.drawImage(image, 0, 0);
+        pdf.addImage(imgData, "JPEG", x, y, imgWidth, imgHeight);
 
-      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+        if (i % 2 === 0) {
+          x += imgWidth + 10;
+        } else {
+          x = marginX;
+          y += imgHeight + 15;
+        }
 
-      // fancy border around image
-      pdf.setDrawColor(50, 50, 150);
-      pdf.setLineWidth(1.2);
-      pdf.roundedRect(x - 2, y - 2, imgWidth + 4, imgHeight + 4, 5, 5, "S");
-      pdf.setFillColor(245, 245, 255);
-      pdf.rect(x - 1.5, y - 1.5, imgWidth + 3, imgHeight + 3, "F");
-
-      pdf.addImage(imgData, "JPEG", x, y, imgWidth, imgHeight);
-
-      if (i % 2 === 0) {
-        x += imgWidth + 10;
-      } else {
-        x = marginX;
-        y += imgHeight + 15;
+        if (y + imgHeight > 270) break;
       }
 
-      // ignore page overflow for single page
-      if (y + imgHeight > 270) break;
+      pdf.save("EV_Brochure.pdf");
+    } catch (error) {
+      console.error("PDF Generation Error:", error);
     }
-
-    pdf.save("EV_Brochure.pdf");
-  } catch (error) {
-    console.error("PDF Generation Error:", error);
-  }
-};
-
-
-
-
-
-  
+  };
 
   return (
     <section className="container mx-auto px-4 py-16">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        {/* ✅ Gallery Section */}
         <div className="lg:col-span-7">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
             Image Gallery - {gallery.length} photos
@@ -323,7 +313,6 @@ const handleDownloadPDF = async () => {
           </div>
         </div>
 
-        {/* ✅ Right Side Section */}
         <div className="lg:col-span-5 border-l lg:pl-12 pl-0">
           <div className="mb-10">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">

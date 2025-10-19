@@ -23,14 +23,14 @@ const EstateExperience = () => {
               {/* Stat 1 */}
               <div className="flex flex-col items-center text-center">
                <div className="flex flex-col items-center text-center">
-                <img src="/public/images/tenpercent.png" alt="" />
+                <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760815143/Frame_48095987_luvjtw.png" alt="" />
               </div>
               </div>
 
               {/* Stat 2 */}
               <div className="flex flex-col items-center text-center">
                 <div className="flex flex-col items-center text-center">
-                <img src="/public/images/Frame 48095988.png" alt="" />
+                <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760815180/Frame_48095988_1_iqjop1.png" alt="" />
               </div>
               </div>
 
@@ -44,7 +44,7 @@ const EstateExperience = () => {
           {/* RIGHT COLUMN: Image */}
           <div className="flex justify-end">
             <img
-              src="/images/estateImage.png"
+              src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760815236/Rectangle_278_ocm988.png"
               alt="Estate"
               className="h-full w-[650px] rounded-lg  object-cover"
             />

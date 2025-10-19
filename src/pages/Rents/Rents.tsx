@@ -172,8 +172,12 @@ const Rents = () => {
   );
 
   return (
-    <div className="my-26">
-      <div className="mb-10">
+    <div
+    
+    className="my-26">
+      <div
+      
+      className="mb-10">
         <FilterSystem />
       </div>
 

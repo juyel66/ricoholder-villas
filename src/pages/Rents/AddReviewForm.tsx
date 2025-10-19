@@ -190,38 +190,40 @@ const AddReviewForm: React.FC = () => {
           </label>
 
           {/* File Drop Zone / Selector Area */}
-          <div
-            className={`flex items-center justify-between p-2 rounded-lg transition-all duration-200 border-2
-              ${
-                isDragActive
-                  ? "border-teal-500 bg-teal-50" // Drag active style
-                  : "border-green-200 bg-green-50" // Normal background color from image
-              }`}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
-            <input
-              type="file"
-              id="uploadFiles"
-              multiple
-              // Accept all file types, as requested by your previous comment mentioning Docs/PDFs
-              onChange={handleFileChange}
-              className="hidden"
-            />
-            {/* Choose Files Button with Dotted Border */}
-            <label
-              htmlFor="uploadFiles"
-              className="cursor-pointer text-sm font-medium"
-            >
-              <span className="inline-block px-4 py-1.5 bg-green-300 text-gray-800 rounded hover:bg-green-400 transition border-2 border-dotted border-green-700">
-                Choose File
-              </span>
-            </label>
-            <span className="text-sm text-gray-700">
-              {files.length > 0 ? `${files.length} File(s) Selected` : "No File Chosen"}
-            </span>
-          </div>
+      <div className="mb-6">
+
+
+  <div
+    className={`flex items-center justify-center gap-4 p-4 rounded-lg transition-all duration-200 border-2 ${
+      isDragActive
+        ? "border-teal-500 bg-teal-50"
+        : "border-green-200 bg-green-50"
+    }`}
+    onDragOver={handleDragOver}
+    onDragLeave={handleDragLeave}
+    onDrop={handleDrop}
+  >
+    <input
+      type="file"
+      id="uploadFiles"
+      multiple
+      onChange={handleFileChange}
+      className="hidden"
+    />
+    <label
+      htmlFor="uploadFiles"
+      className="cursor-pointer text-sm font-medium"
+    >
+      <span className="inline-block px-4 py-1.5 bg-green-300 text-gray-800 rounded hover:bg-green-400 transition border-2 border-dotted border-green-700">
+        Choose File
+      </span>
+    </label>
+    <span className="text-sm text-gray-700 text-center">
+      {files.length > 0 ? `${files.length} File(s) Selected` : "No File Chosen"}
+    </span>
+  </div>
+</div>
+
 
           {/* Info Box (Blue) */}
           <div className="mt-3 p-3 bg-blue-100 border border-blue-200 rounded-lg text-sm text-blue-800 flex items-center space-x-2">
@@ -257,7 +259,7 @@ const AddReviewForm: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full py-3 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition"
+          className="lg:w-40 py-3 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition"
         >
           Submit
         </button>

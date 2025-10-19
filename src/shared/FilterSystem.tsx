@@ -146,9 +146,7 @@ const FilterSystem = () => {
             type="button"
             className="flex items-center justify-center w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 sm:text-sm h-[42px]" // Adjusted height
           >
-            <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004 12c0 2.21.81 4.209 2.192 5.765M18 9.5V14m-12-2.5h10"></path>
-            </svg>
+           <img className="mr-2 h-5 w-5" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830343/Vector_fpsm2o.png" alt="" />
             Reset
           </button>
         </div>

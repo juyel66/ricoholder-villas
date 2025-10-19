@@ -43,7 +43,7 @@ const LuxuryFeaturesGrid = () => {
 
 
                         
-            <div className=" mt-5 bg-white">
+            <div className=" mt-10 mb-15 bg-white">
             <div className=" mx-auto ">
                 
                 {/* 🚨 Outer Grid for Image and Feature Section */}
@@ -52,9 +52,9 @@ const LuxuryFeaturesGrid = () => {
                     {/* 1. LEFT COLUMN: Image Section */}
                     <div className="w-full h-full  lg:sticky lg:top-8"> 
                         <img 
-                            src="public/images/exclusive img.png" 
+                            src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760817376/Frame_1000004224_wfl1vc.png" 
                             alt="Luxury Villa" 
-                            className="w-full h-[500px] rounded-xl shadow-2xl" 
+                            className="w-full h-[600px] rounded-xl shadow-2xl" 
                         />
                     </div>
                     

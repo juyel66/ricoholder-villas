@@ -12,7 +12,7 @@ const propertyData = {
   reviewCount: 127,
   beds: 4,
   baths: 3,
-  pool: 2,
+  pool: 1,
 
   imageUrl: "https://i.ibb.co.com/ZpG7JcPk/img-5.png",
 };
@@ -45,11 +45,12 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
     minimumFractionDigits: 0,
   }).format(property.price);
 
-  const amenities = [
-    { icon: "🛏️", value: `${property.beds} Beds` },
-    { icon: "🛁", value: `${property.baths} Baths` },
-    { icon: "🏊", value: `${property.pool} Pool` },
-  ];
+const amenities = [
+  { icon: <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png" alt="bed" className="w-5 h-5" />, value: `${property.beds} Beds` },
+  { icon: <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_4_zsqcrj.png" alt="bath" className="w-5 h-5" />, value: `${property.baths} Baths` },
+  { icon: <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="pool" className="w-5 h-5" />, value: `${property.pool} Pool` },
+];
+
 
 
   
@@ -93,12 +94,13 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
 
           <div className="absolute bottom-4 lg:flex hidden  right-4 flex-shrink-0 w-12 h-12  rounded-full  items-center justify-center text-2xl font-light ">
             <span
-              className=" mb-100 ml-[70px]  p-3 bg-white rounded-full  "
+              className=" mb-100 ml-[70px]  p-3 rounded-full  "
               role="img"
               aria-label="home icon"
             >
-              🏠
+         
             </span>
+            <img className="mb-[360px] mr-4 " src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png" alt="" />
           </div>
         </div>
 
@@ -107,13 +109,13 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
             <h3 className="text-2xl font-extrabold text-gray-900 mt-0">
               {property.title}
             </h3>
-            <p className="text-base text-gray-500 mb-6 flex items-center font-medium">
-              <span className="mr-1 text-lg">📍</span> {property.location}
+            <p className="text-base mt-2 text-gray-500 mb-6 flex items-center font-medium">
+              <span className="mr-1 text-lg"> <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760829803/Frame_6_keemxx.png" alt="" /></span> {property.location}
             </p>
 
             <div className="mb-8">
               <p className="text-xl text-emerald-700 m-0 font-bold">
-                From <span className="text-2xl">${formattedPrice}</span>
+                From <span className="text-2xl">USD$280</span>
                 {property.rateType}
               </p>
             </div>
@@ -134,7 +136,7 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
             </div>
           </div>
 
-          <Link to="/RentsDetails" className="py-3 p-15   text-emerald-700 font-semibold text-lg border-2 border-emerald-500/50 rounded-xl hover:bg-gray-200 transition duration-150  mt-4 md:mt-0">
+          <Link to="/RentsDetails" className="  pl-20 pr-20 py-4 bg-teal-50 text-emerald-700 font-bold text-lg border-2 border-[#009689] rounded-xl hover:bg-gray-200 transition duration-150  mt-4 md:mt-0">
             View Details
           </Link>
         </div>

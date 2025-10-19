@@ -44,8 +44,15 @@ const Login = () => {
 
 
 
-  return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+  return ( 
+    <div
+
+      className="bg-white min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4  pb-10 rounded-xl shadow-lg border border-gray-200 mx-auto  bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage:
+          "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
+      }}
+     >
       
       <div className="w-full max-w-md"> 
         

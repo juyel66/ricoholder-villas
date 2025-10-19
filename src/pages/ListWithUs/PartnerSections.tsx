@@ -46,7 +46,7 @@ const PartnerSections: React.FC = () => {
   return (
     // Main section container with padding and a slightly off-white background
     // relative for the SVG background pattern
-    <section className="relative py-16  bg-white overflow-hidden">
+    <section className="relative py-16   overflow-hidden">
       {/* Optional: Background pattern - use a subtle SVG or image like in the example */}
       {/* This is a placeholder for the wave pattern if you want to implement it */}
       <div 

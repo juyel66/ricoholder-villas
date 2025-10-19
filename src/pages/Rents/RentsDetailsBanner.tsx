@@ -245,7 +245,7 @@ const RentsDetailsBanner: React.FC = () => {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-start h-full text-white p-4">
-        <div className="text-center mt-20 mb-8">
+        <div className="text-center mt-40 mb-8">
           <h1 className="text-3xl md:text-5xl font-semibold drop-shadow-lg mb-2 leading-snug">
             Seaclusion – Barbados' Platinum Coast
           </h1>
@@ -263,26 +263,26 @@ const RentsDetailsBanner: React.FC = () => {
         <div className="bg-white absolute bottom-0 md:bottom-auto md:top-[60%] z-20 text-gray-800 rounded-lg shadow-2xl p-6 w-full max-w-md mx-auto transform translate-y-1/2">
           <div className="flex justify-around items-center text-center border-b pb-4 mb-4">
             <div className="flex flex-col items-center">
-              <span className="text-2xl">🛏️</span>
+              <span className="text-2xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830630/user-fill_gkf8xf.png" alt="" /></span>
               <span className="text-sm mt-1">12 Guests </span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-2xl">🛏️</span>
+              <span className="text-2xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png" alt="" /></span>
               <span className="text-sm mt-1">4 Beds</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-2xl">🛁</span>
+              <span className="text-2xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_4_zsqcrj.png" alt="" /></span>
               <span className="text-sm mt-1">3 Baths</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-2xl">🏊</span>
+              <span className="text-2xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="" /></span>
               <span className="text-sm mt-1">2 Pools</span>
             </div>
           </div>
 
           <div className="flex flex-col items-center mb-4">
             <p className="text-lg font-medium text-green-700">
-              From **USD$850,000.00/night**
+              From USD$850,000.00/night
             </p>
           </div>
           
@@ -291,7 +291,7 @@ const RentsDetailsBanner: React.FC = () => {
               onClick={handleOpenShareModal} 
               className="flex-1 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 shadow-md"
             >
-              <span className="mr-2 text-xl">🔗</span> 
+              <span className="mr-2 text-xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830720/Component_2_atygpn.png" alt="" /></span> 
               Share
             </button>
             
@@ -299,7 +299,7 @@ const RentsDetailsBanner: React.FC = () => {
               onClick={handleOpenModal} 
               className="flex-1 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 shadow-md"
             >
-              <span className="mr-2 text-xl">🗓️</span> 
+              <span className="mr-2 text-xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830719/Component_2_1_wqngcv.png" alt="" /></span> 
               Book Now
             </button>
           </div>

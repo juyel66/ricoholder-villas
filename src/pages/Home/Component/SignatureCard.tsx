@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router';
 
 // --- Icon Components (for consistency with the design) ---
@@ -9,20 +9,13 @@ const LocationIcon = () => (
     </svg>
 );
 const BedIcon = () => (
-    <svg className="w-4 h-4 text-gray-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v3m8-3v3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-    </svg>
+    <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png" alt="" />
 );
 const BathIcon = () => (
-    <svg className="w-4 h-4 text-gray-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 11l3-3m0 0l3 3m-3-3v8"></path>
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m-9-9a9 9 0 019-9"></path>
-    </svg>
+    <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_4_zsqcrj.png" alt="" />
 );
 const PoolIcon = () => (
-    <svg className="w-4 h-4 text-gray-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 14l6-6-6-6v12z"></path>
-    </svg>
+    <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="" />
 );
 const HeartIcon = () => (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -94,19 +87,19 @@ const SignatureCard = ({ villa }) => {
 
                 {/* Price */}
                 <p className="text-base font-normal text-gray-600 mb-4">
-                    From <span className="text-2xl font-extrabold text-teal-600">${data.price}/night</span>
+                    From <span className="text-2xl font-extrabold text-teal-600">USD${data.price}/night</span>
                 </p>
 
                 {/* Specs (Beds, Baths, Pool) */}
                 <div className="flex space-x-4 border-t border-b border-gray-100 py-3 mb-4 text-sm">
                     <div className="flex items-center">
-                        <BedIcon /> {data.beds} Beds
+                        <div className='mr-1'><BedIcon /></div> {data.beds} Beds
                     </div>
                     <div className="flex items-center">
-                        <BathIcon /> {data.baths} Baths
+                        <div className='mr-1'><BathIcon /></div>  {data.baths}Baths
                     </div>
-                    <div className="flex items-center">
-                        <PoolIcon /> {data.pool} Pool
+                    <div className="flex items-center ">
+                       <div className='mr-1'> <PoolIcon /></div>  {data.pool} Pools
                     </div>
                 </div>
 
@@ -123,7 +116,7 @@ const SignatureCard = ({ villa }) => {
                 {/* View Details Button */}
                 <Link to="/RentsDetails"
                
-                    className="flex items-center justify-center w-full py-3 border-2 bg-teal-50 border-teal-500 font-extrabold text-teal-500 rounded-lg hover:bg-teal-50 transition duration-200"
+                    className="flex items-center justify-center w-full py-3 border-2 bg-teal-50 border-teal-500  font-extrabold text-teal-500 rounded-lg hover:bg-teal-100 transition duration-200"
                 >
                     View Details
                 </Link>
