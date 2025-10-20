@@ -1,94 +1,26 @@
 // File: Rents.tsx
 import React, { useState } from "react";
-
 import RentsCard from "./RentsCard";
 import FilterSystem from "@/shared/FilterSystem";
+// import { villaData } from "@/FakeJson";
 
 
-
-// File: FakeJson.ts
- const villaData = [
+const villaData = [
   {
-    id: 1,
-    title: "Luxury Waterfront Villa",
-    location: "Malibu, CA",
-    price: "1,200,000",
-    rateType: "/night",
-    rating: 4.8,
-    reviewCount: 152,
-    beds: 5,
-    baths: 4,
-    pool: 1,
-    imageUrl: "https://i.ibb.co/XYZ123/villa1.png"
-  },
-  {
-    id: 2,
-    title: "Skyline Residences",
-    location: "Downtown, NY",
-    price: "850,000",
-    rateType: "/night",
-    rating: 4.9,
-    reviewCount: 127,
-    beds: 4,
-    baths: 3,
-    pool: 2,
-    imageUrl: "https://i.ibb.co/ZpG7JcPk/img-5.png"
-  },
-  {
-    id: 3,
-    title: "Beachside Bungalow",
-    location: "Miami, FL",
-    price: "950,000",
-    rateType: "/night",
-    rating: 4.7,
-    reviewCount: 98,
-    beds: 3,
-    baths: 2,
-    pool: 1,
-    imageUrl: "https://i.ibb.co/ABC456/villa3.png"
-  },
-  {
-    id: 4,
-    title: "Mountain Retreat",
-    location: "Aspen, CO",
-    price: "1,500,000",
-    rateType: "/night",
-    rating: 4.9,
-    reviewCount: 205,
-    beds: 6,
-    baths: 5,
-    pool: 1,
-    imageUrl: "https://i.ibb.co/DEF789/villa4.png"
-  },
-  {
-    id: 5,
-    title: "Urban Penthouse",
-    location: "Chicago, IL",
-    price: "780,000",
-    rateType: "/night",
-    rating: 4.6,
-    reviewCount: 88,
-    beds: 3,
-    baths: 3,
-    pool: 0,
-    imageUrl: "https://i.ibb.co/GHI012/villa5.png"
-  },
-  {
-    id: 6,
-    title: "Countryside Villa",
-    location: "Napa Valley, CA",
-    price: "1,050,000",
-    rateType: "/night",
-    rating: 4.8,
-    reviewCount: 134,
-    beds: 4,
-    baths: 3,
-    pool: 1,
-    imageUrl: "https://i.ibb.co/JKL345/villa6.png"
-  }
-];
-
-
+        id: 1,
+        title: "Skyline Residences",
+        location: "Downtown, NY",
+        price: "850,000",
+        rating: 4.9,
+        reviewCount: 127,
+        beds: 4,
+        baths: 3,
+        pool: 2,
+        amenities: ["Ocean View", "Private Pool", "Chef Available"],
+        imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png" // Placeholder URL for image 1
+    },
+    
+]
 
 
 interface PaginationProps {
@@ -119,7 +51,7 @@ const Pagination: React.FC<PaginationProps> = ({
   for (let i = startPage; i <= endPage; i++) pagesToShow.push(i);
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
+    <div className="flex  flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
       <div className="text-sm font-medium text-gray-600 mb-4 sm:mb-0">
         Showing {start} to {end} of {totalResults} results
       </div>
@@ -159,25 +91,28 @@ const Pagination: React.FC<PaginationProps> = ({
 };
 
 const Rents = () => {
-  const resultsPerPage = 2; // Display 2 villas per page
+  const resultsPerPage = 2;
   const totalResults = villaData.length;
   const totalPages = Math.ceil(totalResults / resultsPerPage);
-
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Slice villaData based on current page
   const currentVillas = villaData.slice(
     (currentPage - 1) * resultsPerPage,
     currentPage * resultsPerPage
   );
 
+  const backgroundImg = {
+    backgroundImage:
+      "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    minHeight: "100vh", // Full screen height
+  };
+
   return (
-    <div
-    
-    className="my-26">
-      <div
-      
-      className="mb-10">
+    <div style={backgroundImg} className="">
+      <div className="mb-10 mt-16 container mx-auto">
         <FilterSystem />
       </div>
 
@@ -189,7 +124,7 @@ const Rents = () => {
         onPageChange={setCurrentPage}
       />
 
-      <div className="space-y-8">
+      <div className="space-y-8 container mx-auto">
         {currentVillas.map((villa) => (
           <RentsCard key={villa.id} villa={villa} />
         ))}
