@@ -23,9 +23,7 @@ const HeartIcon = () => (
     </svg>
 );
 const ShareIcon = () => (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.684 13.342C8.883 12.91 9 12.446 9 12c0-.446-.117-.91-.316-1.342m-6.023 2.684C2.883 12.91 3 12.446 3 12c0-.446-.117-.91-.316-1.342m12.046 2.684C15.883 12.91 16 12.446 16 12c0-.446-.117-.91-.316-1.342M15 12c0 2.21-1.79 4-4 4H8v1.171c0 .414.288.766.684.954l5.353 2.536a1 1 0 001.219-.48l2.964-6.326a1 1 0 00-.083-.733l-2.964-6.326a1 1 0 00-1.22-.479l-5.353 2.536c-.396.188-.684.54-.684.954V12h3c2.21 0 4 1.79 4 4z"></path>
-    </svg>
+    <img className='' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760923888/Icon_39_piurkh.png" alt="" />
 );
 // -------------------------------------------------------------------------
 
@@ -86,8 +84,8 @@ const SignatureCard = ({ villa }) => {
                 </div>
 
                 {/* Price */}
-                <p className="text-base font-normal text-gray-600 mb-4">
-                    From <span className="text-2xl font-extrabold text-teal-600">USD${data.price}/night</span>
+                <p className=" text-2xl font-extrabold text-teal-600  mb-4">
+                    From <span className="">USD${data.price}/night</span>
                 </p>
 
                 {/* Specs (Beds, Baths, Pool) */}

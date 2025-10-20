@@ -26,7 +26,7 @@ const testimonialData = [
         name: "Joanna Lynch",
         location: "Singapore",
         title: "Venture Capitalist",
-        text: "EV is always super responsive, extremely professional and experienced enough to ensure I always have a blast in Barbados. Definitely my family's go-to agents when in Barbados.",
+        text: "EV is always super responsive, extremely professional and experienced enough to ensure  ",
         rating: 4.8,
         image: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389418/Ellipse_1_3_jw2vgn.png"
     },
@@ -35,7 +35,7 @@ const testimonialData = [
         name: "Maria Rodriguez",
         location: "Spain",
         title: "Architect",
-        text: "TI have been using EV for years now and they never disappoint, Their attention to detail and customer service is second to none Highly Recommend",
+        text: "TI have been using EV for years now and they never disappoint, Their attention to detail and..",
         rating: 4.9,
         image: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389450/Ellipse_1_4_wjn80w.png"
     },
@@ -44,7 +44,7 @@ const testimonialData = [
         name: "Omar Hassan",
         location: "Dubai",
         title: "Hotelier",
-        text: "As a fellow professional in the hospitality industry, I was thoroughly impressed. The service level sets a new global benchmark for luxury villa rentals.",
+        text: "As a fellow professional in the hospitality industry, I was thoroughly impressed. The service...",
         rating: 5.0,
         image: "https://randomuser.me/api/portraits/men/30.jpg"
     },
@@ -53,7 +53,7 @@ const testimonialData = [
         name: "Emily White",
         location: "USA",
         title: "Travel Blogger",
-        text: "My family trip was unforgettable. The local experiences arranged by the concierge were the highlight. This is truly luxury travel redefined. Can't wait to return!",
+        text: "My family trip was unforgettable. The local experiences arranged by the concierge were ...",
         rating: 4.7,
         image: "https://randomuser.me/api/portraits/women/8.jpg"
     }

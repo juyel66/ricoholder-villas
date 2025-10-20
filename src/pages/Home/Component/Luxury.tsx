@@ -32,7 +32,7 @@ const FeatureItem = ({ title, description }) => (
 const LuxuryFeaturesGrid = () => {
     
     return (
-        <div className='mt-20'>
+        <div className='mt-20 lg:p-0 p-2'>
 <div className=' text-center'>
     
             <h2 className="text-4xl font-semibold text-center">
@@ -92,7 +92,7 @@ const LuxuryFeaturesGrid = () => {
                             
                             {/* === RIGHT CARD COLUMN (2, 4, 6) === */}
                             {/* This div holds 2, 4, 6 and stays in the normal position */}
-                            <div className="grid gap-8 grid-cols-1">
+                            <div className="grid gap-8  grid-cols-1">
                                 
                                 {/* Card 2: Exclusive Access */}
                                 <FeatureItem 

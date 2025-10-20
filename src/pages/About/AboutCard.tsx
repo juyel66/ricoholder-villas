@@ -12,7 +12,7 @@ const StorySection: React.FC = () => {
           
           {/* Left Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:pr-8 mb-12 lg:mb-0 lg:col-span-2"> 
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               Our Story – Born from a Vision
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -65,7 +65,7 @@ const StorySection: React.FC = () => {
           {/* Right Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:col-span-2 lg:pl-8"> {/* 'pl-8' for padding between image and text on large screens */}
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               The Essence of Eastmond Villas
             </h2>
             {/* Paragraph Description */}
@@ -91,7 +91,7 @@ const StorySection: React.FC = () => {
           
           {/* Left Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:pr-8 mb-12 lg:mb-0 lg:col-span-2"> 
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               Architectural Elegance & Ambience
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -144,7 +144,7 @@ const StorySection: React.FC = () => {
           {/* Right Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:col-span-2 lg:pl-8"> {/* 'pl-8' for padding between image and text on large screens */}
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               Crafted Experiences & Personalized Service
             </h2>
             {/* Paragraph Description */}
@@ -167,7 +167,7 @@ const StorySection: React.FC = () => {
           
           {/* Left Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:pr-8 mb-12 lg:mb-0 lg:col-span-2"> 
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               Discover Barbados – Island of Inspiration
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -220,12 +220,13 @@ const StorySection: React.FC = () => {
           {/* Right Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:col-span-2 lg:pl-8"> {/* 'pl-8' for padding between image and text on large screens */}
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
       Where Luxury Meets Enchantment
             </h2>
             {/* Paragraph Description */}
             <p className="text-lg text-gray-700 leading-relaxed">
-           Eastmond Villas is not just a stay — it’s a feeling. A harmony of elegance and emotion. A place where hospitality becomes art, and memories are handcrafted. Welcome to the realm where every moment whispers luxury, and every experience lingers in your heart.
+           Eastmond Villas is not just a stay — it’s a feeling. A harmony of elegance and emotion. A p
+           lace where hospitality becomes art, and memories are handcrafted. Welcome to the realm where every moment whispers luxury, and every experience lingers in your heart.
             </p>
           </div>
         </div>

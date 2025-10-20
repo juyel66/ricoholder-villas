@@ -52,7 +52,7 @@ const Navbar = () => {
                 location.pathname === "/rents" ? "text-teal-600" : "text-gray-800"
               } hover:bg-gray-100 rounded-md`}
             >
-              Rental
+              Rentals
             </Link>
             <Link
               to="/sales"
@@ -110,9 +110,9 @@ const Navbar = () => {
         About
       </NavLink>
 
-        <NavLink
+      <NavLink
         className={({ isActive }) =>
-          `px-3 py-2 text-[15px] font-semibold ${
+          `px-3 py-2 text-[15px] md:hidden font-semibold ${
             isActive ? "text-teal-600 border-b-2 border-teal-600" : "text-gray-800"
           } hover:text-teal-600 transition-all`
         }
@@ -138,22 +138,20 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-6">{links}</div>
 
-        {/* Contact Button */}
-        <div className="hidden lg:block">
-      <div>
-            <Link
+        {/* Contact & Login Buttons */}
+        <div className="hidden lg:flex items-center gap-2">
+          <Link
             to="/contact"
-            className=" mr-2 outline-[#009689] border-2 border-[#009689] text-black px-6 py-2.5 rounded-lg font-semibold shadow-md hover:text-white hover:bg-[#007c74] transition-all"
+            className="px-6 py-2.5 border-2 border-[#009689] text-black font-semibold rounded-lg shadow-md hover:text-white hover:bg-[#007c74] transition-all"
           >
             Contact Us
           </Link>
-               <Link
+          <Link
             to="/login"
-            className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
+            className="px-6 py-2.5 bg-[#009689] text-white font-semibold rounded-lg shadow-md hover:bg-[#007c74] transition-all"
           >
             Login
           </Link>
-      </div>
         </div>
 
         {/* Mobile Menu Icon */}
@@ -164,24 +162,28 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white shadow-md border-t border-gray-100 py-4 flex flex-col items-start px-4 space-y-3">
-          {links}
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden transition-all duration-300 overflow-hidden ${
+          isMobileMenuOpen ? "max-h-screen py-4" : "max-h-0"
+        } bg-white shadow-md border-t border-gray-100`}
+      >
+        <div className="flex flex-col px-4 space-y-3">{links}</div>
+        <div className="flex flex-col px-4 space-y-2 mt-3">
           <Link
             to="/contact"
             className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
           >
             Contact Us
           </Link>
-              <Link
+          <Link
             to="/login"
             className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
           >
-            login
+            Login
           </Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
