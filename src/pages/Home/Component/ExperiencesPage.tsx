@@ -21,12 +21,12 @@ const ExperiencesPage = () => {
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center p-6 sm:p-10">
                 
                 {/* Main Heading */}
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-4">
+                <h1 className="lg:text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-4">
                     More Than Just a <span className="text-teal-400">Villa</span>
                 </h1>
 
                 {/* Description */}
-                <p className="text-base sm:text-lg lg:text-xl text-white max-w-2xl mx-auto mb-8 font-light">
+                <p className="text-base sm:text-lg lg:text-xl text-white max-w-2xl mx-auto lg:mb-8 mb-2 font-light">
                     Your journey doesn't end with a booking. Our concierge crafts personalized 
                     experiences—whether it's dining under the stars, a private spa retreat, or 
                     exploring hidden gems.
