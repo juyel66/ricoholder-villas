@@ -5,7 +5,7 @@ import Eastmond from "./Eastmond";
 
 const Concierge = () => {
     return (
-        <div>
+        <div className="mt-26">
             <ConciergeBanner />
            <div className="container mx-auto"> <Eastmond />
             <ConciergeCard /></div>
