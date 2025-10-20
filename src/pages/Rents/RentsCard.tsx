@@ -39,9 +39,10 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
   ];
 
   return (
-    <div className="container mx-auto my-8 sm:my-10 bg-white p-4 sm:p-6 rounded-2xl border overflow-hidden font-sans">
+    <div className="container   relative mx-auto my-8 sm:my-10 bg-white p-4 sm:p-6 rounded-2xl border overflow-hidden font-sans">
       <div className="flex flex-col items-center md:flex-row bg-white rounded-2xl overflow-hidden">
         {/* Image Section */}
+        
         <div
           className="relative w-full md:w-3/5 h-64 sm:h-80 md:h-[400px] lg:h-[450px] bg-cover bg-center rounded-2xl"
           style={{ backgroundImage: `url(${property.imageUrl})` }}
@@ -60,6 +61,10 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-.318-.318a4.5 4.5 0 00-6.364 0z"></path>
               </svg>
             </div>
+
+            <img className="absolute  ml-16 top-50" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png" alt="" />
+
+
             <div className="w-9 h-9 flex items-center justify-center bg-white rounded-full text-gray-700 hover:bg-gray-100 transition duration-150">
               <CiShare2 />
             </div>
@@ -67,15 +72,18 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
         </div>
 
         {/* Details Section */}
-        <div className="w-full md:w-2/5 flex flex-col  px-4 sm:px-6 md:px-8 mt-4 md:mt-0">
+        <div className="w-full ml-5  md:w-2/5 flex flex-col  px-4 sm:px-6 md:px-8 mt-4 md:mt-0">
           <div>
             <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900">{property.title}</h3>
             <p className="text-sm sm:text-base mt-2 text-gray-500 flex items-center font-medium">
               <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760829803/Frame_6_keemxx.png" alt="location" className="w-5 h-5 mr-1" /> {property.location}
+               
             </p>
 
+           
+
             <p className="text-lg sm:text-xl md:text-2xl text-emerald-700 font-bold mt-4">
-              From <span className="text-2xl md:text-3xl">USD${formattedPrice}</span>{property.rateType}
+              From <span className="text-2xl md:text-3xl">USD$480</span>{property.rateType}
             </p>
 
             {/* Amenities */}
