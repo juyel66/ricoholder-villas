@@ -5,7 +5,7 @@ const StorySection: React.FC = () => {
 <div>
 
 
-        <section className="bg-white mt-10 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2">
+        <section className="bg-white p-5 mt-10 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2">
       <div className="  ">
         {/* GRID CLASS MODIFIED: Changed lg:grid-cols-2 to lg:grid-cols-3 */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
@@ -249,7 +249,7 @@ const StorySection: React.FC = () => {
 
 // Renamed from 'About' to 'AboutCard' to match the filename and avoid confusion.
 const AboutCard: React.FC = () => (
-  <div className="min-h-screen ">
+  <div className="min-h-screen p-2">
     <div className='container mx-auto'><StorySection /></div>
     {/* Other sections can go here */}
   </div>
