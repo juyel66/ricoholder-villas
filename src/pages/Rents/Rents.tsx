@@ -90,7 +90,7 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 };
 
-const Rents = () => {
+const  Rents = () => {
   const resultsPerPage = 2;
   const totalResults = villaData.length;
   const totalPages = Math.ceil(totalResults / resultsPerPage);
