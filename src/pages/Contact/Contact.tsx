@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 
+// Define types for cleaner React code
+interface FormData {
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+}
+
 const Contact = () => {
     // State to hold form data
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
         phone: '',
         message: ''
     });
 
+    // State to manage form submission status (replaces alert())
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
     // Handle input changes
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prevData => ({
             ...prevData,
@@ -19,22 +30,25 @@ const Contact = () => {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault(); // Prevent default form submission behavior
         console.log("Form Data Submitted:", formData); // Log all form values to console
-        // You can add further logic here, e.g., send to API
-        alert("Message Sent! Check console for data."); 
-        // Optionally clear the form
+        
+        // Show success message and clear form
+        setIsSubmitted(true); 
         setFormData({
             name: '',
             email: '',
             phone: '',
             message: ''
         });
+
+        // Optionally clear the success message after a few seconds
+        setTimeout(() => setIsSubmitted(false), 5000);
     };
 
     return (
-        <section className="bg-white py-16 md:py-28 container mx-auto">
+        <section className="bg-white py-16 md:py-28 container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="  ">
                 {/* Main Heading */}
                 <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-16 md:mb-20">
@@ -47,9 +61,11 @@ const Contact = () => {
                         <p className="text-lg font-semibold text-gray-700 mb-6">Get In Touch</p>
                         
                         <form onSubmit={handleSubmit} className="space-y-6">
+                            
                             {/* Name Input */}
                             <div>
-                                <label htmlFor="name" className="sr-only">Name</label>
+                                {/* VISIBLE LABEL ADDED */}
+                                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         {/* Name Icon */}
@@ -74,7 +90,8 @@ const Contact = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Email Input */}
                                 <div>
-                                    <label htmlFor="email" className="sr-only">Email</label>
+                                    {/* VISIBLE LABEL ADDED */}
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             {/* Email Icon */}
@@ -98,7 +115,8 @@ const Contact = () => {
 
                                 {/* Phone Input */}
                                 <div>
-                                    <label htmlFor="phone" className="sr-only">Phone</label>
+                                    {/* VISIBLE LABEL ADDED */}
+                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Number</label>
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             {/* Phone Icon */}
@@ -121,11 +139,12 @@ const Contact = () => {
 
                             {/* Message Input */}
                             <div>
-                                <label htmlFor="message" className="sr-only">Message</label>
+                                {/* VISIBLE LABEL ADDED */}
+                                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                                 <textarea
                                     name="message"
                                     id="message"
-                                    rows="4" // Roughly matches the visual height
+                                    rows={4} // Roughly matches the visual height
                                     className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-lg"
                                     placeholder="Write Your Message"
                                     value={formData.message}
@@ -133,6 +152,13 @@ const Contact = () => {
                                     required
                                 ></textarea>
                             </div>
+
+                            {/* Success Message (Replaces alert) */}
+                            {isSubmitted && (
+                                <p className="text-center text-lg font-semibold text-green-600 bg-green-50 p-3 rounded-lg">
+                                    Message Sent! We will get back to you shortly.
+                                </p>
+                            )}
 
                             {/* Submit Button */}
                             <div>
@@ -148,7 +174,7 @@ const Contact = () => {
 
                     {/* RIGHT COLUMN: Image with Decorative Accents */}
                     <div>
-                        <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760835086/Frame_1000004224_1_zrb6bg.png" alt="" />
+                        <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760835086/Frame_1000004224_1_zrb6bg.png" alt="Contact illustration" className="w-full h-auto rounded-xl shadow-xl" />
                     </div>
                 </div>
             </div>
