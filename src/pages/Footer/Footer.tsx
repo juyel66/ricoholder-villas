@@ -19,8 +19,11 @@ const Footer = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-8 md:gap-y-12 lg:gap-8">
 
                     {/* Column 1: Logo */}
-                    <div className="flex items-center sm:justify-center md:justify-start lg:items-start lg:justify-start">
-                        <img src={logoSrc} alt="Eastmond Villas Logo" className="h-16 w-auto rounded-full" />
+                    <div className="flex lg:ml-0 ml-10 items-center sm:justify-center md:justify-start lg:items-start lg:justify-start">
+                      <div>
+                          <img src={logoSrc} alt="Eastmond Villas Logo" className="h-16 w-auto rounded-full" />
+                        <img className='mt-5' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760983755/Frame_1000004348_e4uzeb.png" alt="" />
+                      </div>
                     </div>
 
                     {/* Column 2: Quick Links */}
