@@ -418,8 +418,8 @@ const RentsDetailsBanner: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-30"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-start h-full text-white p-4">
-        <div className="text-center mt-40 mb-8">
+      <div className="relative z-10  flex flex-col items-center justify-start h-full text-white p-4">
+        <div className="text-center mt-50 mb-8">
           <h1 className="text-3xl md:text-5xl font-semibold drop-shadow-lg mb-2 leading-snug">
             Seaclusion – Barbados' Platinum Coast
           </h1>

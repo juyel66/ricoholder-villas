@@ -5,7 +5,7 @@ const PropertyManagementSection = () => {
     <div className="mt-10">
       {/* Header */}
  
- <div className="py-5"
+ <div className="py-5 "
 
    style={{
           backgroundImage:
@@ -14,7 +14,7 @@ const PropertyManagementSection = () => {
           backgroundPosition: "center",
         }}
  >
-       <section className="container mx-auto ">
+       <section className="container mx-auto lg:p-0 p-2 ">
         <h1 className="text-4xl font-bold my-8">
           Why Choose Eastmond Villas for Your Luxury <br /> Property Management?
         </h1>
@@ -29,7 +29,7 @@ const PropertyManagementSection = () => {
         className="w-full"
       
       >
-       <div className="container mx-auto py-5">
+       <div className="container mx-auto py-5 p-2">
          <FeatureSection 
           title="Tailored, White-Glove Service"
           description="Every villa is distinct, tailored to your needs. Our management plans align with your vision—be it a private getaway, luxury rental, or both."

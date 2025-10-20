@@ -121,8 +121,8 @@ const AddReviewForm: React.FC = () => {
 
 
     <div>
-            <header className="mb-6 text-center">
-        <h2 className="text-2xl font-bold text-gray-800">Add Your Review</h2>
+            <header className="mb-6 mt-20 text-center">
+        <h2 className="text-4xl mb-20 font-bold text-gray-800">Add Your Review</h2>
        
       </header>
     </div>
@@ -259,7 +259,7 @@ const AddReviewForm: React.FC = () => {
 
         <button
           type="submit"
-          className="lg:w-40 py-3 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition"
+          className="lg:w-40 py-3 w-full bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition"
         >
           Submit
         </button>
