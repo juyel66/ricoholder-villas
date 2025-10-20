@@ -4,7 +4,7 @@ const FilterSystem = () => {
 
 
   return (
-    <div className="pt-2">
+    <div className="pt-2 p-2">
       <div
 
    

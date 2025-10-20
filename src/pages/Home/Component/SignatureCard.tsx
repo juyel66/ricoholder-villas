@@ -49,7 +49,7 @@ const SignatureCard = ({ villa }) => {
 
 
     return (
-        <div className="bg-white rounded-xl overflow-hidden shadow-xl border border-gray-200 transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl w-full">
+        <div className="bg-white rounded-xl p-2 overflow-hidden shadow-xl border border-gray-200 transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl w-full">
 
             {/* 1. Image Container with Absolute Overlays */}
             <div className="relative h-60 w-full">
@@ -102,7 +102,7 @@ const SignatureCard = ({ villa }) => {
                 </div>
 
                 {/* Amenities */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-6 ">
                     {/* Ensure amenities array exists before mapping */}
                     {data.amenities?.map((amenity, index) => (
                         <span key={index} className="px-3 py-1 text-xs font-medium text-teal-700 bg-teal-50 border border-teal-300 rounded-full">
