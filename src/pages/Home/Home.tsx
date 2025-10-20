@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <div>
      <div 
-         className="bg-white   pb-10  rounded-xl shadow-lg border border-gray-200 mx-auto  bg-cover bg-center bg-no-repeat"
+         className="bg-white mt-26   pb-10  rounded-xl shadow-lg border border-gray-200 mx-auto  bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage:
           "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
