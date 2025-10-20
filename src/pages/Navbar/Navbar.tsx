@@ -125,7 +125,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full shadow-md bg-white fixed top-0 left-0 z-50">
-      <div className=" px-4 flex justify-between items-center h-20">
+      <div className=" px-4 container mx-auto  flex justify-between items-center h-20">
        {/* Logo for large devices only (above 1280px) */}
 <Link to="/" className="hidden xl:flex items-center gap-2">
   <img
