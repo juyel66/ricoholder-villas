@@ -35,7 +35,7 @@ const LuxuryFeaturesGrid = () => {
         <div className='mt-20 lg:p-0 p-2'>
 <div className=' text-center'>
     
-            <h2 className="text-4xl font-semibold text-center">
+            <h2 className="text-4xl mb-4 font-semibold text-center">
                             Luxury Made Effortless
                         </h2>
                         <p>Carefully selected for elegance, comfort, and world-class service.</p>
