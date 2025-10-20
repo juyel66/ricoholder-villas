@@ -18,7 +18,7 @@ const ListWithUs = () => {
     <div>
    
    <div
-         className="  pb-10  rounded-xl shadow-lg border border-gray-200 mx-auto  bg-cover bg-center bg-no-repeat"
+         className="  pb-10 mt-26  rounded-xl shadow-lg border border-gray-200 mx-auto  bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage:
           "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
