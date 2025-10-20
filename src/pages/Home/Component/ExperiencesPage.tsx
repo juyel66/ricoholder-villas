@@ -9,7 +9,7 @@ const ExploreIcon = () => (
 
 const ExperiencesPage = () => {
     return (
-        <div style={{ backgroundImage: 'url(/public/images/experiancee.png)' }} className="relative  mt-10 w-full overflow-hidden rounded-3xl shadow-xl aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/6] bg-gray-900">
+        <div style={{ backgroundImage: 'url(https://res.cloudinary.com/dqkczdjjs/image/upload/v1760996003/4f51058172fd6af5d6cce088788ab0e6ca412b35_3_zwuytd.png)' }} className="relative  mt-10 w-full overflow-hidden rounded-3xl shadow-xl aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/6] bg-gray-900">
             
             {/* Background Image - This 'img' tag is already functioning as a background image */}
            
@@ -21,7 +21,7 @@ const ExperiencesPage = () => {
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center p-6 sm:p-10">
                 
                 {/* Main Heading */}
-                <h1 className="lg:text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-4">
+                <h1 className="lg:text-5xl sm:text-5xl font-extrabold text-white mb-4">
                     More Than Just a <span className="text-teal-400">Villa</span>
                 </h1>
 
@@ -36,8 +36,9 @@ const ExperiencesPage = () => {
                 <button className="inline-flex items-center px-8 py-4 bg-teal-600 hover:bg-teal-700 
                                    text-white text-lg font-semibold rounded-full shadow-lg 
                                    transition duration-300 ease-in-out">
+                                    <div className='mr-2'><ExploreIcon /></div>
                     Explore Experiences
-                    <ExploreIcon />
+                    
                 </button>
             </div>
         </div>
