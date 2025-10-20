@@ -48,7 +48,7 @@ const Contact = () => {
     };
 
     return (
-        <section className="bg-white py-16 md:py-28 container mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="mt-26 bg-white py-16 md:py-28 container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="  ">
                 {/* Main Heading */}
                 <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-16 md:mb-20">
@@ -129,7 +129,7 @@ const Contact = () => {
                                             name="phone"
                                             id="phone"
                                             className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-lg"
-                                            placeholder="01845756776"
+                                            placeholder="Enter Your Phone Number"
                                             value={formData.phone}
                                             onChange={handleChange}
                                         />
