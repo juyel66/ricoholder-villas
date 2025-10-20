@@ -125,15 +125,24 @@ const Navbar = () => {
 
   return (
     <nav className="w-full shadow-md bg-white fixed top-0 left-0 z-50">
-      <div className="container mx-auto px-4 flex justify-between items-center h-20">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img
-            className="h-16"
-            src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760303130/hd_svg_logo_1_rfsh4e.png"
-            alt="Logo"
-          />
-        </Link>
+      <div className=" px-4 flex justify-between items-center h-20">
+       {/* Logo for large devices only (above 1280px) */}
+<Link to="/" className="hidden xl:flex items-center gap-2">
+  <img
+    className="h-16"
+    src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760303130/hd_svg_logo_1_rfsh4e.png"
+    alt="Logo"
+  />
+</Link>
+
+{/* Logo for small, medium, and up to 1279px (including 1050px) */}
+<Link to="/" className="flex xl:hidden items-center gap-2">
+  <img
+    className="h-16"
+    src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png"
+    alt="Logo"
+  />
+</Link>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-6">{links}</div>
