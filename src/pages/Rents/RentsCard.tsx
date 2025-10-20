@@ -74,7 +74,7 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
         {/* Details Section */}
         <div className="w-full ml-5  md:w-2/5 flex flex-col  px-4 sm:px-6 md:px-8 mt-4 md:mt-0">
           <div>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900">{property.title}</h3>
+            <h3 className="text-[16px] sm:text-2xl md:text-3xl font-extrabold text-gray-900">{property.title}</h3>
             <p className="text-sm sm:text-base mt-2 text-gray-500 flex items-center font-medium">
               <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760829803/Frame_6_keemxx.png" alt="location" className="w-5 h-5 mr-1" /> {property.location}
                
@@ -82,8 +82,8 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
 
            
 
-            <p className="text-lg sm:text-xl md:text-2xl text-emerald-700 font-bold mt-4">
-              From <span className="text-2xl md:text-3xl">USD$480</span>{property.rateType}
+            <p className="text-[16px] sm:text-xl md:text-2xl text-emerald-700 font-bold mt-4">
+              From <span className="">USD$480</span>{property.rateType}
             </p>
 
             {/* Amenities */}
@@ -100,7 +100,7 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
           {/* CTA Button */}
           <Link
             to="/RentsDetails"
-            className="mt-6 md:mt-8 w-full py-3 sm:py-4 text-center bg-teal-50 text-emerald-700 font-bold text-base sm:text-lg md:text-xl border-2 border-[#009689] rounded-xl hover:bg-gray-200 transition duration-150"
+            className="mt-6  w-full py-3 sm:py-4 text-center bg-teal-50 text-emerald-700 font-bold text-base sm:text-lg md:text-xl border-2 border-[#009689] rounded-xl hover:bg-gray-200 transition duration-150"
           >
             View Details
           </Link>
