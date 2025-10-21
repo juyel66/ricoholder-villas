@@ -4,13 +4,13 @@ const FeaturedBadge = () => (
 <div className="flex items-center xl:w-1/3 lg:w-2/5 md:w-2/3 w-4/5 px-3 py-1 bg-black/40 backdrop-blur-sm rounded-full text-white text-xs md:text-sm font-semibold border border-white/20 relative whitespace-nowrap">
   <span className="text-yellow-400">
     <img
-      className="w-5 h-5 md:w-6 md:h-6"
+      className="w-5 h-5 md:w-6 md:h-6 "
       src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760898796/Icon_22_fqdcfj.png"
       alt=""
     />
   </span>
-  <span className="ml-1 md:ml-2 p-0 md:p-2">
-    Barbados's #1 Luxury Villa Platform
+  <span className="ml-1">
+     Barbados's #1 Luxury Villa Platform
   </span>
 </div>
 );
