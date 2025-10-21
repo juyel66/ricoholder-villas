@@ -20,6 +20,7 @@ const villaData = [
         imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png" // Placeholder URL for image 1
     },
     
+    
 ]
 
 
@@ -57,7 +58,7 @@ const Pagination: React.FC<PaginationProps> = ({
       </div>
       <div className="flex items-center">
         <button
-          className="px-4 py-2 mx-1 rounded-lg border hover:bg-gray-100 disabled:text-gray-400"
+          className="px-4 py-2 mx-1 rounded-lg border hover:bg-gray-100 disabled:text-gray-500"
           disabled={currentPage === 1}
           onClick={() => onPageChange(currentPage - 1)}
         >
@@ -79,7 +80,7 @@ const Pagination: React.FC<PaginationProps> = ({
         ))}
 
         <button
-          className="px-4 py-2 mx-1 rounded-lg border hover:bg-gray-100 disabled:text-gray-400"
+          className="px-4 py-2 mx-1 rounded-lg border hover:bg-gray-100 disabled:text-gray-500"
           disabled={currentPage === totalPages}
           onClick={() => onPageChange(currentPage + 1)}
         >

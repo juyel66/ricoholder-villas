@@ -63,7 +63,7 @@ const SpotlightDetails: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 mt-20 bg-gray-50 relative overflow-hidden">
+    <section className="py-16 mt-36 bg-gray-50 relative overflow-hidden">
       {/* Background Wavy Patterns (using absolute positioning and z-index) */}
       <div className="absolute top-0 left-0 w-full h-full opacity-30 z-0 pointer-events-none">
         {/* These div elements mimic the wavy background. You could use SVG for more exact shapes. */}

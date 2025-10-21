@@ -46,7 +46,7 @@ const PartnerSections: React.FC = () => {
   return (
     // Main section container with padding and a slightly off-white background
     // relative for the SVG background pattern
-    <section className="relative py-16   overflow-hidden">
+    <section className="relative py-16 lg:p-0 p-5 mt-20  overflow-hidden">
       {/* Optional: Background pattern - use a subtle SVG or image like in the example */}
       {/* This is a placeholder for the wave pattern if you want to implement it */}
       <div 
@@ -59,7 +59,7 @@ const PartnerSections: React.FC = () => {
       <div className="relative z-10  mx-auto ">
         {/* Section Header */}
         <div className="text-left mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+          <h2 className="lg:text-4xl text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">
             Why Partner With Us
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl">

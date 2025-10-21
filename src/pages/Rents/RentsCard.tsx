@@ -51,7 +51,7 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
           <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-xl font-semibold text-sm flex items-center space-x-1">
             <span className="text-yellow-500">⭐</span>
             <span className="text-gray-800">{property.rating}</span>
-            <span className="text-gray-400 font-normal">({property.reviewCount})</span>
+            <span className="text-gray-700 font-normal">({property.reviewCount})</span>
           </div>
 
           {/* Favorite & Share Buttons */}
@@ -62,11 +62,11 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
               </svg>
             </div>
 
-            <img className="absolute  ml-16 top-50" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png" alt="" />
+            <img className="absolute   ml-16 top-50" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png" alt="" />
 
 
             <div className="w-9 h-9 flex items-center justify-center bg-white rounded-full text-gray-700 hover:bg-gray-100 transition duration-150">
-              <CiShare2 />
+             <div className="text-black font-bold"> <CiShare2 /></div>
             </div>
           </div>
         </div>

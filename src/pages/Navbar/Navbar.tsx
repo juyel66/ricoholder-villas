@@ -22,7 +22,9 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
-            isActive ? "text-teal-600 border-b-2 border-teal-600" : "text-gray-800"
+            isActive
+              ? "text-teal-600 border-b-2 border-teal-600"
+              : "text-gray-800"
           } hover:text-teal-600 transition-all`
         }
         to="/"
@@ -49,7 +51,9 @@ const Navbar = () => {
             <Link
               to="/rents"
               className={`block px-4 py-2 text-sm font-semibold ${
-                location.pathname === "/rents" ? "text-teal-600" : "text-gray-800"
+                location.pathname === "/rents"
+                  ? "text-teal-600"
+                  : "text-gray-800"
               } hover:bg-gray-100 rounded-md`}
             >
               Rentals
@@ -57,7 +61,9 @@ const Navbar = () => {
             <Link
               to="/sales"
               className={`block px-4 py-2 text-sm font-semibold ${
-                location.pathname === "/sales" ? "text-teal-600" : "text-gray-800"
+                location.pathname === "/sales"
+                  ? "text-teal-600"
+                  : "text-gray-800"
               } hover:bg-gray-100 rounded-md`}
             >
               Sales
@@ -69,7 +75,9 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
-            isActive ? "text-teal-600 border-b-2 border-teal-600" : "text-gray-800"
+            isActive
+              ? "text-teal-600 border-b-2 border-teal-600"
+              : "text-gray-800"
           } hover:text-teal-600 transition-all`
         }
         to="/list-with-us"
@@ -80,7 +88,9 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
-            isActive ? "text-teal-600 border-b-2 border-teal-600" : "text-gray-800"
+            isActive
+              ? "text-teal-600 border-b-2 border-teal-600"
+              : "text-gray-800"
           } hover:text-teal-600 transition-all`
         }
         to="/management"
@@ -91,7 +101,9 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
-            isActive ? "text-teal-600 border-b-2 border-teal-600" : "text-gray-800"
+            isActive
+              ? "text-teal-600 border-b-2 border-teal-600"
+              : "text-gray-800"
           } hover:text-teal-600 transition-all`
         }
         to="/concierge"
@@ -102,7 +114,9 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
-            isActive ? "text-teal-600 border-b-2 border-teal-600" : "text-gray-800"
+            isActive
+              ? "text-teal-600 border-b-2 border-teal-600"
+              : "text-gray-800"
           } hover:text-teal-600 transition-all`
         }
         to="/about"
@@ -113,7 +127,9 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] md:hidden font-semibold ${
-            isActive ? "text-teal-600 border-b-2 border-teal-600" : "text-gray-800"
+            isActive
+              ? "text-teal-600 border-b-2 border-teal-600"
+              : "text-gray-800"
           } hover:text-teal-600 transition-all`
         }
         to="https://ricoholder-dashboard.netlify.app/admin-dashboard"
@@ -125,24 +141,24 @@ const Navbar = () => {
 
   return (
     <nav className="w-full shadow-md bg-white fixed top-0 left-0 z-50">
-      <div className=" px-4 container mx-auto  flex justify-between items-center h-20">
-       {/* Logo for large devices only (above 1280px) */}
-<Link to="/" className="hidden xl:flex items-center gap-2">
-  <img
-    className="h-16"
-    src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760303130/hd_svg_logo_1_rfsh4e.png"
-    alt="Logo"
-  />
-</Link>
+      <div className="px-4 container mx-auto flex justify-between items-center h-20">
+        {/* Logo for large devices (above 1280px) */}
+        <Link to="/" className="hidden xl:flex items-center gap-2">
+          <img
+            className="h-16"
+            src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760303130/hd_svg_logo_1_rfsh4e.png"
+            alt="Logo"
+          />
+        </Link>
 
-{/* Logo for small, medium, and up to 1279px (including 1050px) */}
-<Link to="/" className="flex xl:hidden items-center gap-2">
-  <img
-    className="h-16"
-    src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png"
-    alt="Logo"
-  />
-</Link>
+        {/* Logo for small, medium, and up to 1279px */}
+        <Link to="/" className="flex xl:hidden items-center gap-2">
+          <img
+            className="h-16"
+            src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png"
+            alt="Logo"
+          />
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-6">{links}</div>

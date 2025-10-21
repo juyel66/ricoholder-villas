@@ -62,7 +62,7 @@ const getDayStatus = (date) => {
   const month = date.getMonth(); // 3 for April (0-indexed), 4 for May
   const year = date.getFullYear();
 
-  if (year === 2025) {
+  if (year === 2026) {
     // Booked dates: 1, 2, 3, 7, 24
     if (month === 3) {
       // April 2026
@@ -155,7 +155,7 @@ const Calendar = () => {
   // State to hold the first month's date (April 2026 in the image)
   // Month indices: 0=Jan, 3=Apr, 4=May
   const [startMonthDate, setStartMonthDate] = useState(
-    () => new Date(2025, 3, 1)
+    () => new Date(2026, 3, 1)
   );
 
   // Calculate the second month's date
@@ -200,7 +200,7 @@ const Calendar = () => {
   return (
     <div className="py-20">
       <div className="text-center items-center">
-        <p className="text-4xl font-semibold text-gray-800">
+        <p className="text-4xl font-semibold mb-10 text-gray-800">
           Availability Calendar
         </p>
         <p>

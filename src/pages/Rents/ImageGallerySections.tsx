@@ -6,6 +6,7 @@ import Locations from "./Locations";
 import Calendar from "./Calendar";
 import AddReviewForm from "./AddReviewForm";
 import BedRoomsSliders from "./BedRoomsSliders";
+import RatesBookingInformation from "./RatesBookingInformation";
 
 interface SimpleListItemProps {
   name: string;
@@ -417,7 +418,10 @@ const ImageGallerySection: React.FC = () => {
         </div>
       </div>
 
+      <RatesBookingInformation />
+
       <Calendar />
+      
       <Locations
         lat={location.lat}
         lng={location.lng}

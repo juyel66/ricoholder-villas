@@ -25,7 +25,7 @@ const BENEFITS_IMAGE_URL = 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1
 const Benefits: React.FC = () => {
   return (
     // Main section container with padding and a background
-    <section className=" bg-white mt-14">
+    <section className=" bg-white mt-14 lg:p-0 p-2">
       {/* Content wrapper to center and limit width */}
       <div className=" mx-auto ">
         {/* Flex container for the two-column layout */}

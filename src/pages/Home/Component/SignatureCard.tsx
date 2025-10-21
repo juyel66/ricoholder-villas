@@ -56,17 +56,17 @@ const SignatureCard = ({ villa }) => {
                 <img className="w-full h-full object-cover" src={data.imageUrl} alt={data.title} />
 
                 {/* Rating Badge (Top Left) */}
-                <div className="absolute top-4 left-4 flex items-center bg-black/50 text-white text-sm font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
+                <div className="absolute top-4 left-4 flex items-center bg-white text-black text-sm font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
                     <span className="text-yellow-400 mr-1">★</span>
                     {data.rating} ({data.reviewCount})
                 </div>
 
                 {/* Icons (Share/Favorite) (Top Right) */}
                 <div className="absolute top-4 right-4 flex space-x-2">
-                    <button className="p-2 bg-white/70 rounded-full text-gray-700 hover:text-red-500 hover:bg-white transition duration-200 shadow-md">
+                    <button className="p-2 bg-white rounded-full text-black hover:text-red-500 hover:bg-white transition duration-200 shadow-md">
                         <HeartIcon />
                     </button>
-                    <button className="p-2 bg-white/70 rounded-full text-gray-700 hover:text-teal-500 hover:bg-white transition duration-200 shadow-md">
+                    <button className="p-2  bg-white rounded-full text-black hover:text-teal-500 hover:bg-white transition duration-200 shadow-md">
                         <ShareIcon />
                     </button>
                 </div>
@@ -79,12 +79,12 @@ const SignatureCard = ({ villa }) => {
 
                 {/* Location */}
                 <div className="flex items-center text-sm text-gray-600 mb-3">
-                    <LocationIcon />
+                   <img className='mr-1' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1761076568/Frame_11_cfkzkx.png" alt="" />
                     {data.location}
                 </div>
 
                 {/* Price */}
-                <p className=" text-2xl font-extrabold text-teal-600  mb-4">
+                <p className=" lg:text-2xl text-xl font-extrabold text-teal-600  mb-4">
                     From <span className="">USD${data.price}/night</span>
                 </p>
 
