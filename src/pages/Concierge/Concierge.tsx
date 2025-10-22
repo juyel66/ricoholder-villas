@@ -7,8 +7,10 @@ const Concierge = () => {
     return (
         <div className="lg:mt-26 mt-20 lg:p-0 p-2">
             <ConciergeBanner />
-           <div className="container mx-auto"> <Eastmond />
-            <ConciergeCard /></div>
+           <div className="container mx-auto"> 
+            <Eastmond />
+            <ConciergeCard />
+            </div>
             
         </div>
     );
