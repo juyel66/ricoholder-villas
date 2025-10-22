@@ -59,7 +59,7 @@ const Banner = () => {
     "https://res.cloudinary.com/dqkczdjjs/video/upload/v1760120464/d_v_jsxaky.mp4";
 
   return (
-    <div className="relative w-full h-[100vh] max-h-[800px] overflow-hidden transition-all duration-700 ease-in-out">
+    <div className="relative w-full h-[70vh] md:h-[66vh] lg:h-[66vh] max-h-[800px] overflow-hidden transition-all duration-700 ease-in-out">
       <video
         className="absolute inset-0 w-full h-full object-cover"
         src={videoSource}
@@ -70,7 +70,7 @@ const Banner = () => {
       />
       <div className="absolute inset-0 bg-black/20"></div>
 
-      <div className="relative z-10 flex flex-col justify-center h-full container mx-auto px-[4vw] sm:px-6 lg:px-8 transition-all duration-700 ease-in-out">
+      <div className="relative z-10 flex flex-col justify-center h-full container mx-auto  p-2  transition-all duration-700 ease-in-out">
         <FeaturedBadge />
         <ClientAvatars />
 
