@@ -26,11 +26,9 @@ export const router = createBrowserRouter([
       { path: "/concierge", element: <Concierge /> },
       { path: "/about", element: <About /> },
       { path: "/contact", element: <Contact /> },
-      { path: "/RentsDetails", element: <RentsDetails /> },
-      
+      { path: "/RentsDetails", element: <RentsDetails /> },   
     ],
   },
-  
 
   { path: "/login", element: <Login /> },
   { path: "/register", element: <SignUpPage /> },
