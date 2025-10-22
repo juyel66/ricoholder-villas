@@ -6,11 +6,20 @@ import React from 'react';
 const LUXURY_CARD_DATA = [
   {
     id: 1,
-    imageUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760215908/ImageWithFallback_1_ho2re6.png',
-    brandName: 'Exclusive Travel',
-    tagline: 'The Curatorium of Distinction',
-    description: 'True luxury anticipates your needs before they arise.',
-    icon: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760833071/Container_wsqj7b.png'
+    // Using original image URL, as requested to use "default ja img use kora ache segulai use korba"
+    imageUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760215908/ImageWithFallback_1_ho2re6.png', 
+    brandName: 'The Unspoken Itinerary', // Matches card title in the image
+    tagline: 'True luxury anticipates your needs before they arise', // Matches the main bold text in the image
+    description: null, // Set to null for the Feature List Card variant
+    icon: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760833071/Container_wsqj7b.png',
+    // New data for the Feature List Card:
+    features: [ 
+        'Private aviation & yacht/catamaran coordination',
+        'Villa pre-stocking (rare vintages & bespoke pantry curation)',
+        'Discreet relocation & logistics mastery',
+    ],
+    // The icon you requested to use for the "options" (nicher option gula te)
+    featureIconUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1761166814/Icon_45_jcnhwd.png' 
   },
   {
     id: 2,
@@ -18,7 +27,14 @@ const LUXURY_CARD_DATA = [
     brandName: 'VIP Access',
     tagline: 'Beyond the Velvet Rope',
     description: 'Unlock experiences that are simply beyond ordinary reach.',
-    icon: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760833740/Frame_1000004285_fehjjw.png'
+    icon: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760833740/Frame_1000004285_fehjjw.png',
+        features: [ 
+        'Private aviation & yacht/catamaran coordination',
+        'Villa pre-stocking (rare vintages & bespoke pantry curation)',
+        'Discreet relocation & logistics mastery',
+    ],
+    // The icon you requested to use for the "options" (nicher option gula te)
+    featureIconUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1761166814/Icon_45_jcnhwd.png' 
   },
   {
     id: 3,
@@ -26,7 +42,14 @@ const LUXURY_CARD_DATA = [
     brandName: 'Absolute Discretion',
     tagline: 'The Invisible Hand of Protection',
     description: 'Guaranteed privacy and impeccable professional oversight.',
-    icon: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760833778/Container_1_unumym.png'
+    icon: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760833778/Container_1_unumym.png',
+        features: [ 
+        'Private aviation & yacht/catamaran coordination',
+        'Villa pre-stocking (rare vintages & bespoke pantry curation)',
+        'Discreet relocation & logistics mastery',
+    ],
+    // The icon you requested to use for the "options" (nicher option gula te)
+    featureIconUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1761166814/Icon_45_jcnhwd.png' 
   },
   {
     id: 4,
@@ -34,7 +57,14 @@ const LUXURY_CARD_DATA = [
     brandName: 'Bespoke Events',
     tagline: 'The Alchemy of the Exceptional',
     description: 'Customized luxury crafted from your unique vision.',
-    icon: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760833829/Container_2_cdh1jr.png'
+    icon: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760833829/Container_2_cdh1jr.png',
+        features: [ 
+        'Private aviation & yacht/catamaran coordination',
+        'Villa pre-stocking (rare vintages & bespoke pantry curation)',
+      
+    ],
+    // The icon you requested to use for the "options" (nicher option gula te)
+    featureIconUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1761166814/Icon_45_jcnhwd.png' 
   },
 ];
 
@@ -43,11 +73,28 @@ interface LuxuryFeatureCardProps {
   imageUrl: string;
   brandName: string;
   tagline: string;
-  description: string;
+  description: string | null; // Made nullable for the new card type
   icon: string;
+  // New props for the feature list
+  features?: string[];
+  featureIconUrl?: string;
 }
 
-const LuxuryFeatureCard: React.FC<LuxuryFeatureCardProps> = ({ imageUrl, brandName, tagline, description, icon }) => {
+const LuxuryFeatureCard: React.FC<LuxuryFeatureCardProps> = ({ 
+    imageUrl, 
+    brandName, 
+    tagline, 
+    description, 
+    icon, 
+    features, 
+    featureIconUrl 
+}) => {
+
+  const isFeatureListCard = features && features.length > 0;
+
+  // The feature icon URL, defaulting to the one provided by the user if available
+  const itemIcon = featureIconUrl || 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1761166814/Icon_45_jcnhwd.png'; 
+
   return (
     <div className="bg-white shadow-xl rounded-xl overflow-hidden my-0 flex flex-col h-full">
       {/* 1. Image Section */}
@@ -60,23 +107,49 @@ const LuxuryFeatureCard: React.FC<LuxuryFeatureCardProps> = ({ imageUrl, brandNa
       </div>
 
       {/* 2. Content Card Section */}
-      <div className="p-6 md:p-8 border-t flex-grow">
-        {/* Header - Icon, Brand Name, and Tagline */}
+      <div className="p-6 md:p-8 border-t flex-grow flex flex-col">
+        {/* Header - Icon, Brand Name, and Tagline (Original style) or Icon and Title (New style) */}
         <div className="flex items-center mb-4 gap-3">
           {/* Single Icon */}
           <img src={icon} alt="icon" className="w-6 h-6 object-contain" />
 
-          {/* Brand and Tagline */}
-          <div>
-            <p className="text-gray-900 font-semibold text-lg leading-none">{brandName}</p>
-            <p className="text-gray-500 text-sm">{tagline}</p>
-          </div>
+          {/* Title / Brand and Tagline */}
+          {isFeatureListCard ? (
+             // New Card: Only Title is shown here
+             <p className="text-gray-900 font-semibold text-lg leading-none">{brandName}</p>
+          ) : (
+            // Original Card: Brand Name and Tagline are both shown
+            <div>
+              <p className="text-gray-900 font-semibold text-lg leading-none">{brandName}</p>
+              <p className="text-gray-500 text-sm">{tagline}</p>
+            </div>
+          )}
         </div>
 
         {/* Description Text */}
-        <p className="text-2xl sm:text-3xl font-bold text-gray-800 leading-snug pt-2">
-          {description}
+        <p className="text-2xl sm:text-3xl font-bold text-gray-800 leading-snug pt-2 flex-shrink-0">
+          {/* Use tagline for the main bold text in the new list card, and description for the original card */}
+          {isFeatureListCard ? tagline : description}
         </p>
+
+        {/* Feature List (Conditional Rendering) */}
+        {isFeatureListCard && (
+            <ul className="space-y-4 pt-6 mt-6 border-t border-gray-100 flex-grow">
+                {features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                        {/* Use the requested feature icon */}
+                        <img 
+                            src={itemIcon} 
+                            alt="feature icon" 
+                            className="w-5 h-5 object-contain mt-1 text-teal-600 flex-shrink-0"
+                        />
+                        <span className="text-gray-600 text-base font-medium">
+                            {feature}
+                        </span>
+                    </li>
+                ))}
+            </ul>
+        )}
       </div>
     </div>
   );
@@ -96,6 +169,8 @@ const LuxuryCardGrid = () => {
               tagline={cardData.tagline}
               description={cardData.description}
               icon={cardData.icon}
+              features={cardData.features}
+              featureIconUrl={cardData.featureIconUrl}
             />
           ))}
         </div>
