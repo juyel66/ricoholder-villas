@@ -1,12 +1,18 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const Navbar = () => {
   const [theme] = useState(() => localStorage.getItem("theme") || "yellow");
   const location = useLocation();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -14,12 +20,13 @@ const Navbar = () => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const handleLinkClick = () => setIsMobileMenuOpen(false);
 
   const links = (
     <>
       <NavLink
+        onClick={handleLinkClick}
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
             isActive
@@ -32,47 +39,36 @@ const Navbar = () => {
         Home
       </NavLink>
 
-      {/* Dropdown */}
-      <div className="relative">
-        <button
-          onClick={toggleDropdown}
-          className="flex items-center gap-1 px-3 py-2 text-[15px] font-semibold text-gray-800 hover:text-teal-600 transition-all"
-        >
-          Collection
-          <IoMdArrowDropdown
-            className={`text-lg mt-[2px] transition-transform duration-200 ${
-              isDropdownOpen ? "rotate-180 text-teal-600" : ""
+      {/* Collection Dropdown (shadcn) */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="flex items-center gap-1 px-3 py-2 text-[15px] font-semibold text-gray-800 hover:text-teal-600 transition-all">
+            Collection
+            <IoMdArrowDropdown className="text-lg mt-[2px]" />
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-44">
+          <DropdownMenuItem
+            onClick={() => navigate("/rents")}
+            className={`cursor-pointer font-semibold ${
+              location.pathname === "/rents" ? "text-teal-600" : "text-gray-800"
             }`}
-          />
-        </button>
-
-        {isDropdownOpen && (
-          <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg w-44 z-20 border border-gray-100">
-            <Link
-              to="/rents"
-              className={`block px-4 py-2 text-sm font-semibold ${
-                location.pathname === "/rents"
-                  ? "text-teal-600"
-                  : "text-gray-800"
-              } hover:bg-gray-100 rounded-md`}
-            >
-              Rentals
-            </Link>
-            <Link
-              to="/sales"
-              className={`block px-4 py-2 text-sm font-semibold ${
-                location.pathname === "/sales"
-                  ? "text-teal-600"
-                  : "text-gray-800"
-              } hover:bg-gray-100 rounded-md`}
-            >
-              Sales
-            </Link>
-          </div>
-        )}
-      </div>
+          >
+            Rentals
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => navigate("/sales")}
+            className={`cursor-pointer font-semibold ${
+              location.pathname === "/sales" ? "text-teal-600" : "text-gray-800"
+            }`}
+          >
+            Sales
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
       <NavLink
+        onClick={handleLinkClick}
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
             isActive
@@ -86,6 +82,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
+        onClick={handleLinkClick}
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
             isActive
@@ -99,6 +96,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
+        onClick={handleLinkClick}
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
             isActive
@@ -112,6 +110,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
+        onClick={handleLinkClick}
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
             isActive
@@ -125,6 +124,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
+        onClick={handleLinkClick}
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] md:hidden font-semibold ${
             isActive
@@ -142,7 +142,7 @@ const Navbar = () => {
   return (
     <nav className="w-full shadow-md bg-white fixed top-0 left-0 z-50">
       <div className="px-4 container mx-auto flex justify-between items-center h-20">
-        {/* Logo for large devices (above 1280px) */}
+        {/* Logo for large devices */}
         <Link to="/" className="hidden xl:flex items-center gap-2">
           <img
             className="h-16"
@@ -151,7 +151,7 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Logo for small, medium, and up to 1279px */}
+        {/* Logo for smaller devices */}
         <Link to="/" className="flex xl:hidden items-center gap-2">
           <img
             className="h-16"
@@ -196,12 +196,14 @@ const Navbar = () => {
         <div className="flex flex-col px-4 space-y-3">{links}</div>
         <div className="flex flex-col px-4 space-y-2 mt-3">
           <Link
+            onClick={handleLinkClick}
             to="/contact"
             className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
           >
             Contact Us
           </Link>
           <Link
+            onClick={handleLinkClick}
             to="/login"
             className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
           >
