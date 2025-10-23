@@ -30,10 +30,10 @@ const Footer = () => {
                     <div className="text-center sm:text-left md:text-left">
                         <h4 className="text-lg md:text-xl font-semibold mb-4 md:mb-6">Quick Links</h4>
                         <ul className="space-y-2 md:space-y-3">
-                            <li><a href="#" className="hover:text-teal-400 transition-colors duration-200">Home</a></li>
-                            <li><a href="#" className="hover:text-teal-400 transition-colors duration-200">About Us</a></li>
-                            <li><a href="#" className="hover:text-teal-400 transition-colors duration-200">List With Us</a></li>
-                            <li><a href="#" className="hover:text-teal-400 transition-colors duration-200">Contact</a></li>
+                            <li><a href="/" className="hover:text-teal-400 transition-colors duration-200">Home</a></li>
+                            <li><a href="/about" className="hover:text-teal-400 transition-colors duration-200">About Us</a></li>
+                            <li><a href="/list-with-us" className="hover:text-teal-400 transition-colors duration-200">List With Us</a></li>
+                            <li><a href="/contact" className="hover:text-teal-400 transition-colors duration-200">Contact</a></li>
                             <li><a href="https://ricoholder-dashboard.netlify.app/admin-dashboard" className="hover:text-teal-400 transition-colors duration-200">Dashboard</a></li>
                         </ul>
                     </div>
@@ -73,13 +73,13 @@ const Footer = () => {
                     <div className="text-center sm:text-left md:text-left">
                         <h4 className="text-lg md:text-xl font-semibold mb-4 md:mb-6">Follow Us</h4>
                         <div className="flex items-center justify-center sm:justify-start md:justify-start space-x-4">
-                            <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
+                            <a href="https://www.facebook.com/" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
                               <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826820/Frame_dccruw.png" alt="Facebook" />
                             </a>
-                            <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
+                            <a  href="https://www.instagram.com/" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
                                <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826937/Frame_1_m7bui5.png" alt="Instagram" />
                             </a>
-                            <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
+                            <a href="https://x.com/" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
                               <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826976/Frame_2_dmncqr.png" alt="Twitter" />
                             </a>
                         </div>
