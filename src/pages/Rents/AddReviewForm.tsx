@@ -214,7 +214,7 @@ const AddReviewForm: React.FC = () => {
       htmlFor="uploadFiles"
       className="cursor-pointer text-sm font-medium"
     >
-      <span className="inline-block px-4 py-1.5 bg-green-300 text-gray-800 rounded hover:bg-green-400 transition border-2 border-dotted border-green-700">
+      <span className="inline-block px-4 py-1.5 bg-[#00968933] text-gray-800 rounded hover:bg-green-400 transition border-gray-700">
         Choose File
       </span>
     </label>
