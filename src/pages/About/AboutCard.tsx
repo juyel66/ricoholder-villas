@@ -1,18 +1,18 @@
 import React from 'react';
 
-const StorySection = () => {
+const StorySection: React.FC = () => {
   return (
 <div>
 
 
-        <section className="bg-white mt-10 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="bg-white p-5 mt-10 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2">
+      <div className="  ">
         {/* GRID CLASS MODIFIED: Changed lg:grid-cols-2 to lg:grid-cols-3 */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
           
           {/* Left Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:pr-8 mb-12 lg:mb-0 lg:col-span-2"> 
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               Our Story – Born from a Vision
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -42,7 +42,7 @@ const StorySection = () => {
 
 
 <section className="bg-white lg:mt-0 md:mt-3 mt-5  border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2 lg:pt-0 pt-5 ">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* Grid Layout: Image on left (1/3 width), Text on right (2/3 width) */}
         {/* This div structures the two columns for larger screens */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
@@ -65,7 +65,7 @@ const StorySection = () => {
           {/* Right Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:col-span-2 lg:pl-8"> {/* 'pl-8' for padding between image and text on large screens */}
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               The Essence of Eastmond Villas
             </h2>
             {/* Paragraph Description */}
@@ -85,13 +85,13 @@ const StorySection = () => {
 
 
            <section className="bg-white lg:mt-0 md:mt-3 border-2 rounded-2xl pb-5 lg:mt-0 mt-4 border-gray-200 lg:border-0 broder-2 ">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* GRID CLASS MODIFIED: Changed lg:grid-cols-2 to lg:grid-cols-3 */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
           
           {/* Left Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:pr-8 mb-12 lg:mb-0 lg:col-span-2"> 
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               Architectural Elegance & Ambience
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -121,7 +121,7 @@ const StorySection = () => {
 
 
 <section className="bg-white lg:mt-0 md:mt-3 mt-5  border-2 rounded-2xl pb-5 lg:mt-0 mt-5 lg:pt-5 pt:p-0 pt-4 border-gray-200 lg:border-0 broder-2">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* Grid Layout: Image on left (1/3 width), Text on right (2/3 width) */}
         {/* This div structures the two columns for larger screens */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
@@ -144,7 +144,7 @@ const StorySection = () => {
           {/* Right Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:col-span-2 lg:pl-8"> {/* 'pl-8' for padding between image and text on large screens */}
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               Crafted Experiences & Personalized Service
             </h2>
             {/* Paragraph Description */}
@@ -161,13 +161,13 @@ const StorySection = () => {
 
 
            <section className="bg-white  lg:mt-0 md:mt-3 mt-5 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* GRID CLASS MODIFIED: Changed lg:grid-cols-2 to lg:grid-cols-3 */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
           
           {/* Left Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:pr-8 mb-12 lg:mb-0 lg:col-span-2"> 
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
               Discover Barbados – Island of Inspiration
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -197,7 +197,7 @@ const StorySection = () => {
 
 
 <section className="bg-white mt-5 pt-4  lg:mt-0 md:mt-3 border-2 rounded-2xl pb-5 border-gray-200 lg:border-0 broder-2 ">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" ">
         {/* Grid Layout: Image on left (1/3 width), Text on right (2/3 width) */}
         {/* This div structures the two columns for larger screens */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-16 xl:gap-24 items-center">
@@ -220,12 +220,13 @@ const StorySection = () => {
           {/* Right Column: Text Content - Takes 2/3 width on large screens */}
           <div className="lg:col-span-2 lg:pl-8"> {/* 'pl-8' for padding between image and text on large screens */}
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h2 className="ext-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
       Where Luxury Meets Enchantment
             </h2>
             {/* Paragraph Description */}
             <p className="text-lg text-gray-700 leading-relaxed">
-           Eastmond Villas is not just a stay — it’s a feeling. A harmony of elegance and emotion. A place where hospitality becomes art, and memories are handcrafted. Welcome to the realm where every moment whispers luxury, and every experience lingers in your heart.
+           Eastmond Villas is not just a stay — it’s a feeling. A harmony of elegance and emotion. A p
+           lace where hospitality becomes art, and memories are handcrafted. Welcome to the realm where every moment whispers luxury, and every experience lingers in your heart.
             </p>
           </div>
         </div>
@@ -246,12 +247,12 @@ const StorySection = () => {
   );
 };
 
-// Example Usage:
-const About = () => (
-  <div className="min-h-screen ">
-    <StorySection />
+// Renamed from 'About' to 'AboutCard' to match the filename and avoid confusion.
+const AboutCard: React.FC = () => (
+  <div className="min-h-screen p-2">
+    <div className='container mx-auto'><StorySection /></div>
     {/* Other sections can go here */}
   </div>
 );
 
-export default About;
+export default AboutCard;

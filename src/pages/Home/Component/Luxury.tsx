@@ -32,10 +32,10 @@ const FeatureItem = ({ title, description }) => (
 const LuxuryFeaturesGrid = () => {
     
     return (
-        <div className='mt-20'>
+        <div className='mt-20 lg:p-0 p-2'>
 <div className=' text-center'>
     
-            <h2 className="text-4xl font-semibold text-center">
+            <h2 className="text-4xl mb-4 font-semibold text-center">
                             Luxury Made Effortless
                         </h2>
                         <p>Carefully selected for elegance, comfort, and world-class service.</p>
@@ -43,18 +43,18 @@ const LuxuryFeaturesGrid = () => {
 
 
                         
-            <div className=" mt-5 bg-white">
-            <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+            <div className=" mt-10 mb-15 bg-white">
+            <div className=" mx-auto ">
                 
                 {/* 🚨 Outer Grid for Image and Feature Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 ">
                     
                     {/* 1. LEFT COLUMN: Image Section */}
-                    <div className="w-full h-full p-4 lg:sticky lg:top-8"> 
+                    <div className="w-full h-full  lg:sticky lg:top-8"> 
                         <img 
-                            src="public/images/exclusive img.png" 
+                            src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760817376/Frame_1000004224_wfl1vc.png" 
                             alt="Luxury Villa" 
-                            className="w-full h-[500px] rounded-xl shadow-2xl" 
+                            className="w-full h-[600px] rounded-xl shadow-2xl" 
                         />
                     </div>
                     
@@ -92,7 +92,7 @@ const LuxuryFeaturesGrid = () => {
                             
                             {/* === RIGHT CARD COLUMN (2, 4, 6) === */}
                             {/* This div holds 2, 4, 6 and stays in the normal position */}
-                            <div className="grid gap-8 grid-cols-1">
+                            <div className="grid gap-8  grid-cols-1">
                                 
                                 {/* Card 2: Exclusive Access */}
                                 <FeatureItem 

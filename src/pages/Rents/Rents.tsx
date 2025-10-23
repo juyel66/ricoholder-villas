@@ -1,155 +1,145 @@
-import { villaData } from "@/FakeJson"; 
+// File: Rents.tsx
+import React, { useState } from "react";
 import RentsCard from "./RentsCard";
 import FilterSystem from "@/shared/FilterSystem";
-
-// --- New Pagination Component ---
-const Pagination = ({ totalResults, resultsPerPage, currentPage, totalPages }) => {
-    // Determine the range of results being shown
-    const start = (currentPage - 1) * resultsPerPage + 1;
-    const end = Math.min(currentPage * resultsPerPage, totalResults);
-
-    // Array of page numbers to display (e.g., [1, 2, 3, ..., 6])
-    const pagesToShow = [];
-    // Start with the current page
-    let startPage = Math.max(1, currentPage - 2);
-    let endPage = Math.min(totalPages, currentPage + 3);
-
-    // If we're near the end, show more previous pages
-    if (currentPage > totalPages - 3) {
-        startPage = Math.max(1, totalPages - 5);
-    }
-    // If we're near the start, show more next pages
-    if (currentPage < 3) {
-        endPage = Math.min(totalPages, 6);
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-        pagesToShow.push(i);
-    }
+// import { villaData } from "@/FakeJson";
 
 
-    const PageNumberButton = ({ number, isActive, isEllipsis }) => (
-        <button 
-            className={`w-10 h-10 mx-1 flex items-center justify-center rounded-lg text-sm font-semibold transition duration-150 
-                ${isActive 
-                    ? 'bg-white text-gray-900 border border-gray-200 shadow-md' 
-                    : isEllipsis 
-                        ? 'text-gray-500' // Styling for the '...'
-                        : 'text-gray-600 hover:bg-gray-100'
-                }`
-            }
-            disabled={isActive || isEllipsis}
+const villaData = [
+  {
+        id: 1,
+        title: "Skyline Residences",
+        location: "Downtown, NY",
+        price: "850,000",
+        rating: 4.9,
+        reviewCount: 127,
+        beds: 4,
+        baths: 3,
+        pool: 2,
+        amenities: ["Ocean View", "Private Pool", "Chef Available"],
+        imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png" // Placeholder URL for image 1
+    },
+    
+    
+]
+
+
+interface PaginationProps {
+  totalResults: number;
+  resultsPerPage: number;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
+  totalResults,
+  resultsPerPage,
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
+  const start = (currentPage - 1) * resultsPerPage + 1;
+  const end = Math.min(currentPage * resultsPerPage, totalResults);
+
+  const pagesToShow = [];
+  let startPage = Math.max(1, currentPage - 2);
+  let endPage = Math.min(totalPages, currentPage + 3);
+
+  if (currentPage > totalPages - 3) startPage = Math.max(1, totalPages - 5);
+  if (currentPage < 3) endPage = Math.min(totalPages, 6);
+
+  for (let i = startPage; i <= endPage; i++) pagesToShow.push(i);
+
+  return (
+    <div className="flex  flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
+      <div className="text-sm font-medium text-gray-600 mb-4 sm:mb-0">
+        Showing {start} to {end} of {totalResults} results
+      </div>
+      <div className="flex items-center">
+        <button
+          className="px-4 py-2 mx-1 rounded-lg border hover:bg-gray-100 disabled:text-gray-500"
+          disabled={currentPage === 1}
+          onClick={() => onPageChange(currentPage - 1)}
         >
-            {isEllipsis ? '...' : String(number).padStart(2, '0')}
+          ← Previous
         </button>
-    );
 
-    const NavButton = ({ direction, isDisabled }) => (
-        <button 
-            className={`px-4 py-2 mx-1 flex items-center justify-center rounded-lg text-sm font-semibold transition duration-150 ${
-                isDisabled 
-                    ? 'text-gray-400 cursor-not-allowed'
-                    : 'bg-white text-gray-700 border border-gray-200 shadow-sm hover:bg-gray-100'
+        {pagesToShow.map((page) => (
+          <button
+            key={page}
+            className={`w-10 h-10 mx-1 flex items-center justify-center rounded-lg text-sm font-semibold ${
+              page === currentPage
+                ? "bg-white text-gray-900 border shadow-md"
+                : "text-gray-600 hover:bg-gray-100"
             }`}
-            disabled={isDisabled}
+            onClick={() => onPageChange(page)}
+          >
+            {String(page).padStart(2, "0")}
+          </button>
+        ))}
+
+        <button
+          className="px-4 py-2 mx-1 rounded-lg border hover:bg-gray-100 disabled:text-gray-500"
+          disabled={currentPage === totalPages}
+          onClick={() => onPageChange(currentPage + 1)}
         >
-            {direction === 'Previous' && (
-                <>
-                    <span className="mr-1">←</span> Previous
-                </>
-            )}
-            {direction === 'Next' && (
-                <>
-                    Next <span className="ml-1">→</span>
-                </>
-            )}
+          Next →
         </button>
-    );
-
-    return (
-        <div className="flex flex-col sm:flex-row justify-between items-center py-6 px-4 sm:px-8 max-w-7xl mx-auto">
-            {/* Left side: Results Count */}
-            <div className="text-sm font-medium text-gray-600 mb-4 sm:mb-0">
-                Showing {start} to {end} of {totalResults} results
-            </div>
-
-            {/* Right side: Pagination Controls */}
-            <div className="flex items-center">
-                <NavButton direction="Previous" isDisabled={currentPage === 1} />
-
-                {/* Render page numbers */}
-                {pagesToShow[0] > 1 && <PageNumberButton number={1} isActive={false} />}
-                {pagesToShow[0] > 2 && <PageNumberButton isEllipsis={true} />}
-
-                {pagesToShow.map((page) => (
-                    <PageNumberButton 
-                        key={page} 
-                        number={page} 
-                        isActive={page === currentPage} 
-                    />
-                ))}
-
-                {pagesToShow[pagesToShow.length - 1] < totalPages - 1 && <PageNumberButton isEllipsis={true} />}
-                {pagesToShow[pagesToShow.length - 1] < totalPages && <PageNumberButton number={totalPages} isActive={false} />}
-                
-                <NavButton direction="Next" isDisabled={currentPage === totalPages} />
-            </div>
-      
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
-// --- End of New Pagination Component ---
 
+const  Rents = () => {
+  const resultsPerPage = 2;
+  const totalResults = villaData.length;
+  const totalPages = Math.ceil(totalResults / resultsPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
 
-const Rents = () => {
-    const signatureCardData = villaData;
+  const currentVillas = villaData.slice(
+    (currentPage - 1) * resultsPerPage,
+    currentPage * resultsPerPage
+  );
 
-    // Hardcoded Pagination Values to match your image and scenario (54 results total)
-    const totalResults = 54;
-    const resultsPerPage = 8;
-    const currentPage = 1; // Assuming we are on the first page
-    const totalPages = Math.ceil(totalResults / resultsPerPage); // totalPages = 7
+  const backgroundImg = {
+    backgroundImage:
+      "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    minHeight: "100vh", // Full screen height
+  };
 
-    return (
-        <div className=" ">
-           <div className="mb-20">
-             <FilterSystem />
-           </div>
-            
-            {/* PAGINATION ADDED AT THE TOP */}
-            <Pagination 
-                totalResults={totalResults}
-                resultsPerPage={resultsPerPage}
-                currentPage={currentPage}
-                totalPages={totalPages}
-            />
-           
+  return (
+    <div style={backgroundImg} className="">
+      <div className="mb-10 mt-16 container mx-auto">
+        <FilterSystem />
+      </div>
 
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                
-                {/* Card Grid */}
-                <div className="  ">
-                    {/* NOTE: You would typically map over a *slice* of villaData based on 'currentPage' and 'resultsPerPage' */}
-                    {signatureCardData.map((villa) => (
-                        <RentsCard 
-                            key={villa.id}
-                            villa={villa} 
-                        />
-                    ))}
-                </div>
-            </div>
-            
-            {/* PAGINATION ADDED AT THE BOTTOM */}
-            <Pagination 
-                totalResults={totalResults}
-                resultsPerPage={resultsPerPage}
-                currentPage={currentPage}
-                totalPages={totalPages}
-            />
-        
+      <Pagination
+        totalResults={totalResults}
+        resultsPerPage={resultsPerPage}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
 
-        </div>
-    );
+      <div className="space-y-8 container mx-auto">
+        {currentVillas.map((villa) => (
+          <RentsCard key={villa.id} villa={villa} />
+        ))}
+      </div>
+
+      <Pagination
+        totalResults={totalResults}
+        resultsPerPage={resultsPerPage}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
+    </div>
+  );
 };
 
 export default Rents;

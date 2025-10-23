@@ -1,7 +1,7 @@
 const EstateExperience = () => {
   return (
-    <div className="bg-teal-800 text-white py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <div className="bg-teal-800 mt-20 p-5 text-white py-16 md:py-24">
+      <div className="container mx-auto  ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* LEFT COLUMN: Text Content & Stats */}
           <div className="lg:pr-12">
@@ -19,34 +19,47 @@ const EstateExperience = () => {
             </p>
 
             {/* Stats Section */}
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
-              {/* Stat 1 */}
-              <div className="flex flex-col items-center text-center">
-               <div className="flex flex-col items-center text-center">
-                <img src="/public/images/tenpercent.png" alt="" />
-              </div>
-              </div>
+<div className="flex flex-col sm:flex-row justify-between items-center gap-8">
+  {/* Stat 1 */}
+  <div className="flex flex-col items-center text-center w-full sm:w-1/3">
+    <div className="flex flex-col items-center text-center w-full">
+      <img
+        src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760815143/Frame_48095987_luvjtw.png"
+        alt=""
+        className="w-48 h-48 object-contain sm:w-56 sm:h-56 md:w-64 md:h-64"
+      />
+    </div>
+  </div>
 
-              {/* Stat 2 */}
-              <div className="flex flex-col items-center text-center">
-                <div className="flex flex-col items-center text-center">
-                <img src="/public/images/Frame 48095988.png" alt="" />
-              </div>
-              </div>
+  {/* Stat 2 */}
+  <div className="flex flex-col items-center text-center w-full sm:w-1/3">
+    <div className="flex flex-col items-center text-center w-full">
+      <img
+        src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760815180/Frame_48095988_1_iqjop1.png"
+        alt=""
+        className="w-48 h-48 object-contain sm:w-56 sm:h-56 md:w-64 md:h-64"
+      />
+    </div>
+  </div>
 
-              {/* Stat 3 */}
-              <div className="flex flex-col items-center text-center">
-                <img  src="/public/images/Frame 48095990.png" alt="" />
-              </div>
-            </div>
+  {/* Stat 3 */}
+  <div className="flex flex-col items-center text-center w-full sm:w-1/3">
+    <img
+      src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389542/Frame_48095990_nt2hfo.png"
+      alt=""
+      className="w-48 h-48 object-contain sm:w-56 sm:h-56 md:w-64 md:h-64"
+    />
+  </div>
+</div>
+
           </div>
 
           {/* RIGHT COLUMN: Image */}
-          <div className="flex justify-end">
+          <div className="flex mx-auto">
             <img
-              src="/images/estateImage.png"
+              src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760815236/Rectangle_278_ocm988.png"
               alt="Estate"
-              className="w-full max-w-md rounded-lg  object-cover"
+              className=" l"
             />
           </div>
         </div>

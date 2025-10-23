@@ -1,6 +1,7 @@
-import React, { useState, FormEvent, DragEvent } from 'react';
+import React, { useState, DragEvent } from 'react';
 
 import { useForm } from 'react-hook-form'; 
+import Swal from 'sweetalert2';
 
 
 // 2. Define the shape of your form data for React Hook Form
@@ -59,6 +60,11 @@ const SubmitPropertyForm: React.FC = () => {
 
     console.log("--- Form Submission Data (React Hook Form) ---");
     console.log(submissionData);
+       Swal.fire({
+    title: "Submit your Property",
+    icon: "success",
+    draggable: true
+  });
 
   };
 
@@ -118,6 +124,9 @@ const SubmitPropertyForm: React.FC = () => {
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m-4-4l4 4m4-4l-4-4" />
     </svg>
   );
+
+
+
 
 
   return (
@@ -199,7 +208,7 @@ const SubmitPropertyForm: React.FC = () => {
 
         {/* --- File Uploads (File state management is not changed) --- */}
         <div className="mb-6">
-          <label className="text-sm font-medium text-gray-700 block mb-1">Upload **Single** Photo</label>
+          <label className="text-sm font-medium text-gray-700 block mb-1">Upload Single Photo</label>
           <label
             htmlFor="uploadPhotos"
             className={`flex flex-col items-center justify-center h-32 border-2 border-dashed rounded-lg bg-gray-50 transition duration-150 cursor-pointer
@@ -208,10 +217,10 @@ const SubmitPropertyForm: React.FC = () => {
             onDragLeave={(e) => handleDragLeave(e, setIsPhotoDragActive)}
             onDrop={(e) => handleDrop(e, 'uploadPhotos', setIsPhotoDragActive)}
           >
-            <UploadIcon />
-            <p className="text-sm text-gray-500 mt-2">Drop one image file here or click to upload</p>
+            <img className='' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760832355/Component_17_ejh4v8.png" alt="" />
+            <p className="text-sm text-gray-500 mt-2">Drop files here or click to upload</p>
             {files.photos &&
-              <p className="text-xs text-teal-600 mt-1">**Selected:** {files.photos.name}</p>
+              <p className="text-xs text-teal-600 mt-1">Selected: {files.photos.name}</p>
             }
             <input
               type="file"
@@ -234,8 +243,8 @@ const SubmitPropertyForm: React.FC = () => {
             onDragLeave={(e) => handleDragLeave(e, setIsDocumentDragActive)}
             onDrop={(e) => handleDrop(e, 'uploadDocument', setIsDocumentDragActive)}
           >
-            <UploadIcon />
-            <p className="text-sm text-gray-500 mt-2">Drop a PDF/DOCX file here or click to upload (One file)</p>
+            <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760832355/Component_17_ejh4v8.png" alt="" />
+            <p className="text-sm text-gray-500 mt-2">Drop files here or click to upload</p>
             {files.document &&
               <p className="text-xs text-teal-600 mt-1">{files.document.name}</p>
             }
@@ -279,6 +288,9 @@ const SubmitPropertyForm: React.FC = () => {
           {errors.confirmAccuracy && <span className="text-red-500 text-xs mt-1">{errors.confirmAccuracy.message}</span>}
 
           <button
+
+
+  onClick={handleSubmit}
             type="submit"
             className="flex items-center justify-center w-full md:w-auto px-6 py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 transition duration-150 ease-in-out focus:outline-none focus:ring-4 focus:ring-teal-500 focus:ring-opacity-50"
           >

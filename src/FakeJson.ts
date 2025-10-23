@@ -12,7 +12,7 @@ export const villaData = [
         baths: 3,
         pool: 2,
         amenities: ["Ocean View", "Private Pool", "Chef Available"],
-        imageUrl: "https://i.ibb.co.com/jPZYB2F2/img.png" // Placeholder URL for image 1
+        imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png" // Placeholder URL for image 1
     },
     {
         id: 2,
@@ -23,9 +23,9 @@ export const villaData = [
         reviewCount: 95,
         beds: 5,
         baths: 4,
-        pool: 1,
+        pool: 3,
         amenities: ["Mountain View", "Private Pool", "Jacuzzi"],
-        imageUrl: "https://i.ibb.co.com/k6SRRStm/img-1.png" // Placeholder URL for image 2
+        imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_4_jjjim0.png" // Placeholder URL for image 2
     },
     {
         id: 3,
@@ -36,7 +36,7 @@ export const villaData = [
         reviewCount: 205,
         beds: 3,
         baths: 3,
-        pool: 0,
+        pool: 4,
         amenities: ["Ocean View", "Gym Access", "Concierge"],
         imageUrl: "https://i.ibb.co.com/VYmZDVnm/img-2.png" // Placeholder URL for image 3
     },
@@ -49,9 +49,9 @@ export const villaData = [
         reviewCount: 64,
         beds: 6,
         baths: 5,
-        pool: 0,
+        pool: 6,
         amenities: ["Ski Access", "Fireplace", "Game Room"],
-        imageUrl: "https://i.ibb.co.com/jPZYB2F2/img.png" // Placeholder URL for image 4
+        imageUrl: "https://i.ibb.co.com/k6SRRStm/img-1.png" // Placeholder URL for image 4
     },
     {
         id: 5,
@@ -62,7 +62,7 @@ export const villaData = [
         reviewCount: 112,
         beds: 4,
         baths: 4,
-        pool: 1,
+        pool: 2,
         amenities: ["Desert View", "Heated Pool", "Outdoor Kitchen"],
         imageUrl: "https://i.ibb.co.com/k6SRRStm/img-1.png" // Placeholder URL for image 5
     },
@@ -75,8 +75,8 @@ export const villaData = [
         reviewCount: 155,
         beds: 5,
         baths: 4,
-        pool: 1,
+        pool: 5,
         amenities: ["Lake View", "Boat Dock", "Outdoor Grill"],
-        imageUrl: "https://i.ibb.co.com/jPZYB2F2/img.png" // Placeholder URL for image 6
+        imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_4_jjjim0.png" // Placeholder URL for image 6
     },
 ];

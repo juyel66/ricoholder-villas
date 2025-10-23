@@ -11,7 +11,7 @@ const SignatureCardContainer = () => {
     // console.log(signatureCardData); 
 
     return (
-        <div itemID="signatureVilla" className="py-12 bg-gray-50">
+        <div itemID="signatureVilla" className="py-12 p-2 ">
             <div className="">
                 
                 {/* Section Title (Optional, but good practice) */}

@@ -1,7 +1,9 @@
 
 import ImageGallerySections from './ImageGallerySections';
+
 import RentsDetailsBanner from './RentsDetailsBanner';
 import SpotlightDetails from './SpotlingtDetails';
+
 
 const RentsDetails = () => {
     return (
@@ -9,6 +11,8 @@ const RentsDetails = () => {
             <RentsDetailsBanner />
             <SpotlightDetails />
             <ImageGallerySections />
+            
+            
             
         </div>
     );

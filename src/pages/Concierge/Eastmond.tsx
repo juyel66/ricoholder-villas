@@ -1,5 +1,13 @@
+import React from 'react';
 
-const LuxuryFeatureCard = ({ imageUrl, brandName, tagline, description }) => {
+interface LuxuryFeatureCardProps {
+  imageUrl: string;
+  brandName: string;
+  tagline: string;
+  description: string;
+}
+
+const LuxuryFeatureCard: React.FC<LuxuryFeatureCardProps> = ({ imageUrl, brandName, tagline, description }) => {
   return (
     <div className=" bg-white shadow-xl rounded-xl overflow-hidden my-10">
       {/* 1. Image Section - Full Width */}
@@ -21,24 +29,9 @@ const LuxuryFeatureCard = ({ imageUrl, brandName, tagline, description }) => {
         {/* Header - Icon, Brand Name, and Tagline */}
         <div className="flex items-center mb-4">
           {/* Icon (Simulated green crown/logo icon) */}
-          <div className="w-6 h-6 mr-3 flex items-center justify-center bg-green-700 rounded-md">
+          <div className=" h-6 mr-3 flex items-center justify-center  rounded-md">
             {/* Crown/Logo Icon - Using a simple SVG or a library icon */}
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-4 w-4 text-white" 
-              viewBox="0 0 20 20" 
-              fill="currentColor"
-            >
-              <path 
-                fillRule="evenodd" 
-                d="M10 2a1 1 0 011 1v1h2a1 1 0 011 1v1h1a1 1 0 011 1v2a1 1 0 01-1 1h-1v1h-1a1 1 0 01-1 1h-2a1 1 0 01-1-1h-2a1 1 0 01-1-1h-1v-1H5a1 1 0 01-1-1V7a1 1 0 011-1h1V5a1 1 0 011-1h2V3a1 1 0 011-1z" 
-                clipRule="evenodd" 
-              />
-              <path 
-                d="M10 16a6 6 0 100-12 6 6 0 000 12z" 
-                opacity="0.2"
-              />
-            </svg>
+           <img className='w-12 h-12' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png" alt="" />
           </div>
           
           <div>
@@ -57,7 +50,7 @@ const LuxuryFeatureCard = ({ imageUrl, brandName, tagline, description }) => {
 };
 
 // Example Usage (in your main App.js or page component)
-const App = () => {
+const Eastmond: React.FC = () => {
   const exampleData = {
     imageUrl: 'https://res.cloudinary.com/dqkczdjjs/image/upload/v1760215120/bannnnner_jrc9uz.png', // **Replace with your image path**
     brandName: 'Eastmond as a Standard',
@@ -78,4 +71,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Eastmond;

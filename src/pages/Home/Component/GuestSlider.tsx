@@ -14,37 +14,37 @@ import { FreeMode, Pagination } from "swiper/modules";
 const testimonialData = [
     {
         id: 1,
-        name: "Jessica Smith",
+        name: "Sarah Johnson",
         location: "UK",
         title: "CEO, TechNova",
-        text: "The stay exceeded every expectation. The personalized concierge service was seamless, and the villa itself felt like a private paradise. A truly unmatched luxury experience.",
+        text: "Great service and amazing properties. I always feel like I'm getting the best deals and the team is always there to help",
         rating: 5.0,
-        image: "https://randomuser.me/api/portraits/women/44.jpg"
+        image: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389339/Ellipse_1_ttjbzh.png"
     },
     {
         id: 2,
-        name: "David Chen",
+        name: "Joanna Lynch",
         location: "Singapore",
         title: "Venture Capitalist",
-        text: "Impeccable attention to detail. Every aspect, from the booking process to the tailored local tours, was handled with the utmost professionalism. Highly recommended for elite travellers.",
+        text: "EV is always super responsive, extremely professional and experienced enough to ensure  ",
         rating: 4.8,
-        image: "https://randomuser.me/api/portraits/men/50.jpg"
+        image: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389418/Ellipse_1_3_jw2vgn.png"
     },
     {
         id: 3,
         name: "Maria Rodriguez",
         location: "Spain",
         title: "Architect",
-        text: "The architecture and setting of the villa were breathtaking. It was the perfect blend of modern luxury and local charm. We appreciated the privacy and serenity.",
+        text: "TI have been using EV for years now and they never disappoint, Their attention to detail and..",
         rating: 4.9,
-        image: "https://randomuser.me/api/portraits/women/68.jpg"
+        image: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760389450/Ellipse_1_4_wjn80w.png"
     },
     {
         id: 4,
         name: "Omar Hassan",
         location: "Dubai",
         title: "Hotelier",
-        text: "As a fellow professional in the hospitality industry, I was thoroughly impressed. The service level sets a new global benchmark for luxury villa rentals.",
+        text: "As a fellow professional in the hospitality industry, I was thoroughly impressed. The service...",
         rating: 5.0,
         image: "https://randomuser.me/api/portraits/men/30.jpg"
     },
@@ -53,7 +53,7 @@ const testimonialData = [
         name: "Emily White",
         location: "USA",
         title: "Travel Blogger",
-        text: "My family trip was unforgettable. The local experiences arranged by the concierge were the highlight. This is truly luxury travel redefined. Can't wait to return!",
+        text: "My family trip was unforgettable. The local experiences arranged by the concierge were ...",
         rating: 4.7,
         image: "https://randomuser.me/api/portraits/women/8.jpg"
     }
@@ -111,7 +111,7 @@ const TestimonialCard = ({ testimonial }) => {
 export default function GuestSlider() {
     return (
        
-        <div className="w-full h-[450px] p-8  flex flex-col">
+        <div className="w-full h-[450px]  mt-10 flex flex-col">
             
         
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-shrink-0">
@@ -129,7 +129,7 @@ export default function GuestSlider() {
                         clickable: true,
                     }}
                     modules={[FreeMode, Pagination]}
-                    className="mySwiper pt-6 pb-12 h-full" 
+                    className="mySwiper pt-6 pb-12 h-full !px-0" 
                     style={{ paddingLeft: '1rem', paddingRight: '1rem' }} 
                     breakpoints={{
                         320: { slidesPerView: 1.1, spaceBetween: 10, paddingLeft: '1rem', paddingRight: '1rem' },

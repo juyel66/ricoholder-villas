@@ -14,16 +14,28 @@ import Affiliates from "./Component/Affiliates";
 const Home = () => {
     return (
         <div>
-           <Banner />
-           <FilterSystem />
-           <SignatureCardContainer />
-           <InspirationSection />
-           <Luxury />
-           <ExperiencesPage />
-           <GuestSections />
-           <EstateExperience />
-           <Contact /> 
+     <div 
+         className="bg-white mt-26   pb-10  rounded-xl shadow-lg border border-gray-200 mx-auto  bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage:
+          "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
+      }}
+      >
+             <div>
+                 <Banner />
+             </div>
+          
+           <div className="container mx-auto"> <FilterSystem /></div>
+     </div>
+          <div className="container mx-auto"> <SignatureCardContainer /></div>
+           <div className="container mx-auto"><InspirationSection /></div>
+          <div className="container mx-auto"> <Luxury /></div>
+           <div className="container mx-auto"><ExperiencesPage /></div>
+          <div className="container mx-auto"> <GuestSections /></div>
+          <div className=""> <EstateExperience /></div>
+           <div className="container mx-auto"><Contact /> </div>
            <Affiliates />
+     
            
          
            

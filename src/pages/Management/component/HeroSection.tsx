@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
+import { Link } from "react-router-dom";
 
 /**
  * HeroSection
@@ -70,6 +71,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
         {ctaLabel ? (
           <div className="mt-6">
+            <Link to="/contact">
             <Button
               size="lg"
               className="rounded-xl h-15 px-6 py-5 font-semibold shadow-lg bg-[#009689] hover:bg-[#007f7a] text-white text-lg"
@@ -77,6 +79,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             >
               {ctaLabel}
             </Button>
+            </Link>
+
           </div>
         ) : null}
       </div>
