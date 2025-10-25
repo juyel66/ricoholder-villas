@@ -11,6 +11,7 @@ import Contact from "./pages/Contact/Contact";
 import RentsDetails from "./pages/Rents/RentsDetails";
 import Login from "./pages/Authentications/Login";
 import SignUpPage from "./pages/Authentications/Register";
+import SalesDetails from "./pages/Sales/SalesDetails";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +27,9 @@ export const router = createBrowserRouter([
       { path: "/concierge", element: <Concierge /> },
       { path: "/about", element: <About /> },
       { path: "/contact", element: <Contact /> },
-      { path: "/RentsDetails", element: <RentsDetails /> },   
+      { path: "/RentsDetails", element: <RentsDetails /> }, 
+      {path: "/SalesDetails", element: <SalesDetails /> } 
+ ,
     ],
   },
 
