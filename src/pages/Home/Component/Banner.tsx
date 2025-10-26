@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 const FeaturedBadge = () => (
-  // Reduced base font size, and made md/lg font sizes smaller.
-  <div className="flex items-center xl:w-1/3 lg:w-2/5 md:w-2/3 w-4/5 px-3 py-1 bg-black/40 backdrop-blur-sm rounded-full text-white text-[2vw] sm:text-xs **lg:text-xs xl:text-sm** font-semibold border border-white/20 relative whitespace-nowrap transition-all duration-500 ease-in-out">
+  // Reduced font size for lg and xl devices
+  <div className="flex items-center xl:w-1/3 lg:w-2/5 md:w-2/3 w-4/5 px-3 py-1 bg-black/40 backdrop-blur-sm rounded-full text-white text-[2vw] sm:text-xs **md:text-[10px] lg:text-xs xl:text-sm** font-semibold border border-white/20 relative whitespace-nowrap transition-all duration-500 ease-in-out">
     <img
       className="w-[4vw] h-[4vw] sm:w-5 sm:h-5 md:w-6 md:h-6"
       src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760898796/Icon_22_fqdcfj.png"
@@ -16,8 +16,8 @@ const CallToActionButtons = () => (
   <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0 mt-[4vw] sm:mt-8 transition-all duration-500 ease-in-out">
     <Link
       to="/rents"
-      // Reduced font size for md and lg, only allowing 'lg' size on xl screens.
-      className="flex items-center justify-center space-x-2 px-[5vw] sm:px-6 py-[2vw] sm:py-3 bg-teal-500 text-white font-semibold rounded-lg shadow-xl hover:bg-teal-600 transition duration-300 text-[2.5vw] sm:text-sm **md:text-sm xl:text-base**"
+      // Further reduced md size to text-xs
+      className="flex items-center justify-center space-x-2 px-[5vw] sm:px-6 py-[2vw] sm:py-3 bg-teal-500 text-white font-semibold rounded-lg shadow-xl hover:bg-teal-600 transition duration-300 text-[2.5vw] sm:text-sm **md:text-xs lg:text-sm xl:text-base**"
     >
       <img
         className="w-[4vw] h-[4vw] sm:w-5 sm:h-5 md:w-6 md:h-6"
@@ -28,8 +28,8 @@ const CallToActionButtons = () => (
     </Link>
 
     <button 
-      // Reduced font size for md and lg, only allowing 'lg' size on xl screens.
-      className="flex items-center justify-center space-x-2 px-[5vw] sm:px-6 py-[2vw] sm:py-3 border-2 border-teal-500 text-white font-semibold rounded-lg bg-black/10 backdrop-blur-sm hover:bg-white/10 transition duration-300 text-[2.5vw] sm:text-sm **md:text-sm xl:text-base**"
+      // Further reduced md size to text-xs
+      className="flex items-center justify-center space-x-2 px-[5vw] sm:px-6 py-[2vw] sm:py-3 border-2 border-teal-500 text-white font-semibold rounded-lg bg-black/10 backdrop-blur-sm hover:bg-white/10 transition duration-300 text-[2.5vw] sm:text-sm **md:text-xs lg:text-sm xl:text-base**"
     >
       <img
         className="w-[4vw] h-[4vw] sm:w-5 sm:h-5 md:w-6 md:h-6"
@@ -53,8 +53,8 @@ const ClientAvatars = () => (
         />
       ))}
     </div>
-    {/* Reduced font size for md, only allowing 'lg' size on xl screens. */}
-    <span className="text-white text-[2.5vw] sm:text-sm **md:text-sm xl:text-base** font-medium ml-0 sm:ml-4 whitespace-nowrap">
+    {/* Further reduced md size to text-xs */}
+    <span className="text-white text-[2.5vw] sm:text-sm **md:text-xs lg:text-sm xl:text-base** font-medium ml-0 sm:ml-4 whitespace-nowrap">
       Join with thousands of Satisfied Clients
     </span>
   </div>
@@ -80,14 +80,14 @@ const Banner = () => {
         <FeaturedBadge />
         <ClientAvatars />
 
-        {/* This is the main change: Reduced H1 size for md/lg devices. */}
-        <h1 className="mt-[5vw] sm:mt-8 text-[5vw] sm:text-4xl **md:text-4xl lg:text-5xl xl:text-6xl** font-extrabold text-white leading-tight transition-all duration-700 ease-in-out">
+        {/* This is the main change: Reduced H1 size for md to 3xl. */}
+        <h1 className="mt-[5vw] sm:mt-8 text-[5vw] sm:text-4xl **md:text-3xl lg:text-4xl xl:text-5xl** font-extrabold text-white leading-tight transition-all duration-700 ease-in-out">
           Find Your Dream Space <br /> with{" "}
           <span className="text-teal-400 drop-shadow-lg italic">Eastmond Villas</span>
         </h1>
 
-        {/* Reduced paragraph size for md/lg devices. */}
-        <p className="mt-[2vw] text-[2.5vw] sm:text-base **md:text-base xl:text-lg** text-white/90 font-light max-w-2xl transition-all duration-700 ease-in-out">
+        {/* Further reduced paragraph size for md to text-sm. */}
+        <p className="mt-[2vw] text-[2.5vw] sm:text-base **md:text-sm lg:text-base xl:text-lg** text-white/90 font-light max-w-2xl transition-all duration-700 ease-in-out">
           Welcome To The Signature Standard Of Refined Luxury
         </p>
 
