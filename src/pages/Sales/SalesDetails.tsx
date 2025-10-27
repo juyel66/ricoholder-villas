@@ -1,17 +1,16 @@
-import RentsDetailsBanner from "../Rents/RentsDetailsBanner";
-import SpotlightDetails from "../Rents/SpotlingtDetails";
-import SalesIMageGallerySections from "./SalesImageGallerySections";
+
+import SalesDetailsBanner from './SalesDetailsBanner';
+import SalesManageSections from './SalesImageGallerySections';
+import SalesSpotlightDetails from './SalesSpotingDetails';
 
 
 
-
-
-const SalesDetails = () => {
+const RentsDetails = () => {
     return (
         <div>
-            <RentsDetailsBanner />
-            <SpotlightDetails />
-            <SalesIMageGallerySections />
+           <SalesDetailsBanner />
+            <SalesSpotlightDetails />
+            <SalesManageSections />
             
             
             
@@ -19,4 +18,4 @@ const SalesDetails = () => {
     );
 };
 
-export default SalesDetails;
+export default RentsDetails;
