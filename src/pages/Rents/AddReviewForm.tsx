@@ -121,7 +121,7 @@ const AddReviewForm: React.FC = () => {
 
 
     <div>
-            <header className="mb-6 mt-20 text-center">
+            <header className="mb-6 mt-5 text-center">
         <h2 className="text-4xl mb-20 font-bold text-gray-800">Add Your Review</h2>
        
       </header>
