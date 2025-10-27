@@ -280,7 +280,7 @@ const RentsDetailsBanner: React.FC = () => {
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl sm:text-xl xs:text-lg"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="" /></span>
-              <span className="text-sm mt-1">2 Pools</span>
+              <span className="text-sm mt-1">1 Pool</span>
             </div>
           </div>
 
