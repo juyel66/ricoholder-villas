@@ -171,7 +171,7 @@ const mockData: PropertyData = {
   securityDeposit: "US$ 10,000.00",
 };
 
-const SalesIMageGallerySections: React.FC = () => {
+const SalesManageSections: React.FC = () => {
   const [data, setData] = useState<PropertyData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -356,7 +356,7 @@ const SalesIMageGallerySections: React.FC = () => {
             </ul>
           </div>
 
-          <div className="mb-10 pt-4 border-t border-gray-200">
+          {/* <div className="mb-10 pt-4 border-t border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Rules & Etiquette
             </h3>
@@ -365,9 +365,9 @@ const SalesIMageGallerySections: React.FC = () => {
                 <AmenityItem key={index} name={item} />
               ))}
             </ul>
-          </div>
+          </div> */}
 
-          <div className="mb-10 pt-4 border-t border-gray-200">
+          {/* <div className="mb-10 pt-4 border-t border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Check in/out time
             </h3>
@@ -376,9 +376,9 @@ const SalesIMageGallerySections: React.FC = () => {
               <div>Check-Out: {checkInOutTime.checkOut}</div>
               <div>{checkInOutTime.description}</div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="mb-10 pt-4 border-t border-gray-200">
+          {/* <div className="mb-10 pt-4 border-t border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4 flex justify-between items-end">
               Staff
               <button className="text-teal-600 text-sm font-semibold hover:text-teal-700 transition duration-150">
@@ -390,11 +390,13 @@ const SalesIMageGallerySections: React.FC = () => {
                 <StaffItem key={index} name={item.name} details={item.details} />
               ))}
             </ul>
-          </div>
+          </div> */}
+
+
 
           <BedRoomsSliders />
 
-          <div className="mb-10 pt-4 border-t border-gray-200">
+          {/* <div className="mb-10 pt-4 border-t border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Concierge Service
             </h3>
@@ -403,7 +405,7 @@ const SalesIMageGallerySections: React.FC = () => {
                 <AmenityItem key={index} name={item} />
               ))}
             </ul>
-          </div>
+          </div> */}
 
           <div className="mb-10 pt-4 border-t border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -425,18 +427,20 @@ const SalesIMageGallerySections: React.FC = () => {
         </div>
       </div>
 
-      <RatesBookingInformation />
+      {/* <RatesBookingInformation />
 
-      <Calendar />
+      <Calendar /> */}
       
-      <Locations
+     <div className="mt-20 ">
+       <Locations
         lat={location.lat}
         lng={location.lng}
         text={location.address}
       />
+     </div>
       <AddReviewForm />
     </section>
   );
 };
 
-export default SalesIMageGallerySections;
+export default SalesManageSections;
