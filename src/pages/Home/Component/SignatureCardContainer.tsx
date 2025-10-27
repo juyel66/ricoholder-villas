@@ -15,8 +15,8 @@ const SignatureCardContainer = () => {
             <div className="">
                 
                 {/* Section Title (Optional, but good practice) */}
-                <h2 className="lg:text-6xl text-2xl  font-extrabold text-gray-900 text-center mb-10">
-                    Our <span className="text-[#009689] ">Signature</span> Villa 
+                <h2 className="lg:text-4xl mt-5 text-2xl  font-extrabold text-gray-900 text-center mb-10">
+                    Our <span className="text-[#009689] italic ">Signature</span> Villas 
                 </h2>
 
                 {/* Grid Layout for the Cards */}

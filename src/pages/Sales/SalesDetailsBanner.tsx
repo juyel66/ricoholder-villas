@@ -223,11 +223,11 @@ const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
 // --------------------------------------------------------------------------------
 // 3. RentsDetailsBanner Component (Main Component)
 // --------------------------------------------------------------------------------
-const RentsDetailsBanner: React.FC = () => {
+const SalesDetailsBanner: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
-  const handleOpenModal = () => setIsModalOpen(true);
+
   const handleCloseModal = () => setIsModalOpen(false);
 
   const handleOpenShareModal = () => setIsShareModalOpen(true);
@@ -266,10 +266,7 @@ const RentsDetailsBanner: React.FC = () => {
         {/* Card */}
         <div className="bg-white absolute bottom-0 md:bottom-auto md:top-[60%] sm:top-[55%] xs:top-[50%] z-20 text-gray-800 rounded-lg shadow-2xl p-6 w-full max-w-md mx-auto transform translate-y-1/2">
           <div className="flex justify-around items-center text-center border-b pb-4 mb-4 flex-wrap gap-4 sm:gap-2">
-            <div className="flex flex-col items-center">
-              <span className="text-2xl sm:text-xl xs:text-lg"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830630/user-fill_gkf8xf.png" alt="" /></span>
-              <span className="text-sm mt-1">12 Guests</span>
-            </div>
+        
             <div className="flex flex-col items-center">
               <span className="text-2xl sm:text-xl xs:text-lg"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png" alt="" /></span>
               <span className="text-sm mt-1">4 Beds</span>
@@ -280,13 +277,13 @@ const RentsDetailsBanner: React.FC = () => {
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl sm:text-xl xs:text-lg"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="" /></span>
-              <span className="text-sm mt-1">1 Pool</span>
+              <span className="text-sm mt-1">2 Pools</span>
             </div>
           </div>
 
           <div className="flex flex-col items-center mb-4">
             <p className="text-lg sm:text-base xs:text-sm font-medium text-green-700">
-              From USD$850,000.00/night
+              From USD$850,000.00/Fixed Selling Price
             </p>
           </div>
 
@@ -299,13 +296,15 @@ const RentsDetailsBanner: React.FC = () => {
               Share
             </button>
             
-            <button 
-              onClick={handleOpenModal} 
+            {/* <button 
+             
               className="flex-1 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 shadow-md"
             >
               <span className="mr-2 text-xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830719/Component_2_1_wqngcv.png" alt="" /></span> 
               Book Now
-            </button>
+            </button> */}
+
+            
           </div>
         </div>
       </div>
@@ -316,4 +315,4 @@ const RentsDetailsBanner: React.FC = () => {
   );
 };
 
-export default RentsDetailsBanner;
+export default SalesDetailsBanner;

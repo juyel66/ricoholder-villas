@@ -1,35 +1,23 @@
-
 import { Link } from 'react-router';
 
-// --- Icon Components (for consistency with the design) ---
+// --- Icon Components ---
 const LocationIcon = () => (
-    <svg className="w-4 h-4 text-gray-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg className="w-4 h-4 text-gray-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
     </svg>
 );
-const BedIcon = () => (
-    <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png" alt="" />
-);
-const BathIcon = () => (
-    <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_4_zsqcrj.png" alt="" />
-);
-const PoolIcon = () => (
-    <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="" />
-);
+const BedIcon = () => <img className="w-5 h-5 mr-1" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png" alt="bed-icon" />;
+const BathIcon = () => <img className="w-5 h-5 mr-1" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_4_zsqcrj.png" alt="bath-icon" />;
+const PoolIcon = () => <img className="w-5 h-5 mr-1" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="pool-icon" />;
 const HeartIcon = () => (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-.318-.318a4.5 4.5 0 00-6.364 0z"></path>
     </svg>
 );
-const ShareIcon = () => (
-    <img className='' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760923888/Icon_39_piurkh.png" alt="" />
-);
-// -------------------------------------------------------------------------
+const ShareIcon = () => <img className="w-5 h-5" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760923888/Icon_39_piurkh.png" alt="share-icon" />;
 
 const SignatureCard = ({ villa }) => {
-    
-    // Fallback/Default data in case 'villa' prop is not provided or is incomplete
     const defaultVilla = {
         title: "Loading Villa",
         location: "Getting Location...",
@@ -43,78 +31,65 @@ const SignatureCard = ({ villa }) => {
         imageUrl: "https://via.placeholder.com/400x240?text=Image+Loading..."
     };
     
-    // Use the provided 'villa' prop, or fallback to default data
     const data = villa || defaultVilla;
 
-
-
     return (
-        <div className="bg-white rounded-xl p-2 overflow-hidden shadow-xl border border-gray-200 transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl w-full">
+        <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden transform transition duration-300 hover:scale-[1.02] hover:shadow-2xl w-full">
 
-            {/* 1. Image Container with Absolute Overlays */}
-            <div className="relative h-60 w-full">
+            {/* Image */}
+            <div className="relative h-60 w-full md:h-64">
                 <img className="w-full h-full object-cover" src={data.imageUrl} alt={data.title} />
-
-                {/* Rating Badge (Top Left) */}
-                <div className="absolute top-4 left-4 flex items-center bg-white text-black text-sm font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
-                    <span className="text-yellow-400 mr-1">★</span>
-                    {data.rating} ({data.reviewCount})
+                
+                {/* Rating */}
+                <div className="absolute top-3 left-3 flex items-center bg-white text-black text-sm font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
+                    <span className="text-yellow-400 mr-1">★</span>{data.rating} ({data.reviewCount})
                 </div>
 
-                {/* Icons (Share/Favorite) (Top Right) */}
-                <div className="absolute top-4 right-4 flex space-x-2">
-                    <button className="p-2 bg-white rounded-full text-black hover:text-red-500 hover:bg-white transition duration-200 shadow-md">
+                {/* Heart & Share */}
+                <div className="absolute top-3 right-3 flex space-x-2">
+                    <button className="p-2 bg-white rounded-full text-black hover:text-red-500 hover:bg-white shadow-md transition duration-200">
                         <HeartIcon />
                     </button>
-                    <button className="p-2  bg-white rounded-full text-black hover:text-teal-500 hover:bg-white transition duration-200 shadow-md">
+                    <button className="p-2 bg-white rounded-full text-black hover:text-teal-500 hover:bg-white shadow-md transition duration-200">
                         <ShareIcon />
                     </button>
                 </div>
             </div>
 
-            {/* 2. Content Area */}
-            <div className="p-6">
-                {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{data.title}</h3>
+            {/* Content */}
+            <div className="p-4 md:p-6">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">{data.title}</h3>
 
                 {/* Location */}
-                <div className="flex items-center text-sm text-gray-600 mb-3">
-                   <img className='mr-1' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1761076568/Frame_11_cfkzkx.png" alt="" />
+                <div className="flex items-center text-sm md:text-base text-gray-600 mb-3">
+                    <img className="w-4 h-4 mr-1 md:w-5 md:h-5" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1761076568/Frame_11_cfkzkx.png" alt="location-icon" />
                     {data.location}
                 </div>
 
                 {/* Price */}
-                <p className=" lg:text-2xl text-xl font-extrabold text-teal-600  mb-4">
-                    From <span className="">USD${data.price}/night</span>
+                <p className="text-teal-600 font-extrabold text-lg md:text-2xl mb-4">
+                    From USD${data.price}/night
                 </p>
 
-                {/* Specs (Beds, Baths, Pool) */}
-                <div className="flex space-x-4 border-t border-b border-gray-100 py-3 mb-4 text-sm">
-                    <div className="flex items-center">
-                        <div className='mr-1'><BedIcon /></div> {data.beds} Beds
-                    </div>
-                    <div className="flex items-center">
-                        <div className='mr-1'><BathIcon /></div>  {data.baths}Baths
-                    </div>
-                    <div className="flex items-center ">
-                       <div className='mr-1'> <PoolIcon /></div>  {data.pool} Pools
-                    </div>
+                {/* Specs */}
+                <div className="flex flex-wrap md:flex-nowrap gap-4 border-y border-gray-100 py-3 mb-4 text-sm md:text-base">
+                    <div className="flex items-center"><BedIcon /> {data.beds} Beds</div>
+                    <div className="flex items-center"><BathIcon /> {data.baths} Baths</div>
+                    <div className="flex items-center"><PoolIcon /> {data.pool} Pools</div>
                 </div>
 
                 {/* Amenities */}
-                <div className="flex flex-wrap gap-2 mb-6 ">
-                    {/* Ensure amenities array exists before mapping */}
-                    {data.amenities?.map((amenity, index) => (
-                        <span key={index} className="px-3 py-1 text-xs font-medium text-teal-700 bg-teal-50 border border-teal-300 rounded-full">
+                <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
+                    {data.amenities?.map((amenity, idx) => (
+                        <span key={idx} className="px-3 py-1 text-xs md:text-sm font-medium text-teal-700 bg-teal-50 border border-teal-300 rounded-full">
                             {amenity}
                         </span>
                     ))}
                 </div>
 
-                {/* View Details Button */}
+                {/* View Details */}
                 <Link to="/RentsDetails"
-               
-                    className="flex items-center justify-center w-full py-3 border-2 bg-teal-50 border-teal-500  font-extrabold text-teal-500 rounded-lg hover:bg-teal-100 transition duration-200"
+                    className="block text-center py-3 border-2 bg-teal-50 border-teal-500 font-extrabold text-teal-500 rounded-lg hover:bg-teal-100 transition duration-200"
                 >
                     View Details
                 </Link>

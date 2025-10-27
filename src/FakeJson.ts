@@ -63,7 +63,7 @@ export const villaData = [
         beds: 4,
         baths: 4,
         pool: 2,
-        amenities: ["Desert View", "Heated Pool", "Outdoor Kitchen"],
+        amenities: ["Ocean View", "Gym Access", "Concierge"],
         imageUrl: "https://i.ibb.co.com/k6SRRStm/img-1.png" // Placeholder URL for image 5
     },
     {

@@ -18,30 +18,33 @@ const ListWithUsBannerPage: React.FC<Props> = ({ onSubmitClick }) => {
 
   return (
     <section
-      className="relative w-full h-[500px] md:h-[600px] xl:h-[700px] bg-cover bg-center bg-no-repeat overflow-hidden rounded-none md:rounded-[30px] shadow-none md:shadow-2xl transition-all duration-300"
+      className="relative w-full h-[420px] sm:h-[500px] md:h-[580px] lg:h-[620px] xl:h-[700px] bg-cover bg-center bg-no-repeat overflow-hidden rounded-none md:rounded-[30px] shadow-none md:shadow-2xl transition-all duration-300"
       style={backgroundStyle}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 p-10 lg:p-0 container mx-auto text-white h-full flex flex-col justify-center">
-        <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold mb-4 leading-tight">
-          List Your Villa With <br /> Eastmond Villas
+      <div className="relative z-20 px-6 sm:px-8 md:px-14 lg:px-20 xl:px-28 container mx-auto text-white h-full flex flex-col justify-center">
+        {/* Title */}
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-3 leading-tight">
+          List Your Villa With <br className="hidden sm:block" /> Eastmond Villas
         </h1>
 
-        <p className="text-xl sm:text-2xl font-light mb-10 opacity-95">
+        {/* Subtitle */}
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-light mb-8 opacity-95 max-w-3xl">
           Turn your property into a profitable investment while offering
           unforgettable luxury experiences.
         </p>
 
+        {/* Button */}
         <button
           onClick={onSubmitClick}
           id="submitProperty"
-          className="inline-flex items-center px-10 py-4 bg-teal-600 hover:bg-teal-700 text-white text-base lg:text-lg font-semibold rounded-lg shadow-xl transition duration-300 w-fit focus:outline-none focus:ring-4 focus:ring-teal-500/50"
+          className="inline-flex items-center px-5 sm:px-7 md:px-8 lg:px-9 py-2.5 sm:py-3 md:py-3.5 bg-teal-600 hover:bg-teal-700 text-white text-xs sm:text-sm md:text-base lg:text-lg font-semibold rounded-lg shadow-xl transition duration-300 w-fit focus:outline-none focus:ring-4 focus:ring-teal-500/50"
         >
           <img
-            className="mr-3 h-4 w-4"
+            className="mr-2 sm:mr-3 h-4 sm:h-5 w-4 sm:w-5"
             src={BUTTON_ICON_URL}
             onError={(e) => {
               e.currentTarget.onerror = null;
@@ -53,18 +56,19 @@ const ListWithUsBannerPage: React.FC<Props> = ({ onSubmitClick }) => {
           Submit Your Property
         </button>
 
-        <div className="mt-12 text-lg sm:text-xl opacity-80 font-medium flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0">
+        {/* Benefits */}
+        <div className="mt-6 sm:mt-8 md:mt-10 text-xs sm:text-sm md:text-base lg:text-lg opacity-80 font-medium flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0">
           {benefits.map((benefit, index) => (
             <React.Fragment key={benefit}>
               <span
                 className={`${
-                  index < benefits.length - 1 ? "sm:mr-4" : ""
+                  index < benefits.length - 1 ? "sm:mr-3 md:mr-4" : ""
                 }`}
               >
                 {benefit}
               </span>
               {index < benefits.length - 1 && (
-                <span className="hidden sm:inline mx-4 opacity-70">
+                <span className="hidden sm:inline mx-2 md:mx-3 opacity-70">
                   &bull;
                 </span>
               )}

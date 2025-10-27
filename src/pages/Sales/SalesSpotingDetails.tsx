@@ -12,9 +12,9 @@ const SpotlightCard: React.FC<SpotlightItemProps> = ({ icon, title, description 
   return (
 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 text-left">
   {/* Icon on top */}
-  <div className="rounded-xl p-3 inline-flex items-center justify-center mb-4">
+  <div className=" rounded-xl p-3 inline-flex items-center justify-center mb-4">
     {icon || (
-    <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1761518928/Component_10_xz2bwn.png" alt="" />
+      <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1761518928/Component_10_xz2bwn.png" alt="" />
     )}
   </div>
 
@@ -28,7 +28,7 @@ const SpotlightCard: React.FC<SpotlightItemProps> = ({ icon, title, description 
   );
 };
 
-const SpotlightDetails: React.FC = () => {
+const SalesSpotlightDetails: React.FC = () => {
   // Data for your spotlight items
   const spotlightItems: SpotlightItemProps[] = [
     {
@@ -78,10 +78,11 @@ const SpotlightDetails: React.FC = () => {
         <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
           Spotlight Details
         </h2>
+        
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {spotlightItems.map((item, index) => (
-            <SpotlightCard key={index} {...item} />
+            <SpotlightCard key={index} {...item} /> 
           ))}
         </div>
       </div>
@@ -89,4 +90,4 @@ const SpotlightDetails: React.FC = () => {
   );
 };
 
-export default SpotlightDetails;
+export default SalesSpotlightDetails;

@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className="relative w-full mt-10 text-white overflow-hidden">
             {/* Background Image with Dark Overlay */}
             <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed" 
                 style={{ backgroundImage: `url(${bgImageSrc})` }}
             >
                 <div className="absolute inset-0 bg-black/50"></div>
@@ -20,10 +20,10 @@ const Footer = () => {
 
                     {/* Column 1: Logo */}
                     <div className="flex lg:ml-0 ml-10 items-center sm:justify-center md:justify-start lg:items-start lg:justify-start">
-                      <div>
-                          <img src={logoSrc} alt="Eastmond Villas Logo" className="h-16 w-auto rounded-full" />
-                        <img className='mt-5' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760983755/Frame_1000004348_e4uzeb.png" alt="" />
-                      </div>
+                        <div>
+                            <img src={logoSrc} alt="Eastmond Villas Logo" className="h-16 w-auto rounded-full" />
+                            <img className='mt-5' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760983755/Frame_1000004348_e4uzeb.png" alt="" />
+                        </div>
                     </div>
 
                     {/* Column 2: Quick Links */}

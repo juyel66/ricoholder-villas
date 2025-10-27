@@ -12,7 +12,7 @@ const propertyData = {
   reviewCount: 127,
   beds: 4,
   baths: 3,
-  pool: 1,
+  pool: 2,
   imageUrl: "https://i.ibb.co.com/ZpG7JcPk/img-5.png",
 };
 
@@ -35,7 +35,7 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
   const amenities = [
     { icon: <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png" alt="bed" className="w-5 h-5" />, value: `${property.beds} Beds` },
     { icon: <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_4_zsqcrj.png" alt="bath" className="w-5 h-5" />, value: `${property.baths} Baths` },
-    { icon: <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="pool" className="w-5 h-5" />, value: `${property.pool} Pool` },
+    { icon: <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="pool" className="w-5 h-5" />, value: `${property.pool} Pools` },
   ];
 
   return (
@@ -55,14 +55,16 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
           </div>
 
           {/* Favorite & Share Buttons */}
-          <div className="absolute top-3 right-3 flex space-x-2">
+          <div className="relative top-3 right-3 flex space-x-2">
             <div className="w-9 h-9 flex items-center justify-center bg-white rounded-full text-gray-700 hover:bg-gray-100 transition duration-150">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-.318-.318a4.5 4.5 0 00-6.364 0z"></path>
               </svg>
             </div>
 
-            <img className="absolute   ml-16 top-50" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png" alt="" />
+            <div className="absolute p-2  rounded-full bg-white top-50 -right-14">
+             <img className="       " src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png" alt="" />
+           </div>
 
 
             <div className="w-9 h-9 flex items-center justify-center bg-white rounded-full text-gray-700 hover:bg-gray-100 transition duration-150">
