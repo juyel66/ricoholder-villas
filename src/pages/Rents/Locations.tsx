@@ -197,10 +197,10 @@ export default function Locations() {
   };
 
   return (
-    <div className="lg:py-20">
+    <div className="">
       <div className="text-center mb-10">
-        <p className="text-5xl font-semibold text-gray-800">Locations</p>
-        <p className="text-lg text-gray-600">
+        <p className="text-5xl font-semibold text-gray-800">Location</p>
+        <p className="text-lg mt-4 text-gray-600">
           Click anywhere on the map to add a new villa location
         </p>
       </div>
