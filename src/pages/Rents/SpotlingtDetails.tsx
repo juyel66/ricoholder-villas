@@ -10,20 +10,21 @@ interface SpotlightItemProps {
 // Reusable component for a single spotlight card
 const SpotlightCard: React.FC<SpotlightItemProps> = ({ icon, title, description }) => {
   return (
-    <div className="bg-white p-6  rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-      <div className="flex items-center mb-4">
-        <div className="bg-teal-100 rounded-xl p-3 mr-4 flex items-center justify-center">
-          {/* Using a placeholder SVG icon, replace with your actual icon */}
-          {icon || (
-            <svg className="w-6 h-6 text-teal-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2L9.19 8.63L2 9.24L7.5 13.97L5.82 21L12 17.27L18.18 21L16.5 13.97L22 9.24L14.81 8.63L12 2Z" />
-            </svg>
-          )}
-        </div>
-        <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
-      </div>
-      <p className="text-gray-600 text-sm">{description}</p>
-    </div>
+<div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 text-left">
+  {/* Icon on top */}
+  <div className="rounded-xl p-3 inline-flex items-center justify-center mb-4">
+    {icon || (
+    <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1761518928/Component_10_xz2bwn.png" alt="" />
+    )}
+  </div>
+
+  {/* Title */}
+  <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
+
+  {/* Description */}
+  <p className="text-gray-600 text-sm">{description}</p>
+</div>
+
   );
 };
 
