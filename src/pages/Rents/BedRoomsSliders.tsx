@@ -1,3 +1,4 @@
+import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 import React, { useState } from 'react';
 
 interface Bedroom {
@@ -55,20 +56,22 @@ const BedRoomsSliders: React.FC<BedRoomsSlidersProps> = ({ bedrooms = mockBedroo
     <div className="mb-10 pt-4 border-t border-gray-200">
       <h3 className="text-2xl font-bold mb-4 flex justify-between items-center">
         Bedrooms
-        <div className="flex space-x-2 text-gray-400">
-          <button
-            onClick={prevSlide}
-            className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 transition"
-          >
-            &lt;
-          </button>
-          <button
-            onClick={nextSlide}
-            className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 transition"
-          >
-            &gt;
-          </button>
-        </div>
+    <div className="flex space-x-2 text-gray-400">
+  <button
+    onClick={prevSlide}
+    className="px-3 py-1 border  bg-white rounded-[10px] hover:bg-gray-100 transition-colors"
+  >
+    <ArrowLeftIcon />
+   
+  </button>
+  <button
+    onClick={nextSlide}
+    className="px-3 py-1 border bg-white rounded-[10px] hover:bg-gray-100 transition-colors"
+  >
+    <ArrowRightIcon />
+  </button>
+</div>
+
       </h3>
 
       {/* Slider wrapper */}
