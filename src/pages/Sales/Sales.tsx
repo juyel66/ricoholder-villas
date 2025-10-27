@@ -19,7 +19,7 @@ const villaData = [
         pool: 2,
         amenities: ["Ocean View", "Private Pool", "Chef Available"],
         imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png" // Placeholder URL for image 1
-    },
+    }
     
     
 ]
