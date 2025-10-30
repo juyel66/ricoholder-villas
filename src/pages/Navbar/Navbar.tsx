@@ -126,6 +126,23 @@ const Navbar = () => {
       <NavLink
         onClick={handleLinkClick}
         className={({ isActive }) =>
+          `px-3 py-2 text-[15px] font-semibold ${
+            isActive
+              ? "text-teal-600 border-b-2 border-teal-600"
+              : "text-gray-800"
+          } hover:text-teal-600 transition-all`
+        }
+        to="/dashboard/admin-dashboard"
+      >
+        Dashboard
+      </NavLink>
+
+
+
+
+      <NavLink
+        onClick={handleLinkClick}
+        className={({ isActive }) =>
           `px-3 py-2 text-[15px] md:hidden font-semibold ${
             isActive
               ? "text-teal-600 border-b-2 border-teal-600"
