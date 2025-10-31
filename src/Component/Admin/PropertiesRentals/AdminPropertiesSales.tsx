@@ -221,7 +221,7 @@ const AdminPropertiesRentals = () => {
     <div>
       <div className="flex justify-between items-center mt-5">
         <div>
-          <h1 className="text-3xl font-semibold">Properties-Rentals</h1>
+          <h1 className="text-3xl font-semibold">Properties-Sales</h1>
           <p className="text-gray-500">
             Your portfolio, beautifully organized.
           </p>
