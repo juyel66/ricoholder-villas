@@ -123,7 +123,7 @@ const Navbar = () => {
         About
       </NavLink>
 
-      <NavLink
+      {/* <NavLink
         onClick={handleLinkClick}
         className={({ isActive }) =>
           `px-3 py-2 text-[15px] font-semibold ${
@@ -135,7 +135,7 @@ const Navbar = () => {
         to="/dashboard/admin-dashboard"
       >
         Dashboard
-      </NavLink>
+      </NavLink> */}
 
 
 
