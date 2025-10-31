@@ -213,12 +213,14 @@ const PropertiesRentals: React.FC = () => {
     );
   }, [searchTerm]);
 
+
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <div className="mx-auto">
         <header className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-1">
-            Properties - Sales
+            Properties - Rentals 
           </h1>
           <p className="text-gray-600 text-sm">
             Access your assigned rental properties and marketing materials.
