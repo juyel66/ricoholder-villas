@@ -1,21 +1,31 @@
 import React from 'react';
 
+// NOTE: We define the heights here to ensure the fixed footer works correctly. 
+// These values (h-[600px] and lg:h-[400px]) must match the padding-bottom 
+// applied to the main content in Root.jsx to prevent overlap.
 const Footer = () => {
     const logoSrc = "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827265/hd_s_shmnfn.png";
     const bgImageSrc = "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760817696/footer_Container_iwkz6a.png"; 
 
     return (
-        <footer className="relative w-full mt-10 text-white overflow-hidden">
+        // Changed from 'relative' to 'fixed bottom-0 left-0' and added an explicit height 
+        // to take it out of the document flow and ensure it's always at the bottom.
+        // The explicit height is crucial for the content clearance in Root.jsx
+        // h-[600px] for mobile stacking, lg:h-[400px] for wider screens.
+        <footer className="fixed  bottom-0 left-0 w-full -z-[1000] text-white overflow-hidden shadow-2xl h-[600px] lg:h-[600px]">
+            
             {/* Background Image with Dark Overlay */}
+            {/* The background needs to be h-full now that the parent footer has a fixed height */}
             <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed" 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed h-full" 
                 style={{ backgroundImage: `url(${bgImageSrc})` }}
             >
                 <div className="absolute inset-0 bg-black/50"></div>
             </div>
 
             {/* Main Footer Content */}
-            <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
+            {/* Ensure content is scrollable if it exceeds the fixed height on smaller screens/devices */}
+            <div className="relative lg:mt-45  z-10 container mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16 h-full overflow-y-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-8 md:gap-y-12 lg:gap-8">
 
                     {/* Column 1: Logo */}
