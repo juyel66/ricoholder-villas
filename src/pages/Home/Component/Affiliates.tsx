@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Affiliates = () => {
+const  Affiliates = () => {
     // Array of partner logos (Using the local paths you provided)
     const partners = [
         { id: 1, name: "Travelgay Approved", src: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760816715/1_2_rl5sre.png" },
@@ -23,17 +23,18 @@ const Affiliates = () => {
 
 
     return (
-        <section className="relative w-full"> 
+        // <section className="relative w-full lg:mb-[400px] md:mb-[400px] mb-10 0 "> 
+         <section className="relative w-full lg:mb-[400px] md:mb-[400px] mb-150  "> 
             
             {/* BACKGROUND LAYER: Image and Dark Overlay */}
             <div 
-                className="absolute inset-0 bg-cover bg-center bg-fixed" 
+                className="absolute inset-0 bg-cover bg-center " 
                 style={{ 
                     backgroundImage: `url(${BG_IMAGE_URL})`,
                 }}
             >
                 {/* Dark Overlay for contrast (opacity 50-60 is usually good) */}
-                <div className="absolute inset-0 \ opacity-60"></div>
+                <div className="absolute inset-0  opacity-60"></div>
             </div>
 
             {/* CONTENT LAYER */}
@@ -80,6 +81,7 @@ const Affiliates = () => {
                     ))}
                 </div>
             </div>
+            
         </section>
     );
 };
