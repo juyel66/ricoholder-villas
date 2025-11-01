@@ -193,7 +193,7 @@ const LuxuryCardGrid = () => {
         </div>
       </section>
 
-      <section className="bg-white py-20 sm:py-24 lg:py-32 flex items-center justify-center">
+      <section className="bg-white mb-[720px] py-20 sm:py-24 lg:py-32 flex items-center justify-center">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
             Begin the Unwritten Journey
