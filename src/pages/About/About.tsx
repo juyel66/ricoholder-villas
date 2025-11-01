@@ -8,7 +8,7 @@ const About = () => {
   return (
     <div>
       <div>
-       <h1 className="text-4xl font-bold text-center mt-26 "> About</h1>
+       <h1 className="text-4xl font-bold text-center mt-15 "> About</h1>
       </div>
 
         <AboutCard />
