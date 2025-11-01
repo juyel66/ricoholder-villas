@@ -117,17 +117,17 @@ const AddReviewForm: React.FC = () => {
 
   return (
     // Max width set to "xl" for better responsiveness and centering
-  <div>
+  <div className="">
 
 
     <div>
-            <header className="mb-6 mt-5 text-center">
+            <header className="mb-6 mt-5 text-center ">
         <h2 className="text-4xl mb-20 font-bold text-gray-800">Add Your Review</h2>
        
       </header>
     </div>
     
-      <div className=" mx-auto mt-8 p-8 bg-white shadow-lg rounded-lg border border-gray-200">
+      <div className=" mx-auto  mt-8 p-8 bg-white shadow-lg rounded-lg border border-gray-200">
          <p className="text-gray-500 text-sm mt-2 mb-4">
           Your email address will not be published.{" "}
           <span className="text-red-500">Required fields are marked</span>
