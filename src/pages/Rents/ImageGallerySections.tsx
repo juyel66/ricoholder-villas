@@ -178,7 +178,7 @@ const ImageGallerySection: React.FC = () => {
 
   if (isLoading) {
     return (
-      <section className="container mx-auto px-4 py-16 text-center">
+      <section className="container mx-auto px-4 py-16 text-center ">
         <div className="text-xl font-semibold text-teal-600">
           Loading property details...
         </div>
@@ -271,7 +271,7 @@ const ImageGallerySection: React.FC = () => {
   };
 
   return (
-    <section className="container mx-auto px-4 py-16">
+    <section className="container mx-auto mb-[720px] px-4 py-16">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-7">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
@@ -427,7 +427,9 @@ const ImageGallerySection: React.FC = () => {
         lng={location.lng}
         text={location.address}
       />
-      <AddReviewForm />
+      <div className="">
+        <AddReviewForm />
+      </div>
     </section>
   );
 };
