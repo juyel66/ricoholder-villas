@@ -57,7 +57,7 @@ const calendarData = [
 
 // --- 2. HELPERS ---
 
-// Custom alert/message box function (since alert() is forbidden)
+// Custom alert/message box function (since alert() is forbidden)z
 const showActionMessage = (action, title) => {
     // In a real app, this would show a proper notification/toast
     console.log(`${action} button clicked for: ${title}`);
