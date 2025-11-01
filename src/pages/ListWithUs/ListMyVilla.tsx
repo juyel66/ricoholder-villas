@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ListMyVilla: React.FC = () => {
   return (
-    <div className="relative mt-14 mx-auto overflow-hidden rounded-xl shadow-lg">
+    <div className="relative mb-[720px] mt-14 mx-auto overflow-hidden  shadow-lg">
       {/* Banner Image */}
       <img
         src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760212482/Properties_Container_4_ou2czf.png"
