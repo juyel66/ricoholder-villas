@@ -2,27 +2,38 @@
 import React, { useState } from "react";
 import RentsCard from "./RentsCard";
 import FilterSystem from "@/shared/FilterSystem";
-// import { villaData } from "@/FakeJson";
-
 
 const villaData = [
   {
-        id: 1,
-        title: "Skyline Residences",
-        location: "Downtown, NY",
-        price: "850,000",
-        rating: 4.9,
-        reviewCount: 127,
-        beds: 4,
-        baths: 3,
-        pool: 2,
-        amenities: ["Ocean View", "Private Pool", "Chef Available"],
-        imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png" // Placeholder URL for image 1
-    },
-    
-    
-]
-
+    id: 1,
+    title: "Skyline Residences",
+    location: "Downtown, NY",
+    price: "850,000",
+    rating: 4.9,
+    reviewCount: 127,
+    beds: 4,
+    baths: 3,
+    pool: 2,
+    amenities: ["Ocean View", "Private Pool", "Chef Available"],
+    imageUrl:
+      "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png",
+  },
+  {
+    id: 1,
+    title: "Skyline Residences",
+    location: "Downtown, NY",
+    price: "850,000",
+    rating: 4.9,
+    reviewCount: 127,
+    beds: 4,
+    baths: 3,
+    pool: 2,
+    amenities: ["Ocean View", "Private Pool", "Chef Available"],
+    imageUrl:
+      "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png",
+  },
+  
+];
 
 interface PaginationProps {
   totalResults: number;
@@ -52,7 +63,7 @@ const Pagination: React.FC<PaginationProps> = ({
   for (let i = startPage; i <= endPage; i++) pagesToShow.push(i);
 
   return (
-    <div className="flex  flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
+    <div className="flex flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
       <div className="text-sm font-medium text-gray-600 mb-4 sm:mb-0">
         Showing {start} to {end} of {totalResults} results
       </div>
@@ -91,7 +102,7 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 };
 
-const  Rents = () => {
+const Rents = () => {
   const resultsPerPage = 2;
   const totalResults = villaData.length;
   const totalPages = Math.ceil(totalResults / resultsPerPage);
@@ -102,18 +113,16 @@ const  Rents = () => {
     currentPage * resultsPerPage
   );
 
-  const backgroundImg = {
-    backgroundImage:
-      "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    minHeight: "100vh", // Full screen height
-  };
-
   return (
-    <div style={backgroundImg} className="">
-      <div className="mb-10 mt-16 container mx-auto">
+    <div
+      className="relative bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage:
+          "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
+        marginBottom: "620px", // lifts content up
+      }}
+    >
+      <div className="container mx-auto  mb-10">
         <FilterSystem />
       </div>
 
@@ -125,9 +134,14 @@ const  Rents = () => {
         onPageChange={setCurrentPage}
       />
 
-      <div className="space-y-8 container mx-auto">
+      <div className="space-y-8 container mx-auto ">
         {currentVillas.map((villa) => (
-          <RentsCard key={villa.id} villa={villa} />
+          <div
+            key={villa.id}
+            className="bg-white/90 rounded-xl shadow-md overflow-hidden backdrop-blur-md"
+          >
+            <RentsCard villa={villa} />
+          </div>
         ))}
       </div>
 
