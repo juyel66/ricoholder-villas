@@ -1,38 +1,28 @@
 import React from 'react';
 
-// NOTE: We define the heights here to ensure the fixed footer works correctly. 
-// These values (h-[600px] and lg:h-[400px]) must match the padding-bottom 
-// applied to the main content in Root.jsx to prevent overlap.
 const Footer = () => {
-    const logoSrc = "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827265/hd_s_shmnfn.png";
-    const bgImageSrc = "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760817696/footer_Container_iwkz6a.png"; 
+    const logoSrc = "https://res.cloudinary.com/dqkczdjjs/image/upload/v1762028421/lugo_ajzpp8.png";
+    const bgImageSrc = "https://res.cloudinary.com/dqkczdjjs/image/upload/v1762022684/footer_image_jvdr23.jpg";
 
     return (
-        // Changed from 'relative' to 'fixed bottom-0 left-0' and added an explicit height 
-        // to take it out of the document flow and ensure it's always at the bottom.
-        // The explicit height is crucial for the content clearance in Root.jsx
-        // h-[600px] for mobile stacking, lg:h-[400px] for wider screens.
-        <footer className="fixed  bottom-0 left-0 w-full -z-[1000] text-white overflow-hidden shadow-2xl h-[600px] lg:h-[600px]">
-            
+        <footer className="fixed bottom-0 left-0 w-full -z-[1000] text-white overflow-hidden shadow-2xl h-screen">
             {/* Background Image with Dark Overlay */}
-            {/* The background needs to be h-full now that the parent footer has a fixed height */}
-            <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed h-full" 
+            <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed h-full"
                 style={{ backgroundImage: `url(${bgImageSrc})` }}
             >
                 <div className="absolute inset-0 bg-black/50"></div>
             </div>
 
             {/* Main Footer Content */}
-            {/* Ensure content is scrollable if it exceeds the fixed height on smaller screens/devices */}
-            <div className="relative lg:mt-45  z-10 container mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16 h-full overflow-y-auto">
+            <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16 h-full flex flex-col justify-end">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-8 md:gap-y-12 lg:gap-8">
 
                     {/* Column 1: Logo */}
                     <div className="flex lg:ml-0 ml-10 items-center sm:justify-center md:justify-start lg:items-start lg:justify-start">
                         <div>
-                            <img src={logoSrc} alt="Eastmond Villas Logo" className="h-16 w-auto rounded-full" />
-                            <img className='mt-5' src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760983755/Frame_1000004348_e4uzeb.png" alt="" />
+                            <img src={logoSrc} alt="Eastmond Villas Logo" className=" rounded-full" />
+                            <img className=" mt-2" src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760983755/Frame_1000004348_e4uzeb.png" alt="" />
                         </div>
                     </div>
 
@@ -84,23 +74,23 @@ const Footer = () => {
                         <h4 className="text-lg md:text-xl font-semibold mb-4 md:mb-6">Follow Us</h4>
                         <div className="flex items-center justify-center sm:justify-start md:justify-start space-x-4">
                             <a href="https://www.facebook.com/" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
-                              <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826820/Frame_dccruw.png" alt="Facebook" />
+                                <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826820/Frame_dccruw.png" alt="Facebook" />
                             </a>
-                            <a  href="https://www.instagram.com/" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
-                               <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826937/Frame_1_m7bui5.png" alt="Instagram" />
+                            <a href="https://www.instagram.com/" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
+                                <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826937/Frame_1_m7bui5.png" alt="Instagram" />
                             </a>
                             <a href="https://x.com/" className="text-gray-300 hover:text-teal-400 transition-colors duration-200">
-                              <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826976/Frame_2_dmncqr.png" alt="Twitter" />
+                                <img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760826976/Frame_2_dmncqr.png" alt="Twitter" />
                             </a>
                         </div>
                     </div>
                 </div>
 
                 {/* Separator Line */}
-                <hr className="border-gray-600 my-8 md:my-12" />
+                <hr className="border-gray-400 my-4" />
 
                 {/* Copyright */}
-                <div className="text-center text-gray-400 text-sm md:text-base">
+                <div className="text-center mt-5 text-gray-200 text-sm md:text-base ">
                     &copy; {new Date().getFullYear()} Eastmond Villas. All Rights Reserved Worldwide.
                 </div>
             </div>
