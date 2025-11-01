@@ -9,7 +9,7 @@ type Benefit = {
 
 // Data for the benefits list
 const benefits: Benefit[] = [
-  { id: 1, text: 'ROI growth through strategic partnerships' },
+  { id: 1, text: 'Roi growth through strategic partnerships' },
   { id: 2, text: 'Zero risk, performance-based model' },
   { id: 3, text: 'Targeted digital & social media campaigns' },
   { id: 4, text: '24/7 owner support and concierge' },
