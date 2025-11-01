@@ -24,7 +24,7 @@ const  Affiliates = () => {
 
     return (
         // <section className="relative w-full lg:mb-[400px] md:mb-[400px] mb-10 0 "> 
-         <section className="relative w-full lg:mb-[400px] md:mb-[400px] mb-150  "> 
+         <section className="relative w-full mb-[720px]  "> 
             
             {/* BACKGROUND LAYER: Image and Dark Overlay */}
             <div 
