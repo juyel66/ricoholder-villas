@@ -6,7 +6,7 @@ const Management = () => {
     <div
     
     >
-      <HeroSection className="mt-26 "
+      <HeroSection className=" "
         title="Property Management, Perfected"
         subtitle="Emphasize luxury villas as assets, sanctuaries, reflections of taste."
         ctaLabel="Contact Our Team"
@@ -15,7 +15,7 @@ const Management = () => {
         }}
         imageUrl="/images/managementHeroSection.png" // place your image in /public/assets
       />
-   <div className="lg:p-0 p-2" > <PropertyManagementSection/></div>
+   <div className="lg:p-0 p-2 mb-[720px]" > <PropertyManagementSection/></div>
 
     </div>
   );
