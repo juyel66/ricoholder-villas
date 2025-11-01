@@ -2,7 +2,7 @@ import React from 'react';
 
 const ConciergeBanner: React.FC = () => {
   return (
-    <div className="relative  mt-5 mx-auto overflow-hidden rounded-xl shadow-lg">
+    <div className="relative   mx-auto overflow-hidden rounded-xl shadow-lg">
       {/* Banner Image */}
       <img 
         src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760213196/ImageWithFallback_zwfrkd.png" // Replace with your actual image path
