@@ -44,7 +44,7 @@ const Contact = () => {
   };
 
   return (
-    <section className=" bg-white py-16 md:py-24 lg:py-28 container mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out">
+    <section className=" bg-white  py-16 md:py-24 lg:py-28 container mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out">
       <div>
         {/* Main Heading */}
         <h2 className="text-5xl  md:text-4xl sm:text-3xl font-extrabold text-gray-900 text-center mb-16 md:mb-20 transition-all duration-500 ease-in-out">
