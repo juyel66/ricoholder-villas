@@ -7,6 +7,7 @@ import SpotlightDetails from './SpotlingtDetails';
 
 const RentsDetails = () => {
     return (
+        
         <div>
             <RentsDetailsBanner />
             <SpotlightDetails />
