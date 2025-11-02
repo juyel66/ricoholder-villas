@@ -68,7 +68,7 @@ const mockData: PropertyData = {
     },
     {
       id: 2,
-      url: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png",
+      url: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1762022684/footer_image_jvdr23.jpg",
     },
     {
       id: 3,
@@ -168,6 +168,7 @@ const ImageGallerySection: React.FC = () => {
   const [data, setData] = useState<PropertyData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -271,7 +272,7 @@ const ImageGallerySection: React.FC = () => {
   };
 
   return (
-    <section className="container mx-auto mb-[720px] px-4 py-16">
+    <section className="container mx-auto mb-[920px] px-4 py-16 relative">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-7">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
@@ -282,7 +283,8 @@ const ImageGallerySection: React.FC = () => {
             {(showAll ? gallery : gallery.slice(0, 6)).map((img) => (
               <div
                 key={img.id}
-                className="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden shadow-sm"
+                className="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden shadow-sm cursor-pointer transition-transform hover:scale-105"
+                onClick={() => setSelectedImage(img.url)}
               >
                 <img
                   src={img.url}
@@ -419,17 +421,41 @@ const ImageGallerySection: React.FC = () => {
       </div>
 
       <RatesBookingInformation />
-
       <Calendar />
-      
-      <Locations
-        lat={location.lat}
-        lng={location.lng}
-        text={location.address}
-      />
+      <Locations lat={location.lat} lng={location.lng} text={location.address} />
       <div className="">
         <AddReviewForm />
       </div>
+
+      {/* --- Image Modal --- */}
+      {selectedImage && (
+        <div
+        
+          // className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-[9999]"
+
+            className="fixed inset-0  bg-opacity-80 flex justify-center items-center z-[9999]"
+
+
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative "
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 text-white text-3xl font-bold"
+            >
+              &times;
+            </button>
+            <img
+              src={selectedImage}
+              alt="Expanded"
+              className="w-full h-[80vh] object-contain rounded-xl shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 };
