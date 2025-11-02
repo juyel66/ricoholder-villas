@@ -161,7 +161,7 @@ const mockData: PropertyData = {
     "We handle your Arrival, Transfers, Car Rentals, and Chauffeur Services.",
     "We can stock your villa, help with menus, provide household support, and spa services.",
   ],
-  securityDeposit: "US$ 10,000.00",
+  securityDeposit: "US$ 10,00.00",
 };
 
 const ImageGallerySection: React.FC = () => {
