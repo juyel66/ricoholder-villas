@@ -121,8 +121,8 @@ const mockData: PropertyData = {
     ],
   },
   location: {
-    lat: 13.1826,
-    lng: -59.6393,
+    lat: 25.779776,
+    lng: 88.338032,
     address: "Casablanca At Sandy Lane",
   },
   rulesAndEtiquette: ["Children - All Welcome", "No Pets", "No Smoking"],
@@ -278,6 +278,9 @@ const ImageGallerySection: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
             Image Gallery - {gallery.length} photos
           </h2>
+          <div>
+
+          </div>
 
           <div className="grid grid-cols-3 gap-4">
             {(showAll ? gallery : gallery.slice(0, 6)).map((img) => (
@@ -311,8 +314,16 @@ const ImageGallerySection: React.FC = () => {
                 Show Less
               </button>
             )}
+
+
+
+
             <VideoExperience />
             <Description />
+
+
+
+
           </div>
         </div>
 
@@ -387,7 +398,17 @@ const ImageGallerySection: React.FC = () => {
             </ul>
           </div>
 
+
+
+
+
+
           <BedRoomsSliders />
+
+
+
+
+
 
           <div className="mb-10 pt-4 border-t border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -420,12 +441,24 @@ const ImageGallerySection: React.FC = () => {
         </div>
       </div>
 
+
+
+
       <RatesBookingInformation />
       <Calendar />
+
+
       <Locations lat={location.lat} lng={location.lng} text={location.address} />
+
+
+
       <div className="">
+
         <AddReviewForm />
+
       </div>
+
+
 
       {/* --- Image Modal --- */}
       {selectedImage && (
