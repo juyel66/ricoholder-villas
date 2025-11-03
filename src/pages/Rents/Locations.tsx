@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import { PiMapPinBold } from "react-icons/pi";
 import { IoClose } from 'react-icons/io5';
 
-const googleMapAPIKey = "AIzaSyAdOzx1k0BNNGVgPaK7po6TcMz46MVeiY4"; // Replace with your Google Maps API key
+const googleMapAPIKey = "AIzaSyAdOzx1k0BNNGVgPaK7po6TcMz46MVeiY4";
 
 interface Coords {
   lat: number;
@@ -17,6 +17,12 @@ interface MapClickEvent {
 
 interface SavedLocation extends Coords {
   key: string;
+  text: string;
+}
+
+interface LocationsProps {
+  lat: number;
+  lng: number;
   text: string;
 }
 
@@ -88,19 +94,12 @@ const AddVillaModal: React.FC<AddVillaModalProps> = ({
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="text-sm text-gray-600 space-y-1">
-          <p>
-            <strong>Latitude:</strong> {lat.toFixed(6)}
-          </p>
-          <p>
-            <strong>Longitude:</strong> {lng.toFixed(6)}
-          </p>
+          <p><strong>Latitude:</strong> {lat.toFixed(6)}</p>
+          <p><strong>Longitude:</strong> {lng.toFixed(6)}</p>
         </div>
 
         <div>
-          <label
-            htmlFor="villaName"
-            className="block text-sm font-semibold text-gray-700 mb-1"
-          >
+          <label htmlFor="villaName" className="block text-sm font-semibold text-gray-700 mb-1">
             Villa Name
           </label>
           <input
@@ -115,10 +114,7 @@ const AddVillaModal: React.FC<AddVillaModalProps> = ({
         </div>
 
         <div>
-          <label
-            htmlFor="description"
-            className="block text-sm font-semibold text-gray-700 mb-1"
-          >
+          <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-1">
             Description (Optional)
           </label>
           <textarea
@@ -151,14 +147,14 @@ const AddVillaModal: React.FC<AddVillaModalProps> = ({
   );
 };
 
-// Main Component
-export default function Locations() {
+// --- Main Component ---
+const Locations: React.FC<LocationsProps> = ({ lat, lng, text }) => {
   const [savedVillas, setSavedVillas] = useState<SavedLocation[]>([
     {
-      lat: 23.8103,
-      lng: 90.4125,
-      key: "saved_1",
-      text: "Casablanca At Sandy Lane",
+      lat,
+      lng,
+      key: "default_villa",
+      text,
     },
   ]);
   const [newLocation, setNewLocation] = useState<Coords | null>(null);
@@ -166,19 +162,17 @@ export default function Locations() {
 
   const defaultProps = useMemo(
     () => ({
-      center: { lat: 23.8103, lng: 90.4125 },
-      zoom: 11,
+      center: { lat, lng },
+      zoom: 13,
     }),
-    []
+    [lat, lng]
   );
 
-  // Handle map click
   const handleMapClick = (e: MapClickEvent) => {
     setNewLocation({ lat: e.lat, lng: e.lng });
     setIsModalOpen(true);
   };
 
-  // Add villa handler
   const handleAddVilla = (data: {
     lat: number;
     lng: number;
@@ -197,18 +191,15 @@ export default function Locations() {
   };
 
   return (
-    <div className="">
+    <div>
       <div className="text-center mb-10">
         <p className="text-5xl font-semibold text-gray-800">Location</p>
         <p className="text-lg mt-4 text-gray-600">
-          Click anywhere on the map to add a new villa location
+          {text} — Click on the map to add a new villa location
         </p>
       </div>
 
-      <div
-        className="relative mx-auto"
-        style={{ height: "75vh", width: "100%", borderRadius: "12px" }}
-      >
+      <div className="relative mx-auto" style={{ height: "75vh", width: "100%", borderRadius: "12px" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: googleMapAPIKey }}
           defaultCenter={defaultProps.center}
@@ -216,23 +207,13 @@ export default function Locations() {
           onClick={handleMapClick}
         >
           {savedVillas.map((villa) => (
-            <CustomMarker
-              key={villa.key}
-              lat={villa.lat}
-              lng={villa.lng}
-              isNew={false}
-            />
+            <CustomMarker key={villa.key} lat={villa.lat} lng={villa.lng} isNew={false} />
           ))}
           {newLocation && isModalOpen && (
-            <CustomMarker
-              lat={newLocation.lat}
-              lng={newLocation.lng}
-              isNew={true}
-            />
+            <CustomMarker lat={newLocation.lat} lng={newLocation.lng} isNew={true} />
           )}
         </GoogleMapReact>
 
-        {/* Modal appears inside map area */}
         {isModalOpen && newLocation && (
           <AddVillaModal
             lat={newLocation.lat}
@@ -247,4 +228,6 @@ export default function Locations() {
       </div>
     </div>
   );
-}
+};
+
+export default Locations;
