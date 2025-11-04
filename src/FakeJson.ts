@@ -80,3 +80,47 @@ export const villaData = [
         imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_4_jjjim0.png" // Placeholder URL for image 6
     },
 ];
+
+
+
+
+
+
+
+
+
+export const  PropertyData = {
+"gallery": [
+{ "id": 1, "url": "[https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png](https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png)" },
+{ "id": 2, "url": "[https://res.cloudinary.com/dqkczdjjs/image/upload/v1762022684/footer_image_jvdr23.jpg](https://res.cloudinary.com/dqkczdjjs/image/upload/v1762022684/footer_image_jvdr23.jpg)" },
+{ "id": 3, "url": "[https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png](https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png)" },
+{ "id": 4, "url": "[https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png](https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png)" },
+{ "id": 5, "url": "[https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png](https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png)" },
+{ "id": 6, "url": "[https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png](https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png)" }
+],
+"amenities": {
+"signatureDistinctions": ["Fairmont Pavilion Beach Club Membership (10 people)", "Media Room", "Sonos System", "Indoor-outdoor Swimming Pool"],
+"interiorAmenities": ["Bar Area", "Bluetooth Speaker", "Cocktail Menu", "Outdoor Patio", "Dart Board", "Fire Pit", "Wine Cooler"],
+"outdoorAmenities": ["Open-Air Dining Spot", "Chill Lounge Area", "Grill Area", "Free Parking on Site", "24/7 Security", "Direct Beach Access"]
+},
+"location": { "lat": 25.779776, "lng": 88.338032, "address": "Casablanca At Sandy Lane" },
+"rulesAndEtiquette": ["Children - All Welcome", "No Pets", "No Smoking"],
+"checkInOutTime": { "checkIn": "15:00", "checkOut": "12:00", "description": "Late checkout may be available upon request and is subject to an additional fee." },
+"staff": [
+{ "name": "Housekeeper", "details": "6 days per week from 9am until 3pm - Summer, Winter & Festive" },
+{ "name": "Chef", "details": "6 days per week - Summer, Winter & Festive - 3 consecutive Meals" },
+{ "name": "Security Guard", "details": "6 days per week from 5pm until 5am - Summer, Winter & Festive" }
+],
+"bedrooms": [{ "title": "Master Bedroom 1", "subtitle": "with en suite King Bed (UK)", "imageUrl": "[https://res.cloudinary.com/dqkczdjjs/image/upload/v1760229337/Property_Interior_1_z9x6gq.jpg](https://res.cloudinary.com/dqkczdjjs/image/upload/v1760229337/Property_Interior_1_z9x6gq.jpg)" }],
+"conciergeService": ["Our concierge team offers a bunch of luxury services, making sure you enjoy every moment.", "We handle your Arrival, Transfers, Car Rentals, and Chauffeur Services.", "We can stock your villa, help with menus, provide household support, and spa services."],
+"securityDeposit": "US$ 10,000.00",
+"description": "Welcome to St. James, Barbados, where within the elegant enclave of Derricks lies the majestic Seaclusion Villa. This gorgeous, colonial style, private luxury villa is situated on Barbados' platinum coast revealing spectacular panoramic sea views and private beach access to the golden sand and clear waters of Barbados' finest beach. This estate of palatial elegance and incomparable grandeur is completely staffed with world class chefs, internationally trained and professional housekeepers, butlers and the finest private security services on...",
+"mainImageUrl": "[https://res.cloudinary.com/dqkczdjjs/image/upload/v1760298884/imgggggggg_barfpz.png](https://res.cloudinary.com/dqkczdjjs/image/upload/v1760298884/imgggggggg_barfpz.png)",
+"rates": [
+{ "id": 1, "period": "Jan 11 - Apr 14", "minStay": "7 Nights", "rate": 12000 },
+{ "id": 2, "period": "Apr 15 - Dec 14", "minStay": "5 Nights", "rate": 9000 },
+{ "id": 3, "period": "Dec 15 - Dec 19", "minStay": "5 Nights", "rate": 12000 },
+{ "id": 4, "period": "Dec 20 - Jan 10", "minStay": "14 Nights", "rate": 17000 },
+{ "id": 4, "period": "Dec 20 - Jan 10", "minStay": "14 Nights", "rate": 27000 },
+]
+}
