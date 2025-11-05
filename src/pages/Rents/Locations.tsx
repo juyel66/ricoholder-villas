@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
-import GoogleMapReact from 'google-map-react';
+import React, { useState, useMemo, useRef } from "react";
+import GoogleMapReact from "google-map-react";
 import { PiMapPinBold } from "react-icons/pi";
-import { IoClose } from 'react-icons/io5';
+import { IoClose } from "react-icons/io5";
 
 const googleMapAPIKey = "AIzaSyAdOzx1k0BNNGVgPaK7po6TcMz46MVeiY4";
 
@@ -18,35 +18,43 @@ interface MapClickEvent {
 interface SavedLocation extends Coords {
   key: string;
   text: string;
+  isSearch?: boolean;
 }
 
 interface LocationsProps {
   lat: number;
   lng: number;
   text: string;
+  onLocationAdd?: (villaData: {
+    lat: number;
+    lng: number;
+    name: string;
+    description: string;
+  }) => void;
 }
 
 // Marker Component
 const CustomMarker = ({
   lat,
   lng,
-  isNew,
+  color,
+  onClick,
 }: {
   lat: number;
   lng: number;
-  isNew: boolean;
+  color: string;
+  onClick?: () => void;
 }) => (
   <div
     style={{
       position: "absolute",
       transform: "translate(-50%, -100%)",
       cursor: "pointer",
-      zIndex: isNew ? 900 : 800,
+      zIndex: 900,
     }}
+    onClick={onClick}
   >
-    <PiMapPinBold
-      style={{ color: isNew ? "blue" : "red", fontSize: "2rem" }}
-    />
+    <PiMapPinBold style={{ color, fontSize: "2rem" }} />
   </div>
 );
 
@@ -94,12 +102,19 @@ const AddVillaModal: React.FC<AddVillaModalProps> = ({
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="text-sm text-gray-600 space-y-1">
-          <p><strong>Latitude:</strong> {lat.toFixed(6)}</p>
-          <p><strong>Longitude:</strong> {lng.toFixed(6)}</p>
+          <p>
+            <strong>Latitude:</strong> {lat.toFixed(6)}
+          </p>
+          <p>
+            <strong>Longitude:</strong> {lng.toFixed(6)}
+          </p>
         </div>
 
         <div>
-          <label htmlFor="villaName" className="block text-sm font-semibold text-gray-700 mb-1">
+          <label
+            htmlFor="villaName"
+            className="block text-sm font-semibold text-gray-700 mb-1"
+          >
             Villa Name
           </label>
           <input
@@ -114,7 +129,10 @@ const AddVillaModal: React.FC<AddVillaModalProps> = ({
         </div>
 
         <div>
-          <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-1">
+          <label
+            htmlFor="description"
+            className="block text-sm font-semibold text-gray-700 mb-1"
+          >
             Description (Optional)
           </label>
           <textarea
@@ -148,17 +166,22 @@ const AddVillaModal: React.FC<AddVillaModalProps> = ({
 };
 
 // --- Main Component ---
-const Locations: React.FC<LocationsProps> = ({ lat, lng, text }) => {
+const Locations: React.FC<LocationsProps> = ({
+  lat,
+  lng,
+  text,
+  onLocationAdd,
+}) => {
   const [savedVillas, setSavedVillas] = useState<SavedLocation[]>([
-    {
-      lat,
-      lng,
-      key: "default_villa",
-      text,
-    },
+    { lat, lng, key: "default_villa", text },
   ]);
   const [newLocation, setNewLocation] = useState<Coords | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchMarker, setSearchMarker] = useState<Coords | null>(null);
+
+  const mapRef = useRef<any>(null);
+  const mapsRef = useRef<any>(null);
 
   const defaultProps = useMemo(
     () => ({
@@ -188,6 +211,24 @@ const Locations: React.FC<LocationsProps> = ({ lat, lng, text }) => {
     setSavedVillas((prev) => [...prev, newVilla]);
     setIsModalOpen(false);
     setNewLocation(null);
+    setSearchMarker(null);
+    if (onLocationAdd) onLocationAdd(data);
+  };
+
+  const handleSearch = () => {
+    if (!searchQuery.trim() || !mapsRef.current) return;
+    const geocoder = new mapsRef.current.Geocoder();
+    geocoder.geocode({ address: searchQuery }, (results: any, status: any) => {
+      if (status === "OK" && results && results[0]) {
+        const location = results[0].geometry.location;
+        const newLat = location.lat();
+        const newLng = location.lng();
+        setSearchMarker({ lat: newLat, lng: newLng });
+        mapRef.current.panTo({ lat: newLat, lng: newLng });
+      } else {
+        alert("Location not found!");
+      }
+    });
   };
 
   return (
@@ -195,22 +236,66 @@ const Locations: React.FC<LocationsProps> = ({ lat, lng, text }) => {
       <div className="text-center mb-10">
         <p className="text-5xl font-semibold text-gray-800">Location</p>
         <p className="text-lg mt-4 text-gray-600">
-          {text} — Click on the map to add a new villa location
+          {text} — Click on the map or search any place worldwide
         </p>
       </div>
 
-      <div className="relative mx-auto" style={{ height: "75vh", width: "100%", borderRadius: "12px" }}>
+      {/* 🔍 Search Bar */}
+      <div className="flex justify-center mb-5">
+        <input
+          type="text"
+          value={searchQuery}
+          placeholder="Search any location worldwide..."
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+          className="border border-gray-400 rounded-l-lg px-4 py-2 w-72 focus:outline-none focus:ring-2 focus:ring-teal-500"
+        />
+        <button
+          onClick={handleSearch}
+          className="bg-teal-500 text-white px-4 rounded-r-lg hover:bg-teal-600"
+        >
+          Search
+        </button>
+      </div>
+
+      <div
+        className="relative mx-auto"
+        style={{ height: "50vh", width: "100%", borderRadius: "12px" }}
+      >
         <GoogleMapReact
           bootstrapURLKeys={{ key: googleMapAPIKey }}
           defaultCenter={defaultProps.center}
           defaultZoom={defaultProps.zoom}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={({ map, maps }) => {
+            mapRef.current = map;
+            mapsRef.current = maps;
+          }}
           onClick={handleMapClick}
         >
           {savedVillas.map((villa) => (
-            <CustomMarker key={villa.key} lat={villa.lat} lng={villa.lng} isNew={false} />
+            <CustomMarker
+              key={villa.key}
+              lat={villa.lat}
+              lng={villa.lng}
+              color="red"
+            />
           ))}
+
+          {searchMarker && (
+            <CustomMarker
+              lat={searchMarker.lat}
+              lng={searchMarker.lng}
+              color="green"
+              onClick={() => {
+                setNewLocation(searchMarker);
+                setIsModalOpen(true);
+              }}
+            />
+          )}
+
           {newLocation && isModalOpen && (
-            <CustomMarker lat={newLocation.lat} lng={newLocation.lng} isNew={true} />
+            <CustomMarker lat={newLocation.lat} lng={newLocation.lng} color="blue" />
           )}
         </GoogleMapReact>
 
@@ -221,6 +306,7 @@ const Locations: React.FC<LocationsProps> = ({ lat, lng, text }) => {
             onClose={() => {
               setIsModalOpen(false);
               setNewLocation(null);
+              setSearchMarker(null);
             }}
             onAddVilla={handleAddVilla}
           />
