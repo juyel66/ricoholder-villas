@@ -6,22 +6,24 @@ interface BedroomImage {
 }
 
 interface BedRoomsSlidersProps {
-  bedrooms: BedroomImage[];
+  bedrooms_images: BedroomImage[];
 }
 
-const BedRoomsSliders: React.FC<BedRoomsSlidersProps> = ({ bedrooms }) => {
+const BedRoomsSliders: React.FC<BedRoomsSlidersProps> = ({
+  bedrooms_images: bedrooms_images,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (!bedrooms || bedrooms.length === 0) {
+  if (!bedrooms_images || bedrooms_images.length === 0) {
     return null;
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? bedrooms.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? bedrooms_images.length - 1 : prev - 1));
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === bedrooms.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === bedrooms_images.length - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -52,7 +54,7 @@ const BedRoomsSliders: React.FC<BedRoomsSlidersProps> = ({ bedrooms }) => {
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {bedrooms.map((bed, index) => (
+          {bedrooms_images.map((bed, index) => (
             <div key={index} className="min-w-full flex-shrink-0">
               <img
                 src={bed.image_url}
@@ -66,7 +68,7 @@ const BedRoomsSliders: React.FC<BedRoomsSlidersProps> = ({ bedrooms }) => {
 
       {/* Dots Navigation */}
       <div className="flex justify-center mt-4 space-x-2">
-        {bedrooms.map((_, index) => (
+        {bedrooms_images.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}

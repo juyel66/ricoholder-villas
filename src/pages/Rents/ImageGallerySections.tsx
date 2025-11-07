@@ -26,14 +26,23 @@ interface PropertyDataType {
     address: string;
   };
   rules_and_etiquette: string[];
-  check_in_out_time: { check_in: string; check_out: string; description?: string };
+  check_in_out_time: {
+    check_in: string;
+    check_out: string;
+    description?: string;
+  };
   staff: { name: string; details: string }[];
-  bedrooms: { image_url: string }[];
+  bedrooms_images: { image_url: string }[];
   concierge_service: string[];
   security_deposit: string;
   description: string;
   main_image_url: string;
-  rates: { id: number; period: string; min_stay: string; rate: number }[];
+  booking_rate_start: {
+    id: number;
+    period: string;
+    min_stay: string;
+    rate: number;
+  }[];
 }
 
 const AmenityItem: React.FC<SimpleListItemProps> = ({ name }) => (
@@ -47,7 +56,10 @@ const AmenityItem: React.FC<SimpleListItemProps> = ({ name }) => (
   </li>
 );
 
-const StaffItem: React.FC<{ name: string; details: string }> = ({ name, details }) => (
+const StaffItem: React.FC<{ name: string; details: string }> = ({
+  name,
+  details,
+}) => (
   <li className="flex items-start mb-4">
     <img
       src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png"
@@ -109,11 +121,12 @@ const ImageGallerySection: React.FC = () => {
     security_deposit,
     description,
     description_image_url,
-    rates,
-    bedrooms,
+    booking_rate_start,
+    bedrooms_images,
   } = data;
 
-  const { signature_distinctions, interior_amenities, outdoor_amenities } = amenities;
+  const { signature_distinctions, interior_amenities, outdoor_amenities } =
+    amenities;
 
   const handleDownloadPDF = async () => {
     try {
@@ -218,7 +231,10 @@ const ImageGallerySection: React.FC = () => {
             )}
 
             <VideoExperience />
-            <Description descriptionData={description} descriptionImage={description_image_url} />
+            <Description
+              descriptionData={description}
+              descriptionImage={description_image_url}
+            />
           </div>
         </div>
 
@@ -226,7 +242,9 @@ const ImageGallerySection: React.FC = () => {
         <div className="lg:col-span-5 border-l lg:pl-12 pl-0">
           {/* Signature Distinctions */}
           <div className="mb-10">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Signature Distinctions</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Signature Distinctions
+            </h3>
             <ul className="list-none p-0">
               {signature_distinctions.map((item, index) => (
                 <AmenityItem key={index} name={item} />
@@ -236,15 +254,21 @@ const ImageGallerySection: React.FC = () => {
 
           {/* Interior & Outdoor Amenities */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Finer Details</h3>
-            <h4 className="font-semibold text-lg text-gray-800 mb-2">Interior Amenities</h4>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Finer Details
+            </h3>
+            <h4 className="font-semibold text-lg text-gray-800 mb-2">
+              Interior Amenities
+            </h4>
             <ul className="grid grid-cols-2 gap-x-6">
               {interior_amenities.map((item, index) => (
                 <AmenityItem key={index} name={item} />
               ))}
             </ul>
 
-            <h4 className="font-semibold text-lg text-gray-800 mt-6 mb-2">Outdoor Amenities</h4>
+            <h4 className="font-semibold text-lg text-gray-800 mt-6 mb-2">
+              Outdoor Amenities
+            </h4>
             <ul className="list-none p-0 mb-10">
               {outdoor_amenities.map((item, index) => (
                 <AmenityItem key={index} name={item} />
@@ -254,7 +278,9 @@ const ImageGallerySection: React.FC = () => {
 
           {/* Rules & Etiquette */}
           <div className="mb-10 pt-4 border-t border-gray-200">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Rules & Etiquette</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Rules & Etiquette
+            </h3>
             <ul className="list-none p-0">
               {rules_and_etiquette.map((item, index) => (
                 <AmenityItem key={index} name={item} />
@@ -264,7 +290,9 @@ const ImageGallerySection: React.FC = () => {
 
           {/* Check In/Out */}
           <div className="mb-10 pt-4 border-t border-gray-200">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Check in/out time</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Check in/out time
+            </h3>
             <div className="flex flex-col space-y-2 text-gray-700 text-sm">
               <div>Check-In: {check_in_out_time.check_in}</div>
               <div>Check-Out: {check_in_out_time.check_out}</div>
@@ -282,17 +310,23 @@ const ImageGallerySection: React.FC = () => {
             </h3>
             <ul className="list-none p-0">
               {staff.map((item, index) => (
-                <StaffItem key={index} name={item.name} details={item.details} />
+                <StaffItem
+                  key={index}
+                  name={item.name}
+                  details={item.details}
+                />
               ))}
             </ul>
           </div>
 
           {/* Bedrooms */}
-          <BedRoomsSliders bedrooms={bedrooms} />
+          <BedRoomsSliders bedrooms_images={bedrooms_images} />
 
           {/* Concierge */}
           <div className="mb-10 pt-4 border-t border-gray-200">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Concierge Service</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Concierge Service
+            </h3>
             <ul className="list-none p-0">
               {concierge_service.map((item, index) => (
                 <AmenityItem key={index} name={item} />
@@ -302,8 +336,12 @@ const ImageGallerySection: React.FC = () => {
 
           {/* Security Deposit */}
           <div className="mb-10 pt-4 border-t border-gray-200">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Security Deposit</h3>
-            <p className="text-3xl font-bold text-gray-900">{security_deposit}</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Security Deposit
+            </h3>
+            <p className="text-3xl font-bold text-gray-900">
+              {security_deposit}
+            </p>
           </div>
 
           {/* Download Button */}
@@ -319,13 +357,17 @@ const ImageGallerySection: React.FC = () => {
       </div>
 
       {/* Rates Section */}
-      <RatesBookingInformation rates={rates} />
+      <RatesBookingInformation booking_rate_start={booking_rate_start} />
 
       {/* Calendar */}
       <Calendar />
 
       {/* Location Map */}
-      <Locations lat={location.lat} lng={location.lng} text={location.address} />
+      <Locations
+        lat={location.lat}
+        lng={location.lng}
+        text={location.address}
+      />
 
       {/* Reviews */}
       <AddReviewForm />

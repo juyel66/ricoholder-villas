@@ -11,7 +11,7 @@ const formatCurrency = (amount) => {
 };
 
 // Updated component to accept array of rates
-const RatesBookingInformation = ({ rates }) => {
+const RatesBookingInformation = ({ booking_rate_start }) => {
   // Image placeholder URL
   const imageUrl =
     "https://res.cloudinary.com/dqkczdjjs/image/upload/v1761084681/img_6_wyf01m.png";
@@ -45,14 +45,14 @@ const RatesBookingInformation = ({ rates }) => {
             </div>
 
             {/* Map over rates array */}
-            {rates.map((r) => (
+            {booking_rate_start.map((r) => (
               <div
                 key={r.id}
                 className="grid grid-cols-3 p-4 text-gray-800 border-t border-gray-200 hover:bg-teal-50 hover:text-teal-700"
               >
                 <div className="p-2 font-medium">{r.period}</div>
                 <div className="p-2 text-center text-gray-600 hover:text-teal-700">
-                  {r.minStay}
+                  {r.min_stay}
                 </div>
                 <div className="p-2 text-right font-bold">{formatCurrency(r.rate)}</div>
               </div>

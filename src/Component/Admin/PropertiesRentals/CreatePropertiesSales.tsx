@@ -7,7 +7,7 @@ const CreatePropertiesSales = () => {
         title: 'Luxury Modern Villa with Pool',
         description: '',
         price: 500000,
-        propertyType: '',
+        property_type: '',
         bedrooms: 3,
         bathrooms: 4,
         pool: 1,
@@ -124,7 +124,7 @@ const CreatePropertiesSales = () => {
                         <FormField label="Property Title" name="title" placeholder="Luxury Modern Villa with Pool" grid="col-span-12" />
                         <FormField label="Description" name="description" type="textarea" placeholder="Describe the property..." grid="col-span-12" />
                         <FormField label="Price" name="price" type="number" placeholder="0" grid="col-span-12 md:col-span-6" />
-                        <FormField label="Property Type" name="propertyType" type="select" grid="col-span-12 md:col-span-6">
+                        <FormField label="Property Type" name="property_type" type="select" grid="col-span-12 md:col-span-6">
                             <option value="">Select type</option>
                             <option value="villa">Villa</option>
                             <option value="townhouse">Townhouse</option>
@@ -175,7 +175,7 @@ const CreatePropertiesSales = () => {
                         </label>
                     </div>
 
-                    <FormField label="Calendar Link (Calendly/Google)" name="calendarLink" placeholder="https://calendly.com/..." grid="col-span-12" />
+                    <FormField label="Calendar Link (Calendly/Google)" name="calendar_link" placeholder="https://calendly.com/..." grid="col-span-12" />
                 </FormCard>
 
                 <FormCard title="SEO Optimization">

@@ -202,7 +202,7 @@ export const PropertyData = {
     { name: "Security Guard", details: "6 days per week from 5pm until 5am - Summer, Winter & Festive" }
   ],
 
-  bedrooms: [
+  bedrooms_images: [
     { image_url: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1761523975/medium-shot-plus-sized-woman-influencer_23-2151414147_1_n5fjkm.png" },
     { image_url: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png" },
     { image_url: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760220353/medium-shot-plus-sized-woman-influencer_23-2151414147_2_5_fz3dmp.png" },
@@ -222,7 +222,7 @@ export const PropertyData = {
 
   description_image_url: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760298884/imgggggggg_barfpz.png",
 
-  rates: [
+  booking_rate_start: [
     { id: 1, period: "Jan 11 - Apr 14", min_stay: "7 Nights", rate: 12000 },
     { id: 2, period: "Apr 15 - Dec 14", min_stay: "5 Nights", rate: 9000 },
     { id: 3, period: "Dec 15 - Dec 19", min_stay: "5 Nights", rate: 12000 },
