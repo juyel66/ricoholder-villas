@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import AgentCard from "./AgentCard"; 
+import AgentCard from "./AgentCard";
 import { CgProfile } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
 
@@ -57,6 +57,7 @@ const App = () => {
     name: "",
     email: "",
     phone: "",
+    password: "",
     role: "Agent",
     permissions: "Download",
   });
@@ -78,6 +79,7 @@ const App = () => {
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
+      password: formData.password,
       role: formData.role.toLowerCase(),
       permissions: formData.permissions,
       status: "active",
@@ -92,6 +94,7 @@ const App = () => {
       name: "",
       email: "",
       phone: "",
+      password: "",
       role: "Agent",
       permissions: "Download",
     });
@@ -129,7 +132,7 @@ const App = () => {
     >
       <div className="flex justify-between items-center mt-5">
         <div>
-          <h1 className="text-3xl font-semibold">Agent</h1> 
+          <h1 className="text-3xl font-semibold">Agent</h1>
           <p className="text-gray-500">Manage agent and manager accounts</p>
         </div>
         <button
@@ -141,9 +144,7 @@ const App = () => {
       </div>
 
       {isModalOpen && (
-        <div
-          className="fixed inset-0 flex justify-center items-center z-50 pointer-events-none"
-        >
+        <div className="fixed inset-0 flex justify-center items-center z-50 pointer-events-none">
           <div
             ref={modalRef}
             onMouseDown={handleMouseDown}
@@ -161,7 +162,9 @@ const App = () => {
               Create a new account and set permissions.
             </p>
             <form onSubmit={handleSubmit} className="space-y-3">
-              <label className="block text-gray-700 text-sm font-medium">Name</label>
+              <label className="block text-gray-700 text-sm font-medium">
+                Name
+              </label>
               <input
                 type="text"
                 name="name"
@@ -171,7 +174,9 @@ const App = () => {
                 className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009689]"
                 required
               />
-              <label className="block text-gray-700 text-sm font-medium">Email</label>
+              <label className="block text-gray-700 text-sm font-medium">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -181,7 +186,9 @@ const App = () => {
                 className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009689]"
                 required
               />
-              <label className="block text-gray-700 text-sm font-medium">Phone</label>
+              <label className="block text-gray-700 text-sm font-medium">
+                Phone
+              </label>
               <input
                 type="text"
                 name="phone"
@@ -191,7 +198,11 @@ const App = () => {
                 className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009689]"
                 required
               />
-              <label className="block text-gray-700 text-sm font-medium">Role</label>
+          
+
+              <label className="block text-gray-700 text-sm font-medium">
+                Role
+              </label>
               <select
                 name="role"
                 value={formData.role}
@@ -199,9 +210,28 @@ const App = () => {
                 className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009689]"
               >
                 <option>Agent</option>
-                <option>Manager</option> 
+                <option>Manager</option>
               </select>
-              <label className="block text-gray-700 text-sm font-medium">Permissions</label>
+
+
+                  <label className="block text-gray-700 text-sm font-medium">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009689]"
+                required
+              />
+
+
+              
+              <label className="block text-gray-700 text-sm font-medium">
+                Permissions
+              </label>
               <select
                 name="permissions"
                 value={formData.permissions}
