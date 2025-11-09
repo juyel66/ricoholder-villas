@@ -184,6 +184,7 @@ const CreatePropertyRentals = () => {
                             grid="col-span-12" 
                             validationRules={{ required: 'Description is required' }} 
                         />
+
                         <RHFFormField 
                             label="Price" 
                             name="price" 
@@ -192,6 +193,7 @@ const CreatePropertyRentals = () => {
                             grid="col-span-12 md:col-span-4"
                             validationRules={{ required: 'Price is required', min: { value: 0, message: 'Price must be non-negative' } }}
                         />
+
                         <RHFFormField 
                             label="Property Type" 
                             name="property_type" 
@@ -200,18 +202,23 @@ const CreatePropertyRentals = () => {
                             validationRules={{ required: 'Property Type is required' }}
                         >
                             <option value="">Select type</option>
-                            <option value="villa">Villa</option>
-                            <option value="townhouse">Townhouse</option>
-                            <option value="condo">Condo</option>
+                            <option value="rentals">Rentals</option>
+                            <option value="sales">Sales</option>
+                           
+
                         </RHFFormField>
+
+
                         <RHFFormField 
                             label="Add Guest" 
                             name="add_guest" 
                             type="number" 
-                            placeholder="0"
-                            grid="col-span-12 md:col-span-4"
+                            placeholder="0" 
+                            grid="col-span-12 md:col-span-4" 
                             validationRules={{ required: true, min: { value: 1, message: 'Must have at least 1 guest capacity.' } }}
                         />
+
+
                         <RHFFormField 
                             label="Bedrooms" 
                             name="bedrooms" 
@@ -229,7 +236,7 @@ const CreatePropertyRentals = () => {
                             validationRules={{ required: true, min: { value: 1, message: 'Min 1 bathroom.' } }}
                         />
                         <RHFFormField 
-                            label="Pool" 
+                            label="Pools" 
                             name="pool" 
                             type="number" 
                             placeholder="0"

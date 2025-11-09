@@ -27,6 +27,8 @@ export const villaData = [
         amenities: ["Mountain View", "Private Pool", "Jacuzzi"],
         imageUrl: "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_4_jjjim0.png" // Placeholder URL for image 2
     },
+
+
     {
         id: 3,
         title: "Penthouse Lux",
@@ -153,6 +155,8 @@ export const villaData = [
 //     { "id": 5, "period": "Dec 20 - Jan 10", "minStay": "14 Nights", "rate": 27000 }
 //   ]
 // };
+
+
 
 
 
