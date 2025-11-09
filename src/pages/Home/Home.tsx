@@ -9,11 +9,19 @@ import GuestSections from "./Component/GuestSections";
 import EstateExperience from "./Component/EstateExperience";
 import Contact from "../Contact/Contact";
 import Affiliates from "./Component/Affiliates";
+import TouristList from "@/features/tourist/TouristList";
 //hello
 
 const Home = () => {
     return (
         <div>
+
+            <div>
+                <TouristList />
+            </div>
+            
+
+
      <div 
          className="bg-white   pb-10  rounded-xl shadow-lg border border-gray-200 mx-auto  bg-cover bg-center bg-no-repeat"
       style={{

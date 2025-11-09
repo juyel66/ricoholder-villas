@@ -31,6 +31,7 @@ const Register = () => {
       user_name: name,
       user_email: email,
       user_password: password,
+      role: "customer"
     };
 
     // Log the structured JSON data to the console as requested
@@ -51,6 +52,8 @@ const Register = () => {
           "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
       }}
     >
+
+      
       
       <div className="w-full max-w-md"> 
         
