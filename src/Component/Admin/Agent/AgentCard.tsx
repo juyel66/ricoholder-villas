@@ -59,7 +59,7 @@ const AgentCard = ({ agent }) => {
                 </button>
 
                 <Link
-                  to="/admin-manage-property"
+                  to="/dashboard/admin-manage-property"
                   className="flex items-center w-full px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   <Building2 className="w-4 h-4 mr-2" /> Manage Properties
