@@ -53,6 +53,11 @@ import DoctorProfile from "./Component/Dashboard/Doctor/DoctorProfile";
 import PropertiesSalesDetails from "./Component/Agent/PropertiesSales/PropertiesSalesDetails";
 import CreatePropertiesSales from "./Component/Admin/PropertiesRentals/CreatePropertiesSales";
 import PropertiesRentalsDetails from "./Component/Agent/PropertiesSales/PropertiesRentalsDetails";
+import AdminAnnouncements from "./Component/Admin/AdminDashboard/AdminAnnouncements";
+import AdminResources from "./Component/Admin/AdminDashboard/AdminResources";
+import BookingManagement from "./Component/Admin/AdminDashboard/BookingManagement";
+import UserManagement from "./Component/Admin/AdminDashboard/UserManagement";
+
 
 // --- Protected Route Wrapper ---
 const ProtectedRoute = ({ allowedRoles }: { allowedRoles: string[] }) => <Outlet />;
@@ -106,6 +111,11 @@ export const router = createBrowserRouter([
           { path: "rentals/admin-create-property", element: <CreatePropertyRentals /> },
           { path: "sales/admin-create-property", element: <CreatePropertiesSales /> },
           { path: "admin-manage-property", element: <ManageProperties /> },
+          { path: "admin-Announcements", element: <AdminAnnouncements /> },
+          { path: "admin-resources", element: <AdminResources /> },
+          { path: "admin-booking-management", element: <BookingManagement /> },
+          { path: "admin-user-management", element: <UserManagement /> },
+          
         ],
       },
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 // Helper to format currency
-const formatCurrency = (amount) => {
+const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -10,19 +10,39 @@ const formatCurrency = (amount) => {
   }).format(amount);
 };
 
-// Updated component to accept array of rates
-const RatesBookingInformation = ({ booking_rate_start }) => {
-  // Image placeholder URL
+interface Rate {
+  id: number;
+  period: string;
+  min_stay: string;
+  rate: number;
+}
+
+interface RatesBookingInformationProps {
+  booking_rate_start: Rate[];
+}
+
+const RatesBookingInformation: React.FC<RatesBookingInformationProps> = ({
+  booking_rate_start,
+}) => {
   const imageUrl =
     "https://res.cloudinary.com/dqkczdjjs/image/upload/v1761084681/img_6_wyf01m.png";
   const fallbackImageUrl =
-    "https://res.cloudinary.com/dqkczdjjs/image/upload/v1761084681/img_6_wyf01m.png"; // fallback
+    "https://res.cloudinary.com/dqkczdjjs/image/upload/v1761084681/img_6_wyf01m.png";
+
+  // ✅ Properly handle image error with correct typing
+  const handleImageError = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const target = e.currentTarget;
+    target.onerror = null; // prevent infinite loop
+    target.src = fallbackImageUrl;
+  };
 
   return (
     <div className="mt-20 flex flex-col items-center py-12 px-4 font-sans relative">
       <div className="absolute top-0 left-0 w-full h-96 overflow-hidden pointer-events-none"></div>
 
-      <div className=" w-full z-10">
+      <div className="w-full z-10">
         {/* Title */}
         <h1 className="lg:text-4xl md:text-5xl text-2xl font-extrabold text-center text-[#111827] mb-2">
           Rates & Booking Information
@@ -54,7 +74,9 @@ const RatesBookingInformation = ({ booking_rate_start }) => {
                 <div className="p-2 text-center text-gray-600 hover:text-teal-700">
                   {r.min_stay}
                 </div>
-                <div className="p-2 text-right font-bold">{formatCurrency(r.rate)}</div>
+                <div className="p-2 text-right font-bold">
+                  {formatCurrency(r.rate)}
+                </div>
               </div>
             ))}
           </div>
@@ -63,10 +85,7 @@ const RatesBookingInformation = ({ booking_rate_start }) => {
           <div className="lg:col-span-5 bg-white shadow-xl rounded-xl overflow-hidden">
             <img
               src={imageUrl}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = fallbackImageUrl;
-              }}
+              onError={handleImageError}
               alt="Luxury sunset view with a glass of champagne"
               className="w-full h-full object-cover"
               style={{ minHeight: "300px" }}

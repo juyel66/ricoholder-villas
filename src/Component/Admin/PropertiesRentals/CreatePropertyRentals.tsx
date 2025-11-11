@@ -145,10 +145,14 @@ const CreatePropertyRentals = () => {
                     <button type="button" className="border border-gray-300 text-black flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition shadow-sm">
                         <User className="lg:h-5 lg:w-5" /> Preview Agent Portal
                     </button>
+
+                
                 </div>
             </div>
 
-            {/* Location Map */}
+            <div className='text-2xl  mt-2 font-semibold mb-2'>Add Location</div>
+
+            {/* Location Map */}        
             <div className='mb-5'>
                 <LocationCreateProperty 
                     lat={location.lat}
@@ -163,7 +167,7 @@ const CreatePropertyRentals = () => {
                         });
                     }}
                 />
-            </div>
+            </div> 
 
             <form onSubmit={handleSubmit(onSubmit)} className="max-w-full mx-auto space-y-8">
                 {/* Basic Information */}

@@ -8,31 +8,33 @@ const villaData = [
     id: 1,
     title: "Skyline Residences",
     location: "Downtown, NY",
-    price: "850,000",
+    price: 850000,
     rating: 4.9,
     reviewCount: 127,
     beds: 4,
-    baths: 3,
-    pool: 2,
+    baths: 1,
+    pool: 1,
     amenities: ["Ocean View", "Private Pool", "Chef Available"],
+    rateType: "per night", // ✅ Added this
     imageUrl:
       "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png",
   },
   {
-    id: 1,
-    title: "Skyline Residences",
-    location: "Downtown, NY",
-    price: "850,000",
-    rating: 4.9,
-    reviewCount: 127,
-    beds: 4,
-    baths: 3,
-    pool: 2,
-    amenities: ["Ocean View", "Private Pool", "Chef Available"],
+    id: 2,
+    title: "Mountain Escape Villa",
+    location: "Aspen, CO",
+    price: 920000,
+    rating: 4.8,
+    reviewCount: 101,
+    beds: 1,
+    baths: 4,
+    pool: 11,
+    amenities: ["Mountain View", "Fireplace", "Hot Tub"],
+    rateType: "per night", // ✅ Added this
     imageUrl:
       "https://res.cloudinary.com/dqkczdjjs/image/upload/v1760924064/img_5_sd6ueh.png",
+
   },
-  
 ];
 
 interface PaginationProps {
@@ -62,6 +64,8 @@ const Pagination: React.FC<PaginationProps> = ({
 
   for (let i = startPage; i <= endPage; i++) pagesToShow.push(i);
 
+ 
+
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center py-6 container mx-auto">
       <div className="text-sm font-medium text-gray-600 mb-4 sm:mb-0">
@@ -88,6 +92,8 @@ const Pagination: React.FC<PaginationProps> = ({
           >
             {String(page).padStart(2, "0")}
           </button>
+
+      
         ))}
 
         <button
@@ -119,10 +125,10 @@ const Rents = () => {
       style={{
         backgroundImage:
           "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760812885/savba_k7kol1.png')",
-        marginBottom: "620px", // lifts content up
+        marginBottom: "620px",
       }}
     >
-      <div className="container mx-auto  mb-10">
+      <div className="container mx-auto mb-10">
         <FilterSystem />
       </div>
 
@@ -134,13 +140,13 @@ const Rents = () => {
         onPageChange={setCurrentPage}
       />
 
-      <div className="space-y-8 container mx-auto ">
+      <div className="space-y-8 container mx-auto">
         {currentVillas.map((villa) => (
           <div
             key={villa.id}
             className="bg-white/90 rounded-xl shadow-md overflow-hidden backdrop-blur-md"
           >
-            <RentsCard villa={villa} />
+            <RentsCard property={villa} />
           </div>
         ))}
       </div>

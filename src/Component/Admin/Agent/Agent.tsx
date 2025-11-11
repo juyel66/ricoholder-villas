@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import AgentCard from "./AgentCard";
 import { CgProfile } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
@@ -50,7 +50,7 @@ const agentData = [
   },
 ];
 
-const App = () => {
+const Agent = () => {
   const [agents, setAgents] = useState(agentData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -62,17 +62,11 @@ const App = () => {
     permissions: "Download",
   });
 
-  // Drag state
-  const [dragging, setDragging] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [modalPos, setModalPos] = useState({ x: 0, y: 0 });
-  const modalRef = useRef();
-
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newAgent = {
       id: agents.length + 1,
@@ -101,35 +95,8 @@ const App = () => {
     setIsModalOpen(false);
   };
 
-  // Drag events
-  const handleMouseDown = (e) => {
-    const rect = modalRef.current.getBoundingClientRect();
-    setOffset({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-    setDragging(true);
-  };
-
-  const handleMouseMove = (e) => {
-    if (dragging) {
-      setModalPos({
-        x: e.clientX - offset.x,
-        y: e.clientY - offset.y,
-      });
-    }
-  };
-
-  const handleMouseUp = () => {
-    setDragging(false);
-  };
-
   return (
-    <div
-      className="p-6"
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-    >
+    <div className="p-6">
       <div className="flex justify-between items-center mt-5">
         <div>
           <h1 className="text-3xl font-semibold">Agent</h1>
@@ -144,13 +111,8 @@ const App = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 flex justify-center items-center z-50 pointer-events-none">
-          <div
-            ref={modalRef}
-            onMouseDown={handleMouseDown}
-            className="bg-white border-2 rounded-lg p-6 w-full max-w-md shadow-lg pointer-events-auto relative cursor-grab"
-            style={{ left: modalPos.x, top: modalPos.y, position: "absolute" }}
-          >
+        <div className="fixed inset-0 flex justify-center items-center z-50  bg-opacity-100">
+          <div className="bg-white border-2 rounded-lg p-6 w-full max-w-md shadow-lg relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
@@ -161,6 +123,7 @@ const App = () => {
             <p className="text-gray-500 mb-4 text-sm">
               Create a new account and set permissions.
             </p>
+
             <form onSubmit={handleSubmit} className="space-y-3">
               <label className="block text-gray-700 text-sm font-medium">
                 Name
@@ -174,6 +137,7 @@ const App = () => {
                 className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009689]"
                 required
               />
+
               <label className="block text-gray-700 text-sm font-medium">
                 Email
               </label>
@@ -186,6 +150,7 @@ const App = () => {
                 className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009689]"
                 required
               />
+
               <label className="block text-gray-700 text-sm font-medium">
                 Phone
               </label>
@@ -198,7 +163,6 @@ const App = () => {
                 className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009689]"
                 required
               />
-          
 
               <label className="block text-gray-700 text-sm font-medium">
                 Role
@@ -213,8 +177,7 @@ const App = () => {
                 <option>Manager</option>
               </select>
 
-
-                  <label className="block text-gray-700 text-sm font-medium">
+              <label className="block text-gray-700 text-sm font-medium">
                 Password
               </label>
               <input
@@ -227,8 +190,6 @@ const App = () => {
                 required
               />
 
-
-              
               <label className="block text-gray-700 text-sm font-medium">
                 Permissions
               </label>
@@ -242,6 +203,7 @@ const App = () => {
                 <option>View Only</option>
                 <option>Full Access</option>
               </select>
+
               <button
                 type="submit"
                 className="w-full bg-[#009689] text-white py-2 rounded hover:bg-[#007f73] transition-colors"
@@ -264,4 +226,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Agent;

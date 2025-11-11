@@ -1,16 +1,16 @@
 // File: RentsDetailsBanner.tsx
-import React, { useState } from 'react';
-import { 
-  FaFacebookF, 
-  FaWhatsapp, 
-  FaInstagram, 
-  FaTwitter, 
-  FaLinkedinIn, 
-  FaPinterestP, 
-  FaRedditAlien, 
-  FaTelegramPlane, 
-  FaEnvelope 
-} from "react-icons/fa";
+import React, { useMemo, useState } from 'react';
+import {
+  FaFacebookF,
+  FaWhatsapp,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedinIn,
+  FaPinterestP,
+  FaRedditAlien,
+  FaTelegramPlane,
+  FaEnvelope,
+} from 'react-icons/fa';
 
 // --------------------------------------------------------------------------------
 // 1. BookingModal Component
@@ -18,9 +18,10 @@ import {
 interface FormData {
   name: string;
   email: string;
-  checkInDate: string;
-  checkOutDate: string;
+  check_in_data: string;   // ✅ updated key
+  check_out_data: string;  // ✅ updated key
   guests: number;
+  phone: string;
 }
 
 interface BookingModalProps {
@@ -32,57 +33,65 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
-    checkInDate: '',
-    checkOutDate: '',
+    check_in_data: '',
+    check_out_data: '',
     guests: 1,
+    phone: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'number' ? parseInt(value) : value,
+      [name]: type === 'number' ? (value === '' ? 0 : parseInt(value, 10)) : value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Booking Details Submitted:', formData);
+
+    // Reset form
     setFormData({
       name: '',
       email: '',
-      checkInDate: '',
-      checkOutDate: '',
+      check_in_data: '',
+      check_out_data: '',
       guests: 1,
+      phone: '',
     });
+
     onClose();
   };
 
   if (!isOpen) return null;
 
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center  bg-opacity-30" 
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
       onClick={onClose}
     >
-      <div 
+      <div
         className="bg-white rounded-xl shadow-2xl w-full max-w-lg p-8 m-4 transform transition-all duration-300 scale-100"
-        onClick={(e) => e.stopPropagation()} 
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center border-b pb-3 mb-4">
           <h3 className="text-2xl font-semibold text-gray-800">Book Your Stay</h3>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className="text-gray-500 hover:text-gray-700 transition duration-150 text-3xl leading-none"
+            aria-label="Close"
           >
-            &times; 
+            &times;
           </button>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                Full Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -94,8 +103,11 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
                 placeholder="John Doe"
               />
             </div>
+
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email Address
+              </label>
               <input
                 type="email"
                 id="email"
@@ -107,34 +119,65 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
                 placeholder="john.doe@example.com"
               />
             </div>
+
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                Phone
+              </label>
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                placeholder="+1 246-227-4000"
+              />
+            </div>
+
             <div className="flex space-x-4 flex-wrap">
               <div className="flex-1 min-w-[120px]">
-                <label htmlFor="checkInDate" className="block text-sm font-medium text-gray-700 mb-1">Check-in Date</label>
+                <label
+                  htmlFor="check_in_data"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Check-in Date
+                </label>
                 <input
                   type="date"
-                  id="checkInDate"
-                  name="checkInDate"
-                  value={formData.checkInDate}
+                  id="check_in_data"
+                  name="check_in_data"
+                  value={formData.check_in_data}
                   onChange={handleChange}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
                 />
               </div>
+
               <div className="flex-1 min-w-[120px]">
-                <label htmlFor="checkOutDate" className="block text-sm font-medium text-gray-700 mb-1">Check-out Date</label>
+                <label
+                  htmlFor="check_out_data"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Check-out Date
+                </label>
                 <input
                   type="date"
-                  id="checkOutDate"
-                  name="checkOutDate"
-                  value={formData.checkOutDate}
+                  id="check_out_data"
+                  name="check_out_data"
+                  value={formData.check_out_data}
                   onChange={handleChange}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
                 />
               </div>
             </div>
+
             <div>
-              <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">Number of Guests</label>
+              <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">
+                Number of Guests
+              </label>
               <input
                 type="number"
                 id="guests"
@@ -142,11 +185,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
                 value={formData.guests}
                 onChange={handleChange}
                 required
-                min="1"
+                min={1}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
               />
             </div>
           </div>
+
           <div className="mt-6">
             <button
               type="submit"
@@ -169,44 +213,90 @@ interface ShareModalProps {
   onClose: () => void;
 }
 
-const socialPlatforms = [
-  { name: "Facebook", icon: <FaFacebookF size={24} />, link: "https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" },
-  { name: "WhatsApp", icon: <FaWhatsapp size={24} />, link: "https://wa.me/?text=YOUR_URL" },
-  { name: "Instagram", icon: <FaInstagram size={24} />, link: "https://www.instagram.com/" },
-  { name: "Twitter", icon: <FaTwitter size={24} />, link: "https://twitter.com/intent/tweet?url=YOUR_URL" },
-  { name: "LinkedIn", icon: <FaLinkedinIn size={24} />, link: "https://www.linkedin.com/shareArticle?url=YOUR_URL" },
-  { name: "Pinterest", icon: <FaPinterestP size={24} />, link: "https://pinterest.com/pin/create/button/?url=YOUR_URL" },
-  { name: "Reddit", icon: <FaRedditAlien size={24} />, link: "https://reddit.com/submit?url=YOUR_URL" },
-  { name: "Telegram", icon: <FaTelegramPlane size={24} />, link: "https://t.me/share/url?url=YOUR_URL" },
-  { name: "Email", icon: <FaEnvelope size={24} />, link: "mailto:?body=YOUR_URL" },
-];
-
 const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
+  const currentUrl = useMemo(() => {
+    if (typeof window !== 'undefined') return window.location.href;
+    return 'https://example.com';
+  }, []);
+
+  const encodedUrl = encodeURIComponent(currentUrl);
+
+  const socialPlatforms = [
+    {
+      name: 'Facebook',
+      icon: <FaFacebookF size={24} />,
+      link: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    },
+    {
+      name: 'WhatsApp',
+      icon: <FaWhatsapp size={24} />,
+      link: `https://wa.me/?text=${encodedUrl}`,
+    },
+    {
+      name: 'Instagram',
+      icon: <FaInstagram size={24} />,
+      link: 'https://www.instagram.com/',
+    },
+    {
+      name: 'Twitter',
+      icon: <FaTwitter size={24} />,
+      link: `https://twitter.com/intent/tweet?url=${encodedUrl}`,
+    },
+    {
+      name: 'LinkedIn',
+      icon: <FaLinkedinIn size={24} />,
+      link: `https://www.linkedin.com/shareArticle?url=${encodedUrl}`,
+    },
+    {
+      name: 'Pinterest',
+      icon: <FaPinterestP size={24} />,
+      link: `https://pinterest.com/pin/create/button/?url=${encodedUrl}`,
+    },
+    {
+      name: 'Reddit',
+      icon: <FaRedditAlien size={24} />,
+      link: `https://reddit.com/submit?url=${encodedUrl}`,
+    },
+    {
+      name: 'Telegram',
+      icon: <FaTelegramPlane size={24} />,
+      link: `https://t.me/share/url?url=${encodedUrl}`,
+    },
+    {
+      name: 'Email',
+      icon: <FaEnvelope size={24} />,
+      link: `mailto:?body=${encodedUrl}`,
+    },
+  ];
+
   if (!isOpen) return null;
+
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center  bg-opacity-30" 
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
       onClick={onClose}
     >
-      <div 
+      <div
         className="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 m-4 transform transition-all duration-300 scale-100 max-h-[80vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center border-b pb-3 mb-4">
           <h3 className="text-2xl font-semibold text-gray-800">Share This Listing</h3>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className="text-gray-500 hover:text-gray-700 transition duration-150 text-3xl leading-none"
+            aria-label="Close"
           >
             &times;
           </button>
         </div>
+
         <div className="flex flex-col space-y-3">
           {socialPlatforms.map((platform) => (
-            <a 
-              key={platform.name} 
-              href={platform.link} 
-              target="_blank" 
+            <a
+              key={platform.name}
+              href={platform.link}
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center p-3 rounded-lg hover:bg-gray-100 transition duration-150"
             >
@@ -239,10 +329,11 @@ const RentsDetailsBanner: React.FC = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760228150/Properties_Container_5_tlhzwn.png')`,
+          backgroundImage:
+            "url('https://res.cloudinary.com/dqkczdjjs/image/upload/v1760228150/Properties_Container_5_tlhzwn.png')",
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 bg-black opacity-30" />
       </div>
 
       {/* Content */}
@@ -250,14 +341,14 @@ const RentsDetailsBanner: React.FC = () => {
         {/* Title */}
         <div className="text-center lg:mt-60 md:mt-56 mt-56">
           <h1 className="text-2xl md:text-4xl sm:text-4xl xs:text-3xl font-semibold drop-shadow-lg mb-2 leading-snug">
-            Seaclusion – Barbados' Platinum Coast
+            Seaclusion – Barbados&apos; Platinum Coast
           </h1>
           <h2 className="text-2xl md:text-4xl sm:text-3xl xs:text-2xl font-light drop-shadow-lg">
             Masterpiece
           </h2>
           <div className="flex items-center justify-center mt-4 text-xl sm:text-lg xs:text-base drop-shadow-lg">
             <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 7 12 7s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 7 12 7s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
             </svg>
             Downtown, NY
           </div>
@@ -267,19 +358,39 @@ const RentsDetailsBanner: React.FC = () => {
         <div className="bg-white absolute bottom-0 md:bottom-auto md:top-[60%] sm:top-[55%] xs:top-[50%] z-20 text-gray-800 rounded-lg shadow-2xl p-6 w-full max-w-md mx-auto transform translate-y-1/2">
           <div className="flex justify-around items-center text-center border-b pb-4 mb-4 flex-wrap gap-4 sm:gap-2">
             <div className="flex flex-col items-center">
-              <span className="text-2xl sm:text-xl xs:text-lg"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830630/user-fill_gkf8xf.png" alt="" /></span>
+              <span className="text-2xl sm:text-xl xs:text-lg">
+                <img
+                  src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830630/user-fill_gkf8xf.png"
+                  alt=""
+                />
+              </span>
               <span className="text-sm mt-1">12 Guests</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-2xl sm:text-xl xs:text-lg"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png" alt="" /></span>
+              <span className="text-2xl sm:text-xl xs:text-lg">
+                <img
+                  src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_3_rwdb0z.png"
+                  alt=""
+                />
+              </span>
               <span className="text-sm mt-1">4 Beds</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-2xl sm:text-xl xs:text-lg"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_4_zsqcrj.png" alt="" /></span>
+              <span className="text-2xl sm:text-xl xs:text-lg">
+                <img
+                  src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827484/Frame_4_zsqcrj.png"
+                  alt=""
+                />
+              </span>
               <span className="text-sm mt-1">3 Baths</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-2xl sm:text-xl xs:text-lg"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png" alt="" /></span>
+              <span className="text-2xl sm:text-xl xs:text-lg">
+                <img
+                  src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760827483/Frame_5_cyajjb.png"
+                  alt=""
+                />
+              </span>
               <span className="text-sm mt-1">1 Pool</span>
             </div>
           </div>
@@ -291,19 +402,29 @@ const RentsDetailsBanner: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
-            <button 
-              onClick={handleOpenShareModal} 
+            <button
+              onClick={handleOpenShareModal}
               className="flex-1 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 shadow-md"
             >
-              <span className="mr-2 text-xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830720/Component_2_atygpn.png" alt="" /></span> 
+              <span className="mr-2 text-xl">
+                <img
+                  src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830720/Component_2_atygpn.png"
+                  alt=""
+                />
+              </span>
               Share
             </button>
-            
-            <button 
-              onClick={handleOpenModal} 
+
+            <button
+              onClick={handleOpenModal}
               className="flex-1 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 shadow-md"
             >
-              <span className="mr-2 text-xl"><img src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830719/Component_2_1_wqngcv.png" alt="" /></span> 
+              <span className="mr-2 text-xl">
+                <img
+                  src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830719/Component_2_1_wqngcv.png"
+                  alt=""
+                />
+              </span>
               Book Now
             </button>
           </div>

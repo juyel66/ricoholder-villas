@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const FilterSystem = () => {
   const [isSpinning, setIsSpinning] = useState(false);
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
 
   // Format number with commas (U.S. style)
-  const formatNumber = (value) => {
-    if (!value) return "";
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const formatNumber = (value: string): string => {
+    if (!value) return '';
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
   // Handle price change and formatting
-  const handlePriceChange = (e, setter) => {
-    const rawValue = e.target.value.replace(/,/g, "");
-    if (!isNaN(rawValue)) setter(formatNumber(rawValue));
+  const handlePriceChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setter: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    const rawValue = e.target.value.replace(/,/g, '');
+    if (!isNaN(Number(rawValue))) setter(formatNumber(rawValue));
   };
 
   const handleReset = () => {
     setIsSpinning(true);
     setTimeout(() => {
       setIsSpinning(false);
-      setMinPrice("");
-      setMaxPrice("");
+      setMinPrice('');
+      setMaxPrice('');
     }, 1000);
   };
 
@@ -30,10 +33,12 @@ const FilterSystem = () => {
     <div className="pt-6 px-4">
       <div className="bg-white container p-8 rounded-2xl shadow-xl border border-gray-200 mx-auto mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-
           {/* Check-In */}
           <div>
-            <label htmlFor="check-in" className="block text-sm font-semibold text-gray-800 mb-2">
+            <label
+              htmlFor="check-in"
+              className="block text-sm font-semibold text-gray-800 mb-2"
+            >
               Check-In
             </label>
             <div className="relative">
@@ -45,9 +50,18 @@ const FilterSystem = () => {
                 className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm"
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  className="h-5 w-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
               </div>
             </div>
@@ -55,7 +69,10 @@ const FilterSystem = () => {
 
           {/* Check-Out */}
           <div>
-            <label htmlFor="check-out" className="block text-sm font-semibold text-gray-800 mb-2">
+            <label
+              htmlFor="check-out"
+              className="block text-sm font-semibold text-gray-800 mb-2"
+            >
               Check-Out
             </label>
             <div className="relative">
@@ -67,9 +84,18 @@ const FilterSystem = () => {
                 className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm"
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  className="h-5 w-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
               </div>
             </div>
@@ -77,7 +103,10 @@ const FilterSystem = () => {
 
           {/* Villa Name */}
           <div>
-            <label htmlFor="villa-name" className="block text-sm font-semibold text-gray-800 mb-2">
+            <label
+              htmlFor="villa-name"
+              className="block text-sm font-semibold text-gray-800 mb-2"
+            >
               Villa Name
             </label>
             <input
@@ -91,7 +120,10 @@ const FilterSystem = () => {
 
           {/* Min Beds */}
           <div>
-            <label htmlFor="min-beds" className="block text-sm font-semibold text-gray-800 mb-2">
+            <label
+              htmlFor="min-beds"
+              className="block text-sm font-semibold text-gray-800 mb-2"
+            >
               Min Beds
             </label>
             <select
@@ -108,7 +140,10 @@ const FilterSystem = () => {
 
           {/* Min Baths */}
           <div>
-            <label htmlFor="min-baths" className="block text-sm font-semibold text-gray-800 mb-2">
+            <label
+              htmlFor="min-baths"
+              className="block text-sm font-semibold text-gray-800 mb-2"
+            >
               Min Baths
             </label>
             <select
@@ -125,7 +160,10 @@ const FilterSystem = () => {
 
           {/* Guests */}
           <div>
-            <label htmlFor="guests" className="block text-sm font-semibold text-gray-800 mb-2">
+            <label
+              htmlFor="guests"
+              className="block text-sm font-semibold text-gray-800 mb-2"
+            >
               Guests
             </label>
             <select
@@ -143,7 +181,10 @@ const FilterSystem = () => {
 
           {/* Min Price */}
           <div>
-            <label htmlFor="min-price" className="block text-sm font-semibold text-gray-800 mb-2">
+            <label
+              htmlFor="min-price"
+              className="block text-sm font-semibold text-gray-800 mb-2"
+            >
               Min Price (USD)
             </label>
             <input
@@ -159,7 +200,10 @@ const FilterSystem = () => {
 
           {/* Max Price */}
           <div>
-            <label htmlFor="max-price" className="block text-sm font-semibold text-gray-800 mb-2">
+            <label
+              htmlFor="max-price"
+              className="block text-sm font-semibold text-gray-800 mb-2"
+            >
               Max Price (USD)
             </label>
             <input
@@ -179,9 +223,18 @@ const FilterSystem = () => {
               type="button"
               className="flex items-center justify-center w-full px-4 py-2 rounded-lg shadow-sm text-sm font-semibold text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200 h-[42px]"
             >
-              <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                className="h-5 w-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
               Search
             </button>
@@ -195,7 +248,7 @@ const FilterSystem = () => {
               className="flex items-center justify-center w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-all duration-200 h-[42px]"
             >
               <img
-                className={`mr-2 h-5 w-5 ${isSpinning ? "animate-spin" : ""}`}
+                className={`mr-2 h-5 w-5 ${isSpinning ? 'animate-spin' : ''}`}
                 src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760830343/Vector_fpsm2o.png"
                 alt="reset-icon"
               />

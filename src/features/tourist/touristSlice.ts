@@ -23,11 +23,7 @@ export const deleteTourist = createAsyncThunk(
   }
 );
 
-interface TouristState {
-  tourists: any[];
-  loading: boolean;
-  error: string | null;
-}
+import type { TouristState } from "../../../types/tourist.types";
 
 const initialState: TouristState = {
   tourists: [],
@@ -55,7 +51,6 @@ const touristSlice = createSlice({
         state.loading = false;
         state.error = action.error?.message || "Failed to fetch data";
       });
-      
 
     // ✅ DELETE cases
     builder

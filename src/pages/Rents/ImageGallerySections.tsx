@@ -13,44 +13,14 @@ interface SimpleListItemProps {
   name: string;
 }
 
-interface PropertyDataType {
-  media_images: { id: number; url: string }[];
-  amenities: {
-    signature_distinctions: string[];
-    interior_amenities: string[];
-    outdoor_amenities: string[];
-  };
-  location: {
-    lat: number;
-    lng: number;
-    address: string;
-  };
-  rules_and_etiquette: string[];
-  check_in_out_time: {
-    check_in: string;
-    check_out: string;
-    description?: string;
-  };
-  staff: { name: string; details: string }[];
-  bedrooms_images: { image_url: string }[];
-  concierge_service: string[];
-  security_deposit: string;
-  description: string;
-  main_image_url: string;
-  booking_rate_start: {
-    id: number;
-    period: string;
-    min_stay: string;
-    rate: number;
-  }[];
-}
+import type { PropertyDataType } from "../../../types/property.types";
 
 const AmenityItem: React.FC<SimpleListItemProps> = ({ name }) => (
   <li className="flex items-start text-gray-700 text-sm mb-2">
     <img
       src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png"
       alt="icon"
-      className="w-4 h-4 mr-2 mt-[2px]"
+      className="w-4 h-4 mr-2 mt-0.5"
     />
     {name}
   </li>
@@ -64,7 +34,7 @@ const StaffItem: React.FC<{ name: string; details: string }> = ({
     <img
       src="https://res.cloudinary.com/dqkczdjjs/image/upload/v1760828543/hd_svg_logo_2_hw4vsa.png"
       alt="icon"
-      className="w-4 h-4 mr-2 mt-[2px]"
+      className="w-4 h-4 mr-2 mt-0.5"
     />
     <div className="flex flex-col text-gray-700 text-sm">
       <span className="font-semibold text-gray-800">{name}</span>
@@ -201,7 +171,7 @@ const ImageGallerySection: React.FC = () => {
             {(showAll ? media_images : media_images.slice(0, 6)).map((img) => (
               <div
                 key={img.id}
-                className="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden shadow-sm cursor-pointer transition-transform hover:scale-105"
+                className="aspect-4/3 bg-gray-200 rounded-lg overflow-hidden shadow-sm cursor-pointer transition-transform hover:scale-105"
                 onClick={() => setSelectedImage(img.url)}
               >
                 <img
@@ -282,7 +252,7 @@ const ImageGallerySection: React.FC = () => {
               Rules & Etiquette
             </h3>
             <ul className="list-none p-0">
-              {rules_and_etiquette.map((item, index) => (
+              {rules_and_etiquette.map((item: string, index: number) => (
                 <AmenityItem key={index} name={item} />
               ))}
             </ul>
@@ -309,13 +279,15 @@ const ImageGallerySection: React.FC = () => {
               </button>
             </h3>
             <ul className="list-none p-0">
-              {staff.map((item, index) => (
-                <StaffItem
-                  key={index}
-                  name={item.name}
-                  details={item.details}
-                />
-              ))}
+              {staff.map(
+                (item: { name: string; details: string }, index: number) => (
+                  <StaffItem
+                    key={index}
+                    name={item.name}
+                    details={item.details}
+                  />
+                )
+              )}
             </ul>
           </div>
 
@@ -328,7 +300,7 @@ const ImageGallerySection: React.FC = () => {
               Concierge Service
             </h3>
             <ul className="list-none p-0">
-              {concierge_service.map((item, index) => (
+              {concierge_service.map((item: string, index: number) => (
                 <AmenityItem key={index} name={item} />
               ))}
             </ul>
@@ -375,7 +347,7 @@ const ImageGallerySection: React.FC = () => {
       {/* Image Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-opacity-80 flex justify-center items-center z-[9999]"
+          className="fixed inset-0 bg-opacity-80 flex justify-center items-center z-9999"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }}
           onClick={() => setSelectedImage(null)}
         >
