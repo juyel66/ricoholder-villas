@@ -12,6 +12,7 @@ const RentsDetails = () => {
             <RentsDetailsBanner />
             <SpotlightDetails />
             <ImageGallerySections />
+        
             
             
             
