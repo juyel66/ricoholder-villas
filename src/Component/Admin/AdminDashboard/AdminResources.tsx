@@ -68,14 +68,27 @@ const categories = ['All', 'Branding', 'Templates', 'Legal Forms', 'Training', '
 const ResourceCard = ({ resource }) => {
   return (
     <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-5 flex flex-col hover:shadow-xl transition duration-300">
-      <div className="flex justify-between items-start mb-4">
-        <div className="p-3 bg-blue-50 rounded-lg border border-blue-100">
-          <FileText className="w-6 h-6 text-blue-600" />
+      {/* If an image exists, show first image as main thumbnail (constrained size). */}
+      {resource.files && resource.files.length > 0 && resource.files.some(f => f.type === 'image') ? (
+        <div className="mb-4 rounded-lg overflow-hidden">
+          {/* show first image-type file */}
+          {(() => {
+            const img = resource.files.find(f => f.type === 'image');
+            return img ? (
+              <img src={img.url} alt={resource.title} className="w-full h-40 min-h-[8rem] max-h-48 object-cover" />
+            ) : null;
+          })()}
         </div>
-        <span className="text-xs font-medium py-1 px-3 rounded-full bg-gray-100 text-gray-700">
-          {resource.fileType}
-        </span>
-      </div>
+      ) : (
+        <div className="flex justify-between items-start mb-4">
+          <div className="p-3 bg-blue-50 rounded-lg border border-blue-100">
+            <FileText className="w-6 h-6 text-blue-600" />
+          </div>
+          <span className="text-xs font-medium py-1 px-3 rounded-full bg-gray-100 text-gray-700">
+            {resource.fileType}
+          </span>
+        </div>
+      )}
 
       <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">{resource.title}</h3>
       <p className="text-sm text-gray-600 flex-grow mb-4">{resource.description}</p>
@@ -85,13 +98,44 @@ const ResourceCard = ({ resource }) => {
         <span className="text-sm font-medium text-gray-800">{resource.category}</span>
       </div>
 
+      {/* Files gallery with download buttons (small) */}
+      {resource.files && resource.files.length > 0 && (
+        <div className="mb-3 grid grid-cols-3 gap-2">
+          {resource.files.map((f, i) => (
+            <div key={i} className="relative rounded-md overflow-hidden border">
+              {f.type === 'image' ? (
+                <img src={f.url} alt={f.name} className="w-full h-24 min-h-[6rem] max-h-36 object-cover" />
+              ) : (
+                <div className="w-full h-24 min-h-[6rem] max-h-36 flex items-center justify-center bg-gray-50 p-3">
+                  <div className="text-center">
+                    <FileText className="w-6 h-6 text-gray-600 mx-auto mb-1" />
+                    <div className="text-xs text-gray-700 truncate max-w-[8rem]">{f.name}</div>
+                    <div className="text-xs text-gray-500">PDF</div>
+                  </div>
+                </div>
+              )}
+
+              <a
+                href={f.url}
+                download={f.name || resource.title}
+                className="absolute bottom-2 right-2 inline-flex items-center gap-1 bg-white/90 px-2 py-1 rounded-md text-xs shadow"
+                title={`Download ${f.name}`}
+              >
+                <Download className="w-3 h-3" />
+                <span>Download</span>
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+
       <a
-        href={resource.downloadUrl || '#'}
+        href={resource.files && resource.files.length === 1 ? resource.files[0].url : resource.downloadUrl || '#'}
         target="_blank"
         rel="noopener noreferrer"
         className="w-full flex items-center justify-center px-4 py-3 text-sm font-semibold text-white"
         style={{ backgroundColor: '#00A597' }}
-        onClick={() => console.log(`Downloading ${resource.title}`)}
+        onClick={() => console.log(`Download clicked for ${resource.title}`)}
       >
         <Download className="w-4 h-4 mr-2" />
         Download Files
@@ -110,7 +154,9 @@ export default function AdminResources() {
   const [newTitle, setNewTitle] = useState('');
   const [newCategory, setNewCategory] = useState('Templates');
   const [newDescription, setNewDescription] = useState('');
-  const [newFile, setNewFile] = useState(null);
+  // changed: support multiple files, each with preview URL and type
+  // shape: [{ file: File, preview: string, type: 'image'|'pdf'|'other' }]
+  const [newFiles, setNewFiles] = useState([]);
   const fileInputRef = useRef(null);
 
   // filtering
@@ -130,20 +176,63 @@ export default function AdminResources() {
     setNewTitle('');
     setNewCategory('Templates');
     setNewDescription('');
-    setNewFile(null);
+    setNewFiles([]);
     if (fileInputRef.current) fileInputRef.current.value = null;
     // prevent background scroll
     document.body.style.overflow = 'hidden';
   }
 
+  // closeModal revokes previews that belong to modal-only files
   function closeModal() {
+    newFiles.forEach((nf) => {
+      try {
+        if (nf.preview) URL.revokeObjectURL(nf.preview);
+      } catch (err) {
+        /* ignore */
+      }
+    });
+    setNewFiles([]);
     setIsModalOpen(false);
     document.body.style.overflow = '';
   }
 
+  // handle multiple file selection (images + pdfs)
   function handleFileChange(e) {
-    const f = e.target.files && e.target.files[0];
-    setNewFile(f || null);
+    const files = e.target.files;
+    if (!files) return;
+    const fileArr = Array.from(files).filter((f) => f && f.size > 0);
+
+    const withPreviews = fileArr.map((f) => {
+      const lowered = (f.type || '').toLowerCase();
+      const isImage = lowered.startsWith('image/');
+      const isPdf = lowered === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf');
+      return {
+        file: f,
+        preview: URL.createObjectURL(f),
+        type: isImage ? 'image' : isPdf ? 'pdf' : 'other',
+        name: f.name,
+      };
+    });
+
+    setNewFiles((prev) => [...prev, ...withPreviews]);
+  }
+
+  // remove a selected file before submitting - revoke its preview
+  function removeSelectedFile(index) {
+    setNewFiles((prev) => {
+      const toRemove = prev[index];
+      if (toRemove && toRemove.preview) {
+        try {
+          URL.revokeObjectURL(toRemove.preview);
+        } catch (err) {
+          /* ignore */
+        }
+      }
+      const updated = prev.filter((_, i) => i !== index);
+      // clear file input to allow re-uploading same files if needed
+      if (fileInputRef.current) fileInputRef.current.value = null;
+      return updated;
+    });
   }
 
   function handleAddResource(e) {
@@ -155,18 +244,32 @@ export default function AdminResources() {
     }
 
     const newId = Math.max(0, ...resources.map((r) => r.id)) + 1;
+
+    // Use the preview URLs as resource file URLs (we keep them; DO NOT revoke them here because they are used by ResourceCard)
+    const filesMeta = newFiles.map((nf) => ({
+      name: nf.name || nf.file.name,
+      url: nf.preview,
+      type: nf.type,
+    }));
+
     const newResource = {
       id: newId,
-      fileType: newFile ? newFile.type.split('/')[0] || 'file' : 'document',
+      fileType: newFiles.length > 0 ? newFiles[0].file.type.split('/')[0] || 'file' : 'document',
       title: newTitle,
       description: newDescription || 'No description provided.',
       category: newCategory,
-      // In a real app you'd upload the file to server and get URL. For now we store a placeholder.
-      downloadUrl: newFile ? URL.createObjectURL(newFile) : '#',
+      // downloadUrl: if one file, point directly; otherwise keep placeholder
+      downloadUrl: filesMeta.length === 1 ? filesMeta[0].url : '#',
+      files: filesMeta,
     };
 
     setResources((prev) => [newResource, ...prev]);
-    closeModal();
+
+    // After adding resource, clear modal state but DO NOT revoke the preview URLs because those are now referenced by resource.files.
+    setNewFiles([]);
+    if (fileInputRef.current) fileInputRef.current.value = null;
+    setIsModalOpen(false);
+    document.body.style.overflow = '';
   }
 
   return (
@@ -176,7 +279,7 @@ export default function AdminResources() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 mb-1">Resources</h1>
-            <p className="text-gray-600 text-sm">Access marketing materials, templates, and training resources</p>
+            <p className="text-gray-600 text-sm">Access marketing materials, templates, images and PDFs</p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -253,11 +356,11 @@ export default function AdminResources() {
           <div className="fixed inset-0 bg-black/40" onClick={closeModal}></div>
 
           {/* modal content */}
-          <div className="relative max-w-2xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden z-50">
+          <div className="relative max-w-3xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden z-50">
             <div className="flex items-center justify-between p-6 border-b">
               <div>
                 <h2 className="text-lg font-semibold">Add Resource</h2>
-                <p className="text-sm text-gray-500">Create a new Add Resources</p>
+                <p className="text-sm text-gray-500">Upload images and/or PDFs (you can download them later)</p>
               </div>
               <button
                 onClick={closeModal}
@@ -309,29 +412,62 @@ export default function AdminResources() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Attachment</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Attachments (images & PDFs)</label>
 
                 <label
                   htmlFor="file-upload"
                   className="relative cursor-pointer w-full flex items-center gap-3 px-4 py-3 rounded-md border border-gray-200 bg-white hover:bg-gray-50"
                 >
                   <UploadCloud className="w-5 h-5 text-gray-600" />
-                  <span className="text-sm text-gray-600">Upload File</span>
+                  <span className="text-sm text-gray-600">Upload images and PDFs (multiple)</span>
                   <input
                     id="file-upload"
                     ref={fileInputRef}
                     onChange={handleFileChange}
                     type="file"
+                    accept="image/*,application/pdf"
+                    multiple
                     className="sr-only"
                   />
-
-                  
                 </label>
 
-                {/* file preview */}
-                {newFile && (
-                  <div className="mt-2 text-sm text-gray-700">
-                    Selected: <span className="font-medium">{newFile.name}</span>
+                {/* multiple file previews */}
+                {newFiles.length > 0 && (
+                  <div className="mt-3 grid grid-cols-3 gap-2">
+                    {newFiles.map((nf, idx) => {
+                      return (
+                        <div key={idx} className="relative rounded-md overflow-hidden border">
+                          {nf.type === 'image' ? (
+                            <img src={nf.preview} alt={nf.name} className="w-full h-32 min-h-[6rem] max-h-36 object-cover" />
+                          ) : (
+                            <div className="w-full h-32 min-h-[6rem] max-h-36 flex flex-col items-center justify-center bg-gray-50 p-3">
+                              <FileText className="w-6 h-6 text-gray-600 mb-2" />
+                              <div className="text-xs text-gray-700 truncate max-w-[10rem]">{nf.name}</div>
+                              <div className="text-xs text-gray-500">PDF</div>
+                            </div>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={() => removeSelectedFile(idx)}
+                            className="absolute top-1 right-1 bg-black/50 text-white rounded-full p-1"
+                            title="Remove"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+
+                          <a
+                            href={nf.preview}
+                            download={nf.name}
+                            className="absolute bottom-1 left-1 inline-flex items-center gap-1 bg-white/90 px-2 py-1 rounded-md text-xs shadow"
+                            title={`Download ${nf.name}`}
+                          >
+                            <Download className="w-3 h-3" />
+                            <span>DL</span>
+                          </a>
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -340,13 +476,12 @@ export default function AdminResources() {
               <div className="flex items-center gap-3 pt-2">
                 <button
                   type="submit"
-                  className="flex items-center gap-2 px-4 justify-center py-3 rounded-md text-white font-medium w-full"
+                  className="flex cursor-pointer items-center gap-2 px-4 justify-center py-3 rounded-md text-white font-medium w-full"
                   style={{ backgroundColor: '#00A597' }}
                 >
                   <Plus className="w-4 h-4" />
                   Add Resources
                 </button>
-
               </div>
             </form>
           </div>
