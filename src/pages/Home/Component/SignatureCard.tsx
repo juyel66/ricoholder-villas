@@ -33,6 +33,9 @@ const SignatureCard = ({ villa }) => {
     
     const data = villa || defaultVilla;
 
+    // ---------- helper for singular/plural ----------
+    const pluralize = (count, singular) => `${count} ${count === 1 ? singular : singular + 's'}`;
+
     return (
         <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden transform transition duration-300 hover:scale-[1.02] hover:shadow-2xl w-full">
 
@@ -73,9 +76,9 @@ const SignatureCard = ({ villa }) => {
 
                 {/* Specs */}
                 <div className="flex flex-wrap md:flex-nowrap gap-4 border-y border-gray-100 py-3 mb-4 text-sm md:text-base">
-                    <div className="flex items-center"><BedIcon /> {data.beds} Beds</div>
-                    <div className="flex items-center"><BathIcon /> {data.baths} Baths</div>
-                    <div className="flex items-center"><PoolIcon /> {data.pool} Pools</div>
+                    <div className="flex items-center"><BedIcon /> {pluralize(data.beds, 'Bed')}</div>
+                    <div className="flex items-center"><BathIcon /> {pluralize(data.baths, 'Bath')}</div>
+                    <div className="flex items-center"><PoolIcon /> {pluralize(data.pool, 'Pool')}</div>
                 </div>
 
                 {/* Amenities */}

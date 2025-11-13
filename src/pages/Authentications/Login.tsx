@@ -1,7 +1,12 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch } from "@/store";
+import { login, selectAuth } from "@/features/Auth/authSlice";
+import toast from "react-hot-toast";
 
-// Adjusted Logo component (no changes needed here)
+
+// Logo Component (same as before)
 const EastmondVillasLogo = () => (
   <div className="flex items-center justify-center space-x-4 p-6 bg-white rounded-t-xl">
     <img
@@ -12,33 +17,64 @@ const EastmondVillasLogo = () => (
   </div>
 );
 
-const Login = () => {
-  // Initialize state for email and password
-  const [email, setEmail] = useState("user@example.com");
-  const [password, setPassword] = useState("••••••••");
+const Login: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch | any>();
+  const navigate = useNavigate();
+  const auth = useSelector(selectAuth);
 
-  // Define the teal color
+  // form state
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
   const primaryColor = "bg-[#00A597] hover:bg-[#008f82]";
 
-  // **UPDATED:** handleSubmit now creates and logs a JSON object
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // --- handle submit ---
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrorMsg(null);
 
-    // Create the data object (JSON-like structure)
-    const loginPayload = {
-      user_email: email,
-      user_password: password,
-      // You could add other data here, like client_id or language
+    if (!email.trim() || !password.trim()) {
+      setErrorMsg("Please enter both email and password.");
+      return;
+    }
+
+    // Create API payload to match backend spec
+    const payload = {
+      email: email.trim(),
+      password: password.trim(),
     };
 
-    // Log the data object to the console
+    try {
+      // login started (triggers login_started in slice)
+      const resultAction = await dispatch(login(payload));
 
-    console.log(loginPayload); // This logs the structured object
+      if (login.fulfilled.match(resultAction)) {
+        // login succeeded
+        console.log("Login success:", resultAction.payload.user);
+        toast.success("Login successful!", {
+          position: "top-center",
+        });
+        navigate("/"); 
+        
+      } else {
+        // login failed (show API error)
+        console.error("Login failed:", resultAction.payload || resultAction.error);
+        const errorData = resultAction.payload;
 
-    // In a real application, you would typically send loginPayload to an API
+        if (errorData?.non_field_errors) {
+          setErrorMsg(errorData.non_field_errors[0]);
+        } else if (errorData?.detail) {
+          setErrorMsg(errorData.detail);
+        } else {
+          setErrorMsg("Login failed. Please check your credentials.");
+        }
+      }
+    } catch (err: any) {
+      console.error("Unexpected login error:", err);
+      setErrorMsg("Unexpected error. Please try again.");
+    }
   };
-
-  // Function to handle signup navigation (placeholder for React Router or similar)
 
   return (
     <div
@@ -49,22 +85,21 @@ const Login = () => {
       }}
     >
       <div className="w-full max-w-md">
-        {/* Header/Logo Section */}
+        {/* Logo */}
         <EastmondVillasLogo />
 
-        {/* Login Form Container */}
         <div className="bg-white p-8 rounded-b-xl shadow-lg">
           <div className="mb-6 p-0 rounded">
             <h2 className="text-xl font-semibold text-gray-800 mb-1">
               User Login
             </h2>
             <p className="text-sm text-gray-500">
-              Access the admin dashboard to manage properties and agents
+              Access your account to manage properties and agents
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Email Field */}
+            {/* Email */}
             <div>
               <label
                 htmlFor="email"
@@ -73,18 +108,16 @@ const Login = () => {
                 Email
               </label>
               <input
-                type="email"
                 id="email"
+                type="email"
                 placeholder="user@example.com"
                 value={email}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value)
-                }
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 placeholder-gray-400 text-gray-700 text-sm"
               />
             </div>
 
-            {/* Password Field */}
+            {/* Password */}
             <div>
               <label
                 htmlFor="password"
@@ -93,41 +126,49 @@ const Login = () => {
                 Password
               </label>
               <input
-                type="password"
                 id="password"
+                type="password"
+                placeholder="••••••••"
                 value={password}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPassword(e.target.value)
-                }
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-gray-700 text-sm"
               />
             </div>
 
-            {/* Login Button */}
+            {/* Error */}
+            {errorMsg && (
+              <p className="text-sm text-red-600 font-medium">{errorMsg}</p>
+            )}
+            {auth.error && !errorMsg && typeof auth.error === "string" && (
+              <p className="text-sm text-red-600 font-medium">{auth.error}</p>
+            )}
+
+            {/* Submit */}
             <button
               type="submit"
               className={`w-full text-white font-medium py-3 rounded-md transition duration-150 ${primaryColor}`}
+              disabled={auth.loading}
             >
-              Login
+              {auth.loading ? "Logging in..." : "Login"}
             </button>
           </form>
 
-          {/* New Sign Up Link Section */}
+          {/* Signup link */}
           <div className="mt-6 text-center text-sm pt-4 border-t border-gray-200">
             <p className="text-gray-600">
-              Don't have an account?{" "}
+              Don’t have an account?{" "}
               <Link
                 to="/register"
-                className={`font-semibold text-[#00A597] hover:text-[#008f82] transition duration-150`}
+                className="font-semibold text-[#00A597] hover:text-[#008f82] transition duration-150"
               >
                 Sign up
               </Link>
             </p>
           </div>
 
-          {/* Demo Note */}
+          {/* Note */}
           <p className="mt-4 text-center text-xs text-gray-500">
-            Demo: Use any email/password combination
+            Login data will be sent securely to your backend API.
           </p>
         </div>
       </div>

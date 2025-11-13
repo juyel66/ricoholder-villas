@@ -9,17 +9,17 @@ import GuestSections from "./Component/GuestSections";
 import EstateExperience from "./Component/EstateExperience";
 import Contact from "../Contact/Contact";
 import Affiliates from "./Component/Affiliates";
-import TouristList from "@/features/tourist/TouristList";
+// import TouristList from "@/features/tourist/TouristList";
 //hello
 
 const Home = () => {
     return (
         <div>
-
+{/* 
             <div>
                 <TouristList />
             </div>
-            
+             */}
 
 
      <div 

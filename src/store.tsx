@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import touristReducer from "../src/features/tourist/touristSlice";
+import authReducer from "../src/features/Auth/authSlice"
 
 export const store = configureStore({
   reducer: {
     tourist: touristReducer,
+    auth: authReducer,
+
   },
 });
 

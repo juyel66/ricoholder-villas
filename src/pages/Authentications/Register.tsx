@@ -1,7 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+// src/pages/Register.tsx
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { register, selectAuth } from "@/features/Auth/authSlice";
+import toast from "react-hot-toast";
 
-// Reusing the Logo component structure from the Login page
+// Reusable logo component
 const EastmondVillasLogo = () => (
   <div className="flex items-center justify-center space-x-4 p-6 bg-white rounded-t-xl">
     <img
@@ -12,33 +16,85 @@ const EastmondVillasLogo = () => (
   </div>
 );
 
-const Register = () => {
-  // Initialize state for all three required fields
+const Register: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch | any>();
+  const authState = useSelector(selectAuth);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password1, setPassword1] = useState("");
+  const [password2, setPassword2] = useState("");
 
-  // Define the teal color
+  const [localError, setLocalError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
   const primaryColor = "bg-[#00A597] hover:bg-[#008f82]";
 
-  // Function to handle registration submission
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLocalError(null);
 
-    // Create the data object (JSON-like structure) from state
-    const registerPayload = {
-      user_name: name,
-      user_email: email,
-      user_password: password,
-      role: "customer",
+    // Client-side validation + toast
+    if (!name.trim() || !email.trim() || !password1 || !password2) {
+      setLocalError("Please fill all required fields.");
+      toast.error("Please fill all required fields.");
+      return;
+    }
+    if (password1 !== password2) {
+      setLocalError("Passwords do not match.");
+      toast.error("Passwords do not match.");
+      return;
+    }
+
+    const payload = {
+      email: email.trim(),
+      name: name.trim(),
+      phone: phone.trim(),
+      password1: password1,
+      password2: password2,
     };
 
-    // Log the structured JSON data to the console as requested
+    // Optionally show a loading toast (uncomment if you want)
+    // const loadingToastId = toast.loading("Registering...");
 
-    console.log(registerPayload);
+    const resultAction = await dispatch(register(payload));
+
+    // dismiss loading toast if used
+    // toast.dismiss(loadingToastId);
+
+    if (register.fulfilled.match(resultAction)) {
+      console.log("Registration successful:", resultAction.payload);
+
+      toast.success("Registration successful!", {
+        position: "top-center",
+      });
+
+      navigate("/login");
+    } else {
+      console.error("Registration failed:", resultAction.payload || resultAction.error);
+
+      // Derive a user-friendly message from the payload or error
+      let errorMessage = "Registration failed";
+      if (resultAction.payload && typeof resultAction.payload === "object") {
+        const payloadErr = resultAction.payload;
+        const firstKey = Object.keys(payloadErr)[0];
+        const firstMsg = payloadErr[firstKey];
+        errorMessage =
+          typeof firstMsg === "string"
+            ? firstMsg
+            : Array.isArray(firstMsg)
+            ? String(firstMsg[0])
+            : "Registration failed";
+      } else {
+        errorMessage = resultAction.error?.message || "Registration failed";
+      }
+
+      setLocalError(errorMessage);
+      toast.error(errorMessage, 
+        { position: "top-center" });
+    }
   };
-
-  // Function to handle login navigation (placeholder for React Router or similar)
 
   return (
     <div
@@ -49,107 +105,111 @@ const Register = () => {
       }}
     >
       <div className="w-full max-w-md">
-        {/* Header/Logo Section */}
         <EastmondVillasLogo />
 
-        {/* Register Form Container */}
         <div className="bg-white p-8 rounded-b-xl shadow-lg">
           <div className="mb-6 p-0 rounded">
-            <h2 className="text-xl font-semibold text-gray-800 mb-1">
-              User Registration
-            </h2>
-            <p className="text-sm text-gray-500">
-              Create your new account to access the dashboard
-            </p>
+            <h2 className="text-xl font-semibold text-gray-800 mb-1">User</h2>
+            <p className="text-sm text-gray-500">Create your new account to access the dashboard</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name Field */}
+          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                 Full Name
               </label>
               <input
-                type="text"
                 id="name"
+                type="text"
                 placeholder="John Doe"
                 value={name}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setName(e.target.value)
-                }
+                onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 placeholder-gray-400 text-gray-700 text-sm"
+                required
               />
             </div>
 
-            {/* Email Field */}
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email
               </label>
               <input
-                type="email"
                 id="email"
+                type="email"
                 placeholder="user@example.com"
                 value={email}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value)
-                }
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 placeholder-gray-400 text-gray-700 text-sm"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                Phone
+              </label>
+              <input
+                id="phone"
+                type="tel"
+                placeholder="+1 246 1234567"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 placeholder-gray-400 text-gray-700 text-sm"
               />
             </div>
 
-            {/* Password Field */}
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+              <label htmlFor="password1" className="block text-sm font-medium text-gray-700 mb-1">
                 Password
               </label>
               <input
+                id="password1"
                 type="password"
-                id="password"
                 placeholder="••••••••"
-                value={password}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPassword(e.target.value)
-                }
+                value={password1}
+                onChange={(e) => setPassword1(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-gray-700 text-sm"
+                required
               />
             </div>
 
-            {/* Register Button */}
+            <div>
+              <label htmlFor="password2" className="block text-sm font-medium text-gray-700 mb-1">
+                Confirm Password
+              </label>
+              <input
+                id="password2"
+                type="password"
+                placeholder="••••••••"
+                value={password2}
+                onChange={(e) => setPassword2(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-gray-700 text-sm"
+                required
+              />
+            </div>
+
+            {localError && <p className="text-sm text-red-600">{localError}</p>}
+            {authState.error && typeof authState.error === "string" && (
+              <p className="text-sm text-red-600">{authState.error}</p>
+            )}
+
             <button
               type="submit"
               className={`w-full text-white font-medium py-3 rounded-md transition duration-150 ${primaryColor}`}
+              disabled={authState.loading}
             >
-              Register Account
+              {authState.loading ? "Registering..." : "Register Account"}
             </button>
           </form>
 
-          {/* Login Link Section */}
           <div className="mt-6 text-center text-sm pt-4 border-t border-gray-200">
             <p className="text-gray-600">
               Already have an account?{" "}
-              <Link
-                to="/login" // Placeholder route to return to the login page
-                className={`font-semibold text-[#00A597] hover:text-[#008f82] transition duration-150`}
-              >
+              <Link to="/login" className="font-semibold text-[#00A597] hover:text-[#008f82] transition duration-150">
                 Login here
               </Link>
             </p>
           </div>
-
-          {/* Demo Note */}
-          <p className="mt-4 text-center text-xs text-gray-500">
-            Demo: Data will be logged to the console on registration
-          </p>
         </div>
       </div>
     </div>

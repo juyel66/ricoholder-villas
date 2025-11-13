@@ -1,12 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+export const API_BASE = import.meta.env.VITE_API_BASE_TOURIST
+
+
+
 // ✅ GET: Fetch tourists
 export const fetchTourists = createAsyncThunk(
   "tourist/fetchTourists",
   async () => {
     const response = await axios.get(
-      "https://southeast-asia-server-three.vercel.app/addTourist"
+      `${API_BASE}`
     );
     return response.data;
   }
@@ -17,7 +22,7 @@ export const deleteTourist = createAsyncThunk(
   "tourist/deleteTourist",
   async (id: string) => {
     await axios.delete(
-      `https://southeast-asia-server-three.vercel.app/addTourist/${id}`
+      `{}/${id}`
     );
     return id; // return the deleted ID
   }

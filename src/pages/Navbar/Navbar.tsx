@@ -1,3 +1,4 @@
+// src/pages/Navbar/Navbar.tsx
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -9,11 +10,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { IoMdArrowDropdown } from "react-icons/io";
 
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/Auth/authSlice"; 
+import type { AppDispatch } from "@/store";
+
+
 const Navbar = () => {
   const [theme] = useState(() => localStorage.getItem("theme") || "yellow");
   const location = useLocation();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const dispatch = useDispatch<AppDispatch | any>();
+
+  // ---------- SAFE INLINE SELECTORS (no external selector dependency) ----------
+  const isAuthenticated = useSelector((state: any) =>
+    Boolean(state?.auth?.access && state?.auth?.user)
+  );
+  const currentUser = useSelector((state: any) => state?.auth?.user);
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -22,6 +36,16 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const handleLinkClick = () => setIsMobileMenuOpen(false);
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logout());
+      navigate("/");
+    } catch (err) {
+      console.error("Logout error:", err);
+      navigate("/");
+    }
+  };
 
   const links = (
     <>
@@ -49,7 +73,10 @@ const Navbar = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-44">
           <DropdownMenuItem
-            onClick={() => navigate("/rents")}
+            onClick={() => {
+              handleLinkClick();
+              navigate("/rents");
+            }}
             className={`cursor-pointer font-semibold ${
               location.pathname === "/rents" ? "text-teal-600" : "text-gray-800"
             }`}
@@ -57,7 +84,10 @@ const Navbar = () => {
             Rentals
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => navigate("/sales")}
+            onClick={() => {
+              handleLinkClick();
+              navigate("/sales");
+            }}
             className={`cursor-pointer font-semibold ${
               location.pathname === "/sales" ? "text-teal-600" : "text-gray-800"
             }`}
@@ -123,23 +153,6 @@ const Navbar = () => {
         About
       </NavLink>
 
-      {/* <NavLink
-        onClick={handleLinkClick}
-        className={({ isActive }) =>
-          `px-3 py-2 text-[15px] font-semibold ${
-            isActive
-              ? "text-teal-600 border-b-2 border-teal-600"
-              : "text-gray-800"
-          } hover:text-teal-600 transition-all`
-        }
-        to="/dashboard/admin-dashboard"
-      >
-        Dashboard
-      </NavLink> */}
-
-
-
-
       <NavLink
         onClick={handleLinkClick}
         className={({ isActive }) =>
@@ -180,7 +193,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-6">{links}</div>
 
-        {/* Contact & Login Buttons */}
+        {/* Contact & Login/Logout Buttons */}
         <div className="hidden lg:flex items-center gap-2">
           <Link
             to="/contact"
@@ -188,12 +201,24 @@ const Navbar = () => {
           >
             Contact Us
           </Link>
-          <Link
-            to="/login"
-            className="px-6 py-2.5 bg-[#009689] text-white font-semibold rounded-lg shadow-md hover:bg-[#007c74] transition-all"
-          >
-            Login
-          </Link>
+
+          {/* Keep the same design: show Logout if authenticated, otherwise Login */}
+          {isAuthenticated ? (
+            // Logout button — same style as original Login button (no design change)
+            <button
+              onClick={handleLogout}
+              className="px-6 py-2.5 bg-[#009689] text-white font-semibold rounded-lg shadow-md hover:bg-[#007c74] transition-all"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="px-6 py-2.5 bg-[#009689] text-white font-semibold rounded-lg shadow-md hover:bg-[#007c74] transition-all"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu Icon */}
@@ -219,13 +244,27 @@ const Navbar = () => {
           >
             Contact Us
           </Link>
-          <Link
-            onClick={handleLinkClick}
-            to="/login"
-            className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
-          >
-            Login
-          </Link>
+
+          {/* Mobile: Login or Logout — same styles kept */}
+          {isAuthenticated ? (
+            <button
+              onClick={() => {
+                handleLinkClick();
+                handleLogout();
+              }}
+              className="w-full cursor-pointer bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              onClick={handleLinkClick}
+              to="/login"
+              className="w-full bg-[#009689] text-center text-white px-4 py-2.5 rounded-lg font-semibold shadow-md hover:bg-[#007c74] transition-all"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
