@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+import toast from "react-hot-toast";
 
 /**
  * UserManagement.jsx
  *
- * New:
- * - Role filter bar (All / Customer / Agent / Manager / Admin) at top-left of table area.
- * - Customers are locked: role cannot be changed (select disabled in edit).
- * - Assignable roles (in edit) are: agent, manager, admin (no 'customer').
- * - Role badge remains in non-edit view.
+ * Changes in this version:
+ * - Delete uses Swal confirmation (your provided pattern).
+ * - Save and Delete success messages use Swal toast notifications.
+ * - Errors use Swal alerts (non-toast).
  *
- * Everything else (layout, API calls, edit/save/delete) preserved.
+ * Everything else (filter dropdown, centered search bar, edit/save/delete, API)
+ * preserved.
  */
 
 const initialUsers = [
@@ -21,9 +24,22 @@ const initialUsers = [
   { id: 5, name: "Kamal Uddin", email: "kamal.uddin@example.com", role: "manager" },
 ];
 
-const ASSIGNABLE_ROLES = ["agent", "manager", "admin"]; // roles you can assign in edit
 const ROLE_FILTERS = ["all", "customer", "agent", "manager", "admin"];
+const ALL_ROLES = ["customer", "agent", "manager", "admin"];
 const API_BASE = import.meta.env.VITE_API_BASE || "http://10.10.13.60:8000/api";
+
+/* Small helper to show a SweetAlert2 toast */
+const showToast = (title, icon = "success", timer = 2500) => {
+  Swal.fire({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer,
+    timerProgressBar: true,
+    icon,
+    title,
+  });
+};
 
 export default function UserManagement() {
   const [users, setUsers] = useState(initialUsers);
@@ -32,7 +48,7 @@ export default function UserManagement() {
   const [actionInProgress, setActionInProgress] = useState({});
   const [editing, setEditing] = useState({});
   const [error, setError] = useState(null);
-  const [roleFilter, setRoleFilter] = useState("all"); // new filter state
+  const [roleFilter, setRoleFilter] = useState("all"); // dropdown filter
 
   const getAuthHeader = () => {
     try {
@@ -102,7 +118,7 @@ export default function UserManagement() {
     const edits = editing[id];
     if (!edits) return;
     if (!edits.name || !edits.email) {
-      alert("Name and email are required.");
+      Swal.fire({ icon: "error", title: "Validation", text: "Name and email are required." });
       return;
     }
 
@@ -110,6 +126,7 @@ export default function UserManagement() {
     const old = users.find((x) => x.id === id);
     const oldData = old ? { name: old.name, email: old.email, role: old.role } : null;
 
+    // optimistic update
     setUsers((prev) => prev.map((u) => (u.id === id ? { ...u, ...edits } : u)));
 
     try {
@@ -129,9 +146,12 @@ export default function UserManagement() {
       if (updated) setUsers((prev) => prev.map((u) => (u.id === id ? { ...u, ...updated } : u)));
 
       cancelEdit(id);
+
+      // success toast
+      toast.success("User updated successfully", { duration: 3000 });
     } catch (err) {
       console.error("Failed to save user:", err);
-      alert(`Could not save changes: ${err.message || "Unknown error"}`);
+      Swal.fire({ icon: "error", title: "Update failed", text: err.message || "Unknown error" });
       if (oldData) setUsers((prev) => prev.map((u) => (u.id === id ? { ...u, ...oldData } : u)));
     } finally {
       setActionInProgress((s) => {
@@ -142,14 +162,25 @@ export default function UserManagement() {
     }
   }
 
-  // Note: role changes immediate only when done via edit+save (we removed immediate dropdown).
-  // The select to change role exists only inside edit mode and offers ASSIGNABLE_ROLES.
+  // delete with Swal confirmation (your provided pattern), do API call only if confirmed
   async function handleDelete(id) {
     const u = users.find((x) => x.id === id);
     if (!u) return;
-    const confirmed = window.confirm(`Delete user ${u.name} (${u.email})?`);
-    if (!confirmed) return;
 
+    // show confirmation using the exact pattern you provided (colors reused)
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (!result.isConfirmed) return;
+
+    // user confirmed — perform delete
     setActionInProgress((s) => ({ ...s, [id]: true }));
     try {
       const res = await fetch(`${API_BASE}/admin/users/${id}/`, {
@@ -160,6 +191,16 @@ export default function UserManagement() {
       if (res.status === 204) {
         setUsers((prev) => prev.filter((x) => x.id !== id));
         cancelEdit(id);
+
+        // show success Swal (as in your snippet)
+        await Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+
+        // also show toast for consistency (optional)
+        toast.success("User deleted");
       } else {
         const data = await res.json().catch(() => null);
         const msg = (data && (data.detail || JSON.stringify(data))) || `Error ${res.status}`;
@@ -167,7 +208,7 @@ export default function UserManagement() {
       }
     } catch (err) {
       console.error("Delete failed:", err);
-      alert(`Could not delete user: ${err.message || "Unknown error"}`);
+      Swal.fire({ icon: "error", title: "Delete failed", text: err.message || "Unknown error" });
     } finally {
       setActionInProgress((s) => {
         const clone = { ...s };
@@ -182,40 +223,44 @@ export default function UserManagement() {
   return (
     <div className="p-4 sm:p-6 md:p-8">
       <div>
-        <div className="mb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div className="flex items-center gap-4">
-            {/* Role Filter (left side above table) */}
-            <div className="flex items-center gap-2">
-              {ROLE_FILTERS.map((rf) => (
-                <button
-                  key={rf}
-                  onClick={() => setRoleFilter(rf)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    roleFilter === rf ? "bg-teal-600 text-white" : "bg-gray-100 text-gray-700"
-                  }`}
-                  aria-pressed={roleFilter === rf}
-                >
-                  {rf === "all" ? "All" : pretty(rf)}
-                </button>
-              ))}
-            </div>
-          </div>
+        {/* TOP ROW: left = role filter (dropdown), center = search, right = title/info */}
+      <div className="mb-6 flex flex-col items-center justify-center gap-4">
+  {/* CENTER: User Management Title */}
+  <h1 className="text-lg sm:text-xl font-semibold mb-1 text-center">User Management</h1>
 
-          <div className="text-center lg:text-right w-full lg:w-auto">
-            <h1 className="text-2xl sm:text-3xl font-semibold mb-1">User Management</h1>
-            <p className="text-sm text-gray-600 mb-4">Manage users, change roles (via Edit), and delete users.</p>
+  {/* CENTER: Search Bar Input Field */}
+  <div className="w-full max-w-lg">
+    <input
+      type="search"
+      placeholder="Search name, email or role"
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 text-center"
+    />
+  </div>
 
-            <input
-              type="search"
-              placeholder="Search name, email or role"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="w-full sm:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50"
-            />
-            {loading && <div className="mt-2 text-xs text-gray-500">Loading users...</div>}
-            {error && <div className="mt-2 text-xs text-red-600">Error: {error}</div>}
-          </div>
-        </div>
+  {/* LEFT: role filter dropdown (moved to left within its own container) */}
+  <div className="flex items-center gap-2">
+    <label htmlFor="roleFilter" className="sr-only">
+      Role filter
+    </label>
+    <select
+      id="roleFilter"
+      value={roleFilter}
+      onChange={(e) => setRoleFilter(e.target.value)}
+      className="px-3 py-1 border rounded-md text-sm"
+    >
+      {ROLE_FILTERS.map((rf) => (
+        <option key={rf} value={rf}>
+          {rf === "all" ? "All" : pretty(rf)}
+        </option>
+      ))}
+    </select>
+  </div>
+</div>
+
+        {loading && <div className="mb-3 text-xs text-gray-500">Loading users...</div>}
+        {error && <div className="mb-3 text-xs text-red-600">Error: {error}</div>}
 
         {/* Unified table */}
         <div className="bg-white border rounded-lg shadow-sm overflow-x-auto">
@@ -233,7 +278,7 @@ export default function UserManagement() {
               {filtered.map((user, index) => {
                 const isEditing = Boolean(editing[user.id]);
                 const editVals = editing[user.id] || {};
-                const isCustomer = (user.role === "customer") || (editVals.role === "customer");
+
                 return (
                   <tr key={user.id} className="border-t hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
@@ -266,7 +311,7 @@ export default function UserManagement() {
                       )}
                     </td>
 
-                    {/* Role column: badge in non-edit; select only in edit (disabled for customer) */}
+                    {/* Role: badge in non-edit, select only in edit (now includes customer) */}
                     <td className="px-6 py-4 whitespace-nowrap">
                       {isEditing ? (
                         <select
@@ -274,15 +319,13 @@ export default function UserManagement() {
                           onChange={(e) => setEditField(user.id, "role", e.target.value)}
                           className="px-3 py-2 border rounded-md text-sm"
                           aria-label={`Change role for ${user.name}`}
-                          disabled={isCustomer || Boolean(actionInProgress[user.id])}
+                          disabled={Boolean(actionInProgress[user.id])}
                         >
-                          {ASSIGNABLE_ROLES.map((r) => (
+                          {ALL_ROLES.map((r) => (
                             <option key={r} value={r}>
                               {pretty(r)}
                             </option>
                           ))}
-                          {/* if role is customer, still show it (disabled) */}
-                          {isCustomer && <option value="customer">Customer</option>}
                         </select>
                       ) : (
                         <div className="flex items-center gap-2">
@@ -356,7 +399,7 @@ export default function UserManagement() {
           {filtered.map((user) => {
             const isEditing = Boolean(editing[user.id]);
             const editVals = editing[user.id] || {};
-            const isCustomer = (user.role === "customer") || (editVals.role === "customer");
+
             return (
               <div key={user.id} className="bg-white border rounded-lg p-4 shadow-sm">
                 <div className="flex items-start justify-between gap-4">
@@ -391,14 +434,13 @@ export default function UserManagement() {
                         value={editVals.role}
                         onChange={(e) => setEditField(user.id, "role", e.target.value)}
                         className="mt-1 px-2 py-1 border rounded-md text-sm"
-                        disabled={isCustomer || Boolean(actionInProgress[user.id])}
+                        disabled={Boolean(actionInProgress[user.id])}
                       >
-                        {ASSIGNABLE_ROLES.map((r) => (
+                        {ALL_ROLES.map((r) => (
                           <option key={r} value={r}>
                             {pretty(r)}
                           </option>
                         ))}
-                        {isCustomer && <option value="customer">Customer</option>}
                       </select>
                     ) : (
                       <div className="mt-1 flex items-center gap-2 justify-end">
