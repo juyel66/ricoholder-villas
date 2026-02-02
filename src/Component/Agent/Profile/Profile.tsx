@@ -247,7 +247,8 @@ const EditProfileModal = ({ isOpen, onClose, currentInfo = {}, onSave }) => {
                   name="emailAddress"
                   value={formData.emailAddress}
                   onChange={handleChange}
-                  className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  
+                  className="w-full p-3 read-only:opacity-45 pl-10 border border-gray-300 rounded-lg cursor-not-allowed focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter email"
                 />
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
