@@ -302,7 +302,7 @@ export const router = createBrowserRouter([
           { path: 'admin-newsletter', element: <NewsLetter /> },
           { path: 'admin-faqs', element: <FAQs /> },
           { path: 'admin-profile', element: <Profile /> },
-          { path: 'admin-allContact', element: <AllContact /> },
+          { path: 'admin-all-Contact', element: <AllContact /> },
           { path: 'admin/notifications', element: <AdminNotificationsPage /> },
           { path: 'admin-allReview', element: <AllReview /> },
           {
