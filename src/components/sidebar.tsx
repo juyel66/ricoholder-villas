@@ -266,7 +266,7 @@ function Sidebar({
         
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="text-white bg-[#0F172A] relative flex w-full flex-col p-5 group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:rounded-lg"
+          className="text-white bg-[#0F172A] relative flex w-full flex-col p-1 group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:rounded-lg"
         >
           {/* Main scrollable content area */}
           <div className="flex-1 overflow-auto">{children}</div>
@@ -487,7 +487,7 @@ function SidebarGroupContent({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="sidebar-group-content"
+      data-slot="sidebar-group-content "
       data-sidebar="group-content"
       className={cn("w-full text-sm", className)}
       {...props}
@@ -500,7 +500,7 @@ function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
     <ul
       data-slot="sidebar-menu"
       data-sidebar="menu"
-      className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+      className={cn("flex w-full min-w-0 flex-col gap-1 ", className)}
       {...props}
     />
   )
