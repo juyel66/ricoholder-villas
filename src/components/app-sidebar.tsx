@@ -112,7 +112,7 @@ const AppSidebar = () => {
           {showAgent && (
             <>
               <p className="mt-10 ml-10 text-white mb-5 text-[24px]">AGENT</p>
-              <div className="h-px bg-gradient-to-r from-transparent via-white to-transparent mb-3" />
+              <div className="h-px bg-gradient-to-r  from-transparent via-white to-transparent mb-3 " />
               {renderMenu(AGENT)}
             </>
           )}
